@@ -7,8 +7,9 @@ public class Interface{
     niveau=new int[20][20];//initialisation d'un niveau vierge
     for(int i=0;i<niveau.length;i++)
       for(int j=0;j<niveau[0].length;j++)
-        niveau[i][j]=1;
-    setIndice(15,0,2);
+        niveau[i][j]=0;
+    setIndice(15,0,1);
+    setIndice(15,1,2);
   }
 
   private int getIndice(int i, int j)
@@ -20,6 +21,7 @@ public class Interface{
   {
     niveau[i][j]=id;
   }
+  
   public void affiche()
   {
     for(int i=-1; i<=niveau.length;i++)
@@ -30,7 +32,7 @@ public class Interface{
           System.out.print("_");
         else if(j==-1||j==niveau[0].length)
           System.out.print("|");
-        else if(niveau[i][j]!=1)
+        else if(niveau[i][j]!=0)
           System.out.print(niveau[i][j]);
         else
           System.out.print(" ");
@@ -61,22 +63,14 @@ public class Interface{
       j=0;
       while(!flag&&j<niveau[0].length)
       {
-        if(niveau[i][j]==id)
+        if((niveau[i][j]&id)==id)
         {
           flag=true;
           if((i+1)<niveau.length)
           {
-            if(niveau[i-1][j]==1)
-            {
-              niveau[i][j]=niveau[i][j]/id;
-              niveau[i+1][j]=niveau[i+1][j]*id;
-            }
-            else
-            {
-              niveau[i][j]=niveau[i][j]/id;
-              niveau[i+1][j]=niveau[i+1][j]*id;
+              niveau[i][j]=niveau[i][j]&~id;
+              niveau[i+1][j]=niveau[i+1][j]|id;
               return niveau[i][j];
-            }
           }
         }
         else
@@ -84,7 +78,7 @@ public class Interface{
       }
         i++;
     }
-    return 1;
+    return 0;
   }
 
   private int gauche(int id)
@@ -97,22 +91,14 @@ public class Interface{
       j=0;
       while(!flag&&j<niveau[0].length)
       {
-        if(niveau[i][j]==id)
+        if((niveau[i][j]&id)==id)
         {
           flag=true;
           if(j-1>=0)
           {
-            if(niveau[i][j-1]==1)
-            {
-              niveau[i][j]=niveau[i][j]/id;
-              niveau[i][j-1]=niveau[i][j-1]*id;
-            }
-            else
-            {
-              niveau[i][j]=niveau[i][j]/id;
-              niveau[i][j-1]=niveau[i][j-1]*id;
+              niveau[i][j]=niveau[i][j]&~id;
+              niveau[i][j-1]=niveau[i][j-1]|id;
               return niveau[i][j];
-            }
           }
         }
         else
@@ -120,7 +106,7 @@ public class Interface{
       }
         i++;
     }
-    return 1;
+    return 0;
   }
 
   private int droite(int id)
@@ -133,22 +119,14 @@ public class Interface{
       j=0;
       while(!flag&&j<niveau[0].length)
       {
-        if(niveau[i][j]==id)
+        if((niveau[i][j]&id)==id)
         {
           flag=true;
           if(j+1<niveau[0].length)
           {
-            if(niveau[i][j+1]==1)
-            {
-              niveau[i][j]=niveau[i][j]/id;
-              niveau[i][j+1]=niveau[i][j+1]*id;
-            }
-            else
-            {
-              niveau[i][j]=niveau[i][j]/id;
-              niveau[i][j+1]=niveau[i][j+1]*id;
+              niveau[i][j]=niveau[i][j]&~id;
+              niveau[i][j+1]=niveau[i][j+1]|id;
               return niveau[i][j];
-            }
           }
         }
         else
@@ -156,7 +134,7 @@ public class Interface{
       }
         i++;
     }
-    return 1;
+    return 0;
   }
 
   private int monte(int id)
@@ -169,22 +147,14 @@ public class Interface{
       j=0;
       while(!flag&&j<niveau[0].length)
       {
-        if(niveau[i][j]==id)
+        if((niveau[i][j]&id)==id)
         {
           flag=true;
           if(i-1>=0)
           {
-            if(niveau[i-1][j]==1)
-            {
-              niveau[i][j]=niveau[i][j]/id;
-              niveau[i-1][j]=niveau[i-1][j]*id;
-            }
-            else
-            {
-              niveau[i][j]=niveau[i][j]/id;
-              niveau[i-1][j]=niveau[i-1][j]*id;
+              niveau[i][j]=niveau[i][j]&~id;
+              niveau[i-1][j]=niveau[i-1][j]|id;
               return niveau[i][j];
-            }
           }
         }
         else
@@ -192,20 +162,20 @@ public class Interface{
       }
         i++;
     }
-    return 1;
+    return 0;
   }
 
   //main de test
   public static void main(String[] args) {
     Interface i=new Interface();
     i.affiche();
-    int j=i.monte(2);
+    int j=i.monte(1);
     i.affiche();
-    j=i.descend(2);
+    j=i.descend(1);
     i.affiche();
-    j=i.droite(2);
+    j=i.droite(1);
     i.affiche();
-    j=i.gauche(2);
+    j=i.gauche(1);
     i.affiche();
   }
 }
