@@ -1,6 +1,14 @@
-public classe creature 
+public class Creature
 {
- String nom;
-  creature(String s){nom=s;}
+  private String nom;
+
+  public Creature(String s)
+  {
+    nom=s;
+  }
+
+  public void capturer()
+  {
+
+  }
 }
- public void capturer(){} 

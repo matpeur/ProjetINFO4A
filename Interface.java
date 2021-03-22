@@ -4,12 +4,10 @@ public class Interface{
 
   public Interface()
   {
-    niveau=new int[20][20];//initialisation d'un niveau vierge
+    niveau=new int[100][100];//initialisation d'un niveau vierge
     for(int i=0;i<niveau.length;i++)
       for(int j=0;j<niveau[0].length;j++)
         niveau[i][j]=0;
-    setIndice(15,0,1);
-    setIndice(15,1,2);
   }
 
   private int getIndice(int i, int j)
@@ -21,7 +19,7 @@ public class Interface{
   {
     niveau[i][j]=id;
   }
-  
+
   public void affiche()
   {
     for(int i=-1; i<=niveau.length;i++)
