@@ -1,11 +1,11 @@
-public class Sccores 
+public class Scores 
 {
  
     ArrayList<Joueur> lst ;
     int tab[];
     
  
-public Sccores(int n, ArrayList<Joueur> lst )
+public Scores(int n, ArrayList<Joueur> lst )
 {
      this.lst=lst;
     tab=new int[n];  
