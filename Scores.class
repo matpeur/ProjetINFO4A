@@ -1,11 +1,19 @@
+<<<<<<< Updated upstream
 public class Scores 
+=======
+public class Sccores 
+>>>>>>> Stashed changes
 {
  
     ArrayList<Joueur> lst ;
     int tab[];
     
  
+<<<<<<< Updated upstream
 public Scores(int n, ArrayList<Joueur> lst )
+=======
+public Sccores(int n, ArrayList<Joueur> lst )
+>>>>>>> Stashed changes
 {
      this.lst=lst;
     tab=new int[n];  
