@@ -1,4 +1,4 @@
-public class Creature
+public abstract class Creature extends Thread
 {
   private String nom;
 
