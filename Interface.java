@@ -4,10 +4,32 @@ public class Interface{
 
   public Interface()
   {
-    niveau=new int[101][100];//initialisation d'un niveau vierge
+    niveau=new int[100][100];//initialisation d'un niveau vierge
     for(int i=0;i<niveau.length;i++)
       for(int j=0;j<niveau[0].length;j++)
         niveau[i][j]=0;
+  }
+
+  private Interface(int ligne, int colonne)
+  {
+    niveau=new int[ligne][colonne];//initialisation d'un niveau vierge
+    for(int i=0;i<niveau.length;i++)
+      for(int j=0;j<niveau[0].length;j++)
+        niveau[i][j]=0;
+  }
+  public int getTaille()
+  {
+    return niveau.length*niveau[0].length;
+  }
+
+  public int getNbColonne()
+  {
+    return niveau[0].lenght;
+  }
+
+  public int getNbLigne()
+  {
+    return niveau.lenght;
   }
 
   private int getIndice(int i, int j)
