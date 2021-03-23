@@ -2,7 +2,7 @@ public abstract class Creature extends Thread
 {
   private String nom;
   private int identifiant;
-  private Interface plateau;
+  private Plateau plateau;
 
   public int getIdentifiant()
   {
@@ -14,12 +14,12 @@ public abstract class Creature extends Thread
     this.identifiant=id;
   }
 
-  public Interface getInterface()
+  public Plateau getPlateau()
   {
     return this.plateau;
   }
 
-  public void setInterface(Interface it)
+  public void setPlateau(Plateau it)
   {
     plateau=it;
   }
@@ -34,11 +34,11 @@ public abstract class Creature extends Thread
     return this.nom;
   }
 
-  public Creature(String s, int id, Interface it)
+  public Creature(String s, int id, Plateau it)
   {
     nom=s;
     setIdentifiant(id);
-    setInterface(it);
+    setPlateau(it);
   }
 
   public abstract void run();

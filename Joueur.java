@@ -4,7 +4,7 @@ public class Joueur extends Creature
  int vies ;
  boolean poivre ;
 
- public Joueur(Interface I1,String nom, int id)
+ public Joueur(Plateau I1,String nom, int id)
  {
    super(nom, id,I1);
    vies=3;
@@ -12,12 +12,12 @@ public class Joueur extends Creature
    score = 0;
  }
 
-public void affiche()
+public String toString()
 {
- System.out.println("Joueur: "+super.getNom()+"Score: "+this.score);
+ return "Joueur: "+super.getNom()+"Score: "+this.score;
 }
 
-  public void deplacement(int i1,int i2){super.getInterface().bouge(i1,i2);}
+  public void deplacement(int i1,int i2){super.getPlateau().bouge(i1,i2);}
 
   public void score (int s ){ this.score=s;}
 
@@ -35,7 +35,7 @@ public void affiche()
   @Override
   public void run()
   {
-
+    System.out.println("Je suis "+toString());
   }
 
 }

@@ -1,8 +1,8 @@
-public class Interface{
+public class Plateau{
 
   private int niveau[][];
 
-  public Interface()
+  public Plateau()
   {
     niveau=new int[100][100];//initialisation d'un niveau vierge
     for(int i=0;i<niveau.length;i++)
@@ -10,7 +10,7 @@ public class Interface{
         niveau[i][j]=0;
   }
 
-  private Interface(int ligne, int colonne)
+  private Plateau(int ligne, int colonne)
   {
     niveau=new int[ligne][colonne];//initialisation d'un niveau vierge
     for(int i=0;i<niveau.length;i++)
@@ -187,7 +187,7 @@ public class Interface{
 
   //main de test
   public static void main(String[] args) {
-    Interface i=new Interface();
+    Plateau i=new Plateau();
     i.affiche();
     int j=i.monte(1);
     i.affiche();
