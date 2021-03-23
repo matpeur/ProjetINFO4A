@@ -1,27 +1,23 @@
 public class Joueur extends Creature
 {
- Interface1 I;
  int score ;
  int vies ;
- int poivres ;
- int position;
- String nom;
+ boolean poivre ;
 
- public Joueur(Interface1 I1,int vies1,int poivres1,positionss,String nom)
+ public Joueur(Interface I1,String nom, int id)
  {
-   this.nom=nom;
-   I=I1;
-   vies=vies1;
-   poivres=poivres1;
-   position=positionss;
+   super(nom, id,I1);
+   vies=3;
+   poivre=true;
+   score = 0;
  }
 
 public void affiche()
 {
- System.out.println("Joueur: "+this.nom+"Score: " this.score);
+ System.out.println("Joueur: "+super.getNom()+"Score: "+this.score);
 }
 
-  public void deplacement(int i1,int i2){I.bouge(i1,i2);}
+  public void deplacement(int i1,int i2){super.getInterface().bouge(i1,i2);}
 
   public void score (int s ){ this.score=s;}
 
@@ -31,5 +27,15 @@ public void affiche()
 
   public void dimunieScore(int s){this.score=score-1;}
 
-  public void poivrer(){}
+  public void poivrer()
+  {
+
+  }
+
+  @Override
+  public void run()
+  {
+
+  }
+
 }
