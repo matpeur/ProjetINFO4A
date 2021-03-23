@@ -2,13 +2,13 @@ public class Scores
 {
 
     ArrayList<Joueur> lst ;
-    int tab[];
+ 
 
 
     public Scores(int n, ArrayList<Joueur> lst )
     {
       this.lst=lst;
-      tab=new int[n];
+      
     }
 
     void classement()
