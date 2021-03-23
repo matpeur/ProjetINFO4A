@@ -24,12 +24,12 @@ public class Interface{
 
   public int getNbColonne()
   {
-    return niveau[0].lenght;
+    return niveau[0].length;
   }
 
   public int getNbLigne()
   {
-    return niveau.lenght;
+    return niveau.length;
   }
 
   private int getIndice(int i, int j)
