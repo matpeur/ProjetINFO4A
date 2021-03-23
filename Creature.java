@@ -24,6 +24,16 @@ public abstract class Creature extends Thread
     plateau=it;
   }
 
+  public void setNom(String nom)
+  {
+    this.nom=nom;
+  }
+
+  public String getNom()
+  {
+    return this.nom;
+  }
+
   public Creature(String s, int id, Interface it)
   {
     nom=s;
@@ -31,16 +41,13 @@ public abstract class Creature extends Thread
     setInterface(it);
   }
 
-  public abstract void run()
-  {
-
-  }
+  public abstract void run();
 
   public synchronized void deplacement(int i)
   {
     switch(i){
-      case 1:gauche();
-      case 2:haut();
+      case 1:
+      case 2:
       case 3:
     }
   }
