@@ -16,6 +16,11 @@ public class Moteur
     creature.add((Creature)j);
   }
 
+  public getJoueur(int i)
+  {
+    return creature.get(i);
+  }
+
   public Moteur()
   {
     i=new Plateau();
