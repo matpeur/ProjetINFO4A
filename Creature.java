@@ -3,6 +3,7 @@ public abstract class Creature extends Thread
   private String nom;
   private int identifiant;
   private Plateau plateau;
+  private int place;
 
   public int getIdentifiant()
   {
@@ -32,6 +33,16 @@ public abstract class Creature extends Thread
   public String getNom()
   {
     return this.nom;
+  }
+
+  public int getPlace()
+  {
+    return this.place;
+  }
+
+  public void setPlace(int i)
+  {
+    this.place = i;
   }
 
   public Creature(String s, int id, Plateau it)
