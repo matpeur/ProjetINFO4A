@@ -32,6 +32,16 @@ public class Plateau{
     return niveau.length;
   }
 
+  public int getLigne(int identifiant)
+  {
+    return identifiant/getNbLigne();
+  }
+
+  public int getColonne(int identifiant)
+  {
+    return identifiant%getNbLigne;
+  }
+
   private int getIndice(int i, int j)
   {
     return niveau[i][j];
@@ -61,19 +71,7 @@ public class Plateau{
     }
   }
 
-  public synchronized int bouge(int i, int id)
-  {
-    switch(i)
-    {
-      case 1: return monte(id);
-      case 2: return descend(id);
-      case 3: return gauche(id);
-      case 4: return droite(id);
-    }
-    return 1;
-  }
-
-  private int descend(int id)
+  private int test_descend(int id)
   {
     boolean flag=false;
     int i=0;
@@ -98,7 +96,7 @@ public class Plateau{
       }
         i++;
     }
-    return 0;
+    return flag;
   }
 
   private int gauche(int id)
