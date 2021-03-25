@@ -1,5 +1,14 @@
 public class Plateau{
 
+  /*
+  Defini un plateau de jeu
+  Identifiants réservés : "0" case vide
+                          "1" Sol
+                          "2" Elements de burger
+                          "3" Echelle
+                          "4-12" Definis pour les joueurs
+
+  */
   private int niveau[][];
 
   public Plateau()
@@ -39,7 +48,7 @@ public class Plateau{
 
   public int getColonne(int identifiant)
   {
-    return identifiant%getNbLigne;
+    return identifiant%getNbLigne();
   }
 
   private int getIndice(int i, int j)
@@ -52,148 +61,64 @@ public class Plateau{
     niveau[i][j]=id;
   }
 
-  public void affiche()
+  public char getChar(int id)
   {
-    for(int i=-1; i<=niveau.length;i++)
-    {
-      for(int j=-1;j<=niveau[0].length;j++)
+      switch(id)
       {
-        if(i==-1||i==niveau.length)
-          System.out.print("_");
-        else if(j==-1||j==niveau[0].length)
-          System.out.print("|");
-        else if(niveau[i][j]!=0)
-          System.out.print(niveau[i][j]);
-        else
-          System.out.print(" ");
-        }
-      System.out.println();
-    }
+        case 1 : return '_';
+        case 3 : return '=';
+      }
+      return 0;
   }
 
-  private int test_descend(int id)
+  private boolean testDescend(int id)
   {
-    boolean flag=false;
-    int i=0;
-    int j;
-    while(!flag&&i<niveau.length)
+    if(id+getNbColonne()<getTaille())
     {
-      j=0;
-      while(!flag&&j<niveau[0].length)
-      {
-        if((niveau[i][j]&id)==id)
-        {
-          flag=true;
-          if((i+1)<niveau.length)
-          {
-              niveau[i][j]=niveau[i][j]&~id;
-              niveau[i+1][j]=niveau[i+1][j]|id;
-              return niveau[i][j];
-          }
-        }
-        else
-          j++;
-      }
-        i++;
+      int ligne = getLigne(id);
+      int colonne = getColonne(id);
+      return getIndice(ligne+1, colonne)!=0;
     }
-    return flag;
+    return false;
   }
 
-  private int gauche(int id)
+  private boolean testGauche(int id)
   {
-    boolean flag=false;
-    int i=0;
-    int j;
-    while(!flag&&i<niveau.length)
+    if(id-1>=0)
     {
-      j=0;
-      while(!flag&&j<niveau[0].length)
-      {
-        if((niveau[i][j]&id)==id)
-        {
-          flag=true;
-          if(j-1>=0)
-          {
-              niveau[i][j]=niveau[i][j]&~id;
-              niveau[i][j-1]=niveau[i][j-1]|id;
-              return niveau[i][j];
-          }
-        }
-        else
-          j++;
-      }
-        i++;
+      int ligne = getLigne(id);
+      int colonne = getColonne(id);
+      if(colonne>0)
+        return getIndice(ligne, colonne-1)!=0;
     }
-    return 0;
+    return false;
   }
 
-  private int droite(int id)
+  private boolean testDroite(int id)
   {
-    boolean flag=false;
-    int i=0;
-    int j;
-    while(!flag&&i<niveau.length)
+    if(id+1 < getTaille())
     {
-      j=0;
-      while(!flag&&j<niveau[0].length)
-      {
-        if((niveau[i][j]&id)==id)
-        {
-          flag=true;
-          if(j+1<niveau[0].length)
-          {
-              niveau[i][j]=niveau[i][j]&~id;
-              niveau[i][j+1]=niveau[i][j+1]|id;
-              return niveau[i][j];
-          }
-        }
-        else
-          j++;
-      }
-        i++;
+      int ligne = getLigne(id);
+      int colonne = getColonne(id);
+      if(colonne+1 < getNbColonne())
+        return getIndice(ligne, colonne+1)!=0;
     }
-    return 0;
+    return false;
   }
 
-  private int monte(int id)
+  private boolean testMonte(int id)
   {
-    boolean flag=false;
-    int i=0;
-    int j;
-    while(!flag&&i<niveau.length)
+    if(id-getNbColonne() >= 0)
     {
-      j=0;
-      while(!flag&&j<niveau[0].length)
-      {
-        if((niveau[i][j]&id)==id)
-        {
-          flag=true;
-          if(i-1>=0)
-          {
-              niveau[i][j]=niveau[i][j]&~id;
-              niveau[i-1][j]=niveau[i-1][j]|id;
-              return niveau[i][j];
-          }
-        }
-        else
-          j++;
-      }
-        i++;
+      int ligne = getLigne(id);
+      int colonne = getColonne(id);
+      return getIndice(ligne-1, colonne)!=0;
     }
-    return 0;
+    return false;
   }
 
   //main de test
   public static void main(String[] args) {
     Plateau i=new Plateau();
-    i.affiche();
-    int j=i.monte(1);
-    i.affiche();
-    j=i.descend(1);
-    i.affiche();
-    j=i.droite(1);
-    i.affiche();
-    j=i.gauche(1);
-    i.affiche();
   }
 }
