@@ -2,8 +2,8 @@ import java.util.*;
 
 public class Moteur
 {
-  private Plateau plateau;
-  public ArrayList<Creature> creature;
+  public Plateau plateau;
+  private ArrayList<Creature> creature;
   //public ArrayListe<Burger> burger;
 
   public int getNbJoueur()
@@ -29,15 +29,19 @@ public class Moteur
     return creature.get(i);
   }
 
-  public Joueur getJoueurPlace(int place)
+  public Creature getJoueurPlace(int place)
   {
     int i=0;
     boolean flag = false;
-    Joueur r =null;
+    Creature r = null;
     while(i<getNbJoueur() && !flag)
     {
       if(getJoueur(i).getPlace()==place)
-        flag=true;
+        {
+          flag=true;
+          r=getJoueur(i);
+        }
+      i++;
     }
     return r;
   }
@@ -46,13 +50,20 @@ public class Moteur
   {
     for (int i=0; i<plateau.getTaille(); i++)
     {
-      if(i%plateau.getNbColonne()==0)
-        System.out.print("\n");
-      Joueur j = getJoueurPlace(i);
+      if(i!=0)
+        {
+          if(i%plateau.getNbColonne()==0)
+            System.out.print("\n");
+        }
+      Joueur j = (Joueur)getJoueurPlace(i);
       if(j!=null)
-        System.out.print(j.getSymbole());
+        {
+          System.out.print(j.getSymbole());
+        }
       else
+      {
         System.out.print(plateau.getChar(i));
+      }
     }
   }
 
@@ -62,8 +73,8 @@ public class Moteur
     m.ajoutJoueur("Michel");
     m.creature.get(0).setChar('C');
     m.creature.get(0).setPlace(50);
-    System.out.println("Bonjour");
     m.visualisation();
+    System.out.println("Fin");
 
   }
 

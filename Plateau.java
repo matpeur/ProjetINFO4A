@@ -13,12 +13,12 @@ public class Plateau{
 
   public Plateau()
   {
-    niveau=new int[50][50];//initialisation d'un niveau vierge
+    niveau=new int[10][9];//initialisation d'un niveau vierge
     for(int i=0;i<niveau.length;i++)
       for(int j=0;j<niveau[0].length;j++)
         niveau[i][j]=0;
     for(int i = 0; i<getNbColonne(); i++)
-      niveau[20][i] = 1;
+      niveau[3][i] = 1;
   }
 
   private Plateau(int ligne, int colonne)
@@ -45,17 +45,17 @@ public class Plateau{
 
   public int getLigne(int identifiant)
   {
-    return identifiant/getNbLigne();
+    return identifiant/getNbColonne();
   }
 
   public int getColonne(int identifiant)
   {
-    return identifiant%getNbLigne();
+    return identifiant%getNbColonne();
   }
 
-  private int getIndice(int i, int j)
+  public int getIndice(int ligne, int colonne)
   {
-    return niveau[i][j];
+    return niveau[ligne][colonne];
   }
 
   private void setIndice(int i, int j, int id)
@@ -65,7 +65,7 @@ public class Plateau{
 
   public char getChar(int id)
   {
-      switch(id)
+      switch(getIndice(getLigne(id),getColonne(id)))
       {
         case 1 : return '_';
         case 3 : return '=';
