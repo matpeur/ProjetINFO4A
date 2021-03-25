@@ -12,10 +12,11 @@ public class Joueur extends Creature
    score = 0;
  }
 
-public String toString()
-{
- return "Joueur: "+super.getNom()+"Score: "+this.score;
-}
+  public String toString()
+  {
+    return "Joueur: "+super.getNom()+"Score: "+this.score;
+  }
+
 
   public void deplacement(int i1,int i2){super.getPlateau().bouge(i1,i2);}
 
