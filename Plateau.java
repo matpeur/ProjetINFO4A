@@ -13,10 +13,12 @@ public class Plateau{
 
   public Plateau()
   {
-    niveau=new int[100][100];//initialisation d'un niveau vierge
+    niveau=new int[50][50];//initialisation d'un niveau vierge
     for(int i=0;i<niveau.length;i++)
       for(int j=0;j<niveau[0].length;j++)
         niveau[i][j]=0;
+    for(int i = 0; i<getNbColonne(); i++)
+      niveau[20][i] = 1;
   }
 
   private Plateau(int ligne, int colonne)
@@ -68,7 +70,7 @@ public class Plateau{
         case 1 : return '_';
         case 3 : return '=';
       }
-      return 0;
+      return ' ';
   }
 
   private boolean testDescend(int id)

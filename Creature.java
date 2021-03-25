@@ -4,7 +4,7 @@ public abstract class Creature extends Thread
   private int identifiant;
   private Plateau plateau;
   private int place;
-  private char Symbole;
+  private char symbole;
 
   public int getIdentifiant()
   {
@@ -23,7 +23,7 @@ public abstract class Creature extends Thread
 
   public void setChar(char c)
   {
-    this.symbole=c
+    this.symbole=c;
   }
 
   public Plateau getPlateau()

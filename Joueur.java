@@ -18,7 +18,7 @@ public class Joueur extends Creature
   }
 
 
-  public void deplacement(int i1,int i2){super.getPlateau().bouge(i1,i2);}
+  //public void deplacement(int i1,int i2){super.getPlateau().bouge(i1,i2);}
 
   public void score (int s ){ this.score=s;}
 
