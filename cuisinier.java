@@ -1,4 +1,4 @@
-public class cuisinier extends Joueur
+public class Cuisinier extends Joueur
 {
   
 
