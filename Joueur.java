@@ -1,20 +1,15 @@
 public class Joueur extends Creature
 {
- int score ;
- int vies ;
- boolean poivre ;
+
 
  public Joueur(Plateau I1,String nom, int id)
  {
    super(nom, id, I1);
-   vies=3;
-   poivre=true;
-   score = 0;
  }
 
   public String toString()
   {
-    return "Joueur: "+super.getNom()+"Score: "+this.score;
+    return "Joueur: "+super.getNom();
   }
 
 
@@ -28,10 +23,6 @@ public class Joueur extends Creature
 
   public void dimunieScore(int s){this.score=score-1;}
 
-  public void poivrer()
-  {
-
-  }
 
   @Override
   public void run()
