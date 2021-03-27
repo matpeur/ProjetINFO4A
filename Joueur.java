@@ -6,7 +6,7 @@ public class Joueur extends Creature
 
  public Joueur(Plateau I1,String nom, int id)
  {
-   super(nom, id,I1);
+   super(nom, id, I1);
    vies=3;
    poivre=true;
    score = 0;

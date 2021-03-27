@@ -1,7 +1,7 @@
 public class Ennemis extends Creature
 {
 
-public Elements(Plateau I1,String nom, int id)
+public Ennemis(Plateau I1,String nom, int id)
 {
 
 super(I1,nom,id);
@@ -9,7 +9,6 @@ super(I1,nom,id);
 
 
 }
-
 
 void capturer(){}
 
@@ -38,9 +37,9 @@ int distmin(int id1 ,int id2 )
               }
 
             }
-       
+
        }
-    else 
+    else
     {
         if(getLigne(id1)>getLigne(id2)&&(testMonte(id1)))
        { setIndice(getIndice(getLigne(id1)-1,getColonne(id1));
@@ -59,7 +58,7 @@ int distmin(int id1 ,int id2 )
 
             }
 
-       }else 
+       }else
        {
 
 
@@ -80,7 +79,7 @@ int distmin(int id1 ,int id2 )
 
             }
          }
-    
+
 
        }
 
@@ -93,7 +92,7 @@ int distmin(int id1 ,int id2 )
 
 void deplaceEnnemi(int id1,int id2)
 {    int p=id1;
-     int icteur=100000000000; 
+     int icteur=100000000000;
       if(testMonte(id1)&&icteur>distmin(id1,id2))
       {
         setIndice(getIndice(getLigne(id1)+1,getColonne(id1)));
@@ -101,10 +100,10 @@ void deplaceEnnemi(int id1,int id2)
       }
        if(testDescend(id1)&&icteur>distmin((getIndice(getLigne(id1)-1,getColonne(id1)),id2))
       {
-       
+
         setIndice(p) ;
         setIndice(getIndice(getLigne(id1)-1,getColonne(id1)));
-          icteur=distmin(getIndice(getLigne(id1)-1,getColonne(id1)),id2); 
+          icteur=distmin(getIndice(getLigne(id1)-1,getColonne(id1)),id2);
       }
       if(testDroite(id1)&&icteur>distmin(getIndice(getLigne(id1),getColonne(id1)+1),id2))
       { setIndice(p) ;
@@ -113,10 +112,10 @@ void deplaceEnnemi(int id1,int id2)
       }
        if(testGauche(id1)&&icteur>distmin(getIndice(getLigne(id1),getColonne(id1)-1),id2))
       {
-       
+
         setIndice(p) ;
         setIndice(getIndice(getLigne(id1),getColonne(id1)-1));
-        icteur=distmin(getIndice(getLigne(id1),getColonne(id1)-1),id2); 
+        icteur=distmin(getIndice(getLigne(id1),getColonne(id1)-1),id2);
       }
 }
 
