@@ -1,13 +1,16 @@
+import java.io.*;
+
 public class Joueur extends Creature
 {
-  char[] commandes
+  char[] commandes;
   boolean arret;
 
- public Joueur(Plateau I1,String nom, int id)
+ public Joueur(Plateau I1,String nom, int id, char symbole)
  {
    super(nom, id, I1);
-   commandes= {'z', 'q', 's', 'd'};
+   commandes = new char[]{'z', 'q', 's', 'd'};
    arret=false;
+   super.setSymbole(symbole);
  }
 
   public String toString()
@@ -20,19 +23,28 @@ public class Joueur extends Creature
   {
     while(!arret)
     {
-      BufferedReader saisie=new BufferedReader(new InputStreamReader(System.in));
-      char commande =saisie.read()
-      switch(commande)
+      try
       {
-        case comandes[0] :
-                          if (super.getPlateau().testMonte())
-                          {
-                            super.setPlace(supêr.getPlateau().getNbColonne()+super.getPlace());
-                          }
-        case comandes[1] :
-        case comandes[2] :
-        case comandes[3] :
-      }
+        BufferedReader saisie=new BufferedReader(new InputStreamReader(System.in));
+        char commande =(char)saisie.read();
+        if(commande==commandes[0])
+          {
+            deplaceHaut();
+          }
+          else if(commande==commandes[1])
+          {
+            deplaceDroite();
+          }
+          else if(commande==commandes[2])
+          {
+            deplaceBas();
+          }
+          else if(commande==commandes[3])
+          {
+            deplaceDroite();
+          }
+        }
+        catch(IOException e){}
     }
   }
 

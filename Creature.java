@@ -21,7 +21,7 @@ public abstract class Creature extends Thread
     return this.symbole;
   }
 
-  public void setChar(char c)
+  public void setSymbole(char c)
   {
     this.symbole=c;
   }
@@ -61,16 +61,40 @@ public abstract class Creature extends Thread
     nom=s;
     setIdentifiant(id);
     setPlateau(it);
+    setPlace(19*getPlateau().getNbColonne()+2);
   }
 
   public abstract void run();
 
-  public deplaceHaut()
+  public void deplaceHaut()
   {
-    if (getPlateau().testMonte())
+    if (getPlateau().testMonte(getPlace()))
     {
     setPlace(getPlateau().getNbColonne()+getPlace());
     }
   }
 
+  public void deplaceDroite()
+  {
+    if (getPlateau().testDroite(getPlace()))
+    {
+    setPlace(1+getPlace());
+    }
+  }
+
+  public void deplaceGauche()
+  {
+    if (getPlateau().testGauche(getPlace()))
+    {
+    setPlace(getPlace()-1);
+    }
+  }
+
+  public void deplaceBas()
+  {
+    if (getPlateau().testDescend(getPlace()))
+    {
+    setPlace(getPlateau().getNbColonne()-getPlace());
+    }
+  }
 }

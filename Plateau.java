@@ -1,5 +1,7 @@
 public class Plateau{
 
+  //point de spawn 19,2
+
   /*
   Defini un plateau de jeu
   Identifiants réservés : "0" case vide
@@ -75,7 +77,7 @@ public class Plateau{
       return ' ';
   }
 
-  private boolean testDescend(int id)
+  public boolean testDescend(int id)
   {
     if(id+getNbColonne()<getTaille())
     {
@@ -86,7 +88,7 @@ public class Plateau{
     return false;
   }
 
-  private boolean testGauche(int id)
+  public boolean testGauche(int id)
   {
     if(id-1>=0)
     {
@@ -98,7 +100,7 @@ public class Plateau{
     return false;
   }
 
-  private boolean testDroite(int id)
+  public boolean testDroite(int id)
   {
     if(id+1 < getTaille())
     {
@@ -110,7 +112,7 @@ public class Plateau{
     return false;
   }
 
-  private boolean testMonte(int id)
+  public boolean testMonte(int id)
   {
     if(id-getNbColonne() >= 0)
     {

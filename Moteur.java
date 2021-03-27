@@ -20,8 +20,14 @@ public class Moteur
 
   public void ajoutJoueur(String Nom)
   {
-    Joueur j=new Joueur(plateau, Nom, getNbJoueur());
+    Joueur j=new Joueur(plateau, Nom, getNbJoueur(), ' ');
     creature.add((Creature)j);
+  }
+
+  public void ajoutCuisinier(String Nom)
+  {
+    Cuisinier c=new Cuisinier(plateau, Nom, getNbJoueur());
+    creature.add((Creature)c);
   }
 
   public Creature getJoueur(int i)
@@ -67,14 +73,23 @@ public class Moteur
     }
   }
 
+  public void start()
+  {
+    for (int i=0; i<getNbJoueur(); i++)
+      getJoueur(i).start();
+  }
+
   public static void main(String[] args)
   {
     Moteur m=new Moteur();
-    m.ajoutJoueur("Michel");
-    m.creature.get(0).setChar('C');
-    m.creature.get(0).setPlace(50);
+    m.ajoutCuisinier("Michel");
     m.visualisation();
-    System.out.println("Fin");
+    boolean arret=false; //fin du jeu
+    while(!arret)
+      {
+        System.out.flush();
+      }
+
 
   }
 
