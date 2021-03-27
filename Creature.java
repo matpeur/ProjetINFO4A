@@ -65,12 +65,11 @@ public abstract class Creature extends Thread
 
   public abstract void run();
 
-  public synchronized void deplacement(int i)
+  public deplaceHaut()
   {
-    switch(i){
-      case 1:
-      case 2:
-      case 3:
+    if (getPlateau().testMonte())
+    {
+    setPlace(getPlateau().getNbColonne()+getPlace());
     }
   }
 
