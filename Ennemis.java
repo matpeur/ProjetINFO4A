@@ -91,7 +91,34 @@ int distmin(int id1 ,int id2 )
 
 }
 
-void deplaceEnnemi(){}
+void deplaceEnnemi(int id1,int id2)
+{    int p=id1;
+     int icteur=100000000000; 
+      if(testMonte(id1)&&icteur>distmin(id1,id2))
+      {
+        setIndice(getIndice(getLigne(id1)+1,getColonne(id1)));
+         icteur=distmin(p,id2);
+      }
+       if(testDescend(id1)&&icteur>distmin((getIndice(getLigne(id1)-1,getColonne(id1)),id2))
+      {
+       
+        setIndice(p) ;
+        setIndice(getIndice(getLigne(id1)-1,getColonne(id1)));
+          icteur=distmin(getIndice(getLigne(id1)-1,getColonne(id1)),id2); 
+      }
+      if(testDroite(id1)&&icteur>distmin(getIndice(getLigne(id1),getColonne(id1)+1),id2))
+      { setIndice(p) ;
+        setIndice(getIndice(getLigne(id1),getColonne(id1)+1));
+         icteur=distmin(getIndice(getLigne(id1),getColonne(id1)+1),id2),id2);
+      }
+       if(testGauche(id1)&&icteur>distmin(getIndice(getLigne(id1),getColonne(id1)-1),id2))
+      {
+       
+        setIndice(p) ;
+        setIndice(getIndice(getLigne(id1),getColonne(id1)-1));
+        icteur=distmin(getIndice(getLigne(id1),getColonne(id1)-1),id2); 
+      }
+}
 
 
 
