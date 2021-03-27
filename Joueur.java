@@ -1,10 +1,13 @@
 public class Joueur extends Creature
 {
-
+  char[] commandes
+  boolean arret;
 
  public Joueur(Plateau I1,String nom, int id)
  {
    super(nom, id, I1);
+   commandes= {'z', 'q', 's', 'd'};
+   arret=false;
  }
 
   public String toString()
@@ -12,22 +15,25 @@ public class Joueur extends Creature
     return "Joueur: "+super.getNom();
   }
 
-
-  //public void deplacement(int i1,int i2){super.getPlateau().bouge(i1,i2);}
-
-  public void score (int s ){ this.score=s;}
-
-  public int getscore(){return score;}
-
-  public void augmenteScore(int s){this.score=score+1;}
-
-  public void dimunieScore(int s){this.score=score-1;}
-
-
   @Override
   public void run()
   {
-    System.out.println("Je suis "+toString());
+    while(!arret)
+    {
+      BufferedReader saisie=new BufferedReader(new InputStreamReader(System.in));
+      char commande =saisie.read()
+      switch(commande)
+      {
+        case comandes[0] :
+                          if (super.getPlateau().testMonte())
+                          {
+                            super.setPlace(supêr.getPlateau().getNbColonne()+super.getPlace());
+                          }
+        case comandes[1] :
+        case comandes[2] :
+        case comandes[3] :
+      }
+    }
   }
 
 }
