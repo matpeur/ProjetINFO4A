@@ -87,7 +87,7 @@ public class Moteur
     boolean arret=false; //fin du jeu
     while(!arret)
       {
-        System.out.flush();
+        m.visualisation();
       }
 
 
