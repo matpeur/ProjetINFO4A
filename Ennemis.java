@@ -18,8 +18,9 @@ void setIndice(int i )
 }
 int distmin(int id1 ,int id2 )
 {   int p=id1;
+    int distance=0;
    do{
-     int distance=0;
+  
     if(getLigne(id2)>getLigne(id1)&&(testDescend(id1)))
       {
          setIndice(getIndice(getLigne(id1)+1,getColonne(id1));
