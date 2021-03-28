@@ -78,19 +78,4 @@ public class Moteur
     for (int i=0; i<getNbJoueur(); i++)
       getJoueur(i).start();
   }
-
-  public static void main(String[] args)
-  {
-    Moteur m=new Moteur();
-    m.ajoutCuisinier("Michel");
-    m.visualisation();
-    boolean arret=false; //fin du jeu
-    while(!arret)
-      {
-        System.out.flush();
-      }
-
-
-  }
-
 }
