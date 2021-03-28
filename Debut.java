@@ -10,8 +10,7 @@ public class Debut{
         //m.visualisation();
         try
         {
-          Runtime.getRuntime().exec("cmd/ccls");
-          Thread.currentThread().sleep(1000);
+          //efface la console
         }catch(Exception e){e.printStackTrace();}
       }
   }
