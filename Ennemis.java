@@ -1,9 +1,10 @@
 public class Ennemis extends Creature
 {
 
-    public Ennemis(Plateau I1, String nom, int id)
+    public Ennemis(Moteur m, String nom, int id)
     {
-      super(nom, id, I1);
+      super(nom, id, m);
+      setPlace(19*getPlateau().getNbColonne()+48);
     }
 
     public void capturer(){}
@@ -123,7 +124,7 @@ public class Ennemis extends Creature
           deplaceGauche();
           try
           {
-            this.sleep((int)Math.random()*200);
+            this.sleep((int)Math.random()*20000);
           }
           catch(Exception e){e.printStackTrace();}
         }

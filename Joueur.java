@@ -4,9 +4,9 @@ public class Joueur extends Creature
 {
   char[] commandes;
 
- public Joueur(Plateau I1,String nom, int id, char symbole)
+ public Joueur(Moteur m,String nom, int id, char symbole)
  {
-   super(nom, id, I1);
+   super(nom, id, m);
    commandes = new char[]{'z', 'q', 's', 'd'};
    super.setSymbole(symbole);
  }

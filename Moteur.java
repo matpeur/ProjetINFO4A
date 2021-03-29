@@ -11,6 +11,11 @@ public class Moteur
     return creature.size();
   }
 
+  public Plateau getPlateau()
+  {
+    return plateau;
+  }
+
   public Moteur()
   {
     plateau=new Plateau();
@@ -20,13 +25,13 @@ public class Moteur
 
   public void ajoutJoueur(String Nom)
   {
-    Joueur j=new Joueur(plateau, Nom, getNbJoueur(), ' ');
+    Joueur j=new Joueur(this, Nom, getNbJoueur(), ' ');
     creature.add((Creature)j);
   }
 
   public void ajoutCuisinier(String Nom)
   {
-    Cuisinier c=new Cuisinier(plateau, Nom, getNbJoueur());
+    Cuisinier c=new Cuisinier(this, Nom, getNbJoueur());
     creature.add((Creature)c);
   }
 
@@ -36,8 +41,13 @@ public class Moteur
     switch(c)
     {
       case 'p':
-      case 'P': creature.add(new Ennemis(plateau, "Piment", indice));
+      case 'P': creature.add(new Ennemis(this, "Piment", indice));
                 getJoueur(indice).setSymbole('P');
+                break;
+      case 'o':
+      case 'O': creature.add(new Ennemis(this, "Oeuf", indice));
+                          getJoueur(indice).setSymbole('O');
+                          break;
     }
   }
 
