@@ -30,6 +30,17 @@ public class Moteur
     creature.add((Creature)c);
   }
 
+  public void ajoutEnnemi(char c)
+  {
+    int indice = getNbJoueur();
+    switch(c)
+    {
+      case 'p':
+      case 'P': creature.add(new Ennemis(plateau, "Piment", indice));
+                getJoueur(indice).setSymbole('P');
+    }
+  }
+
   public Creature getJoueur(int i)
   {
     return creature.get(i);
@@ -61,10 +72,10 @@ public class Moteur
           if(i%plateau.getNbColonne()==0)
             System.out.print("\n");
         }
-      Joueur j = (Joueur)getJoueurPlace(i);
-      if(j!=null)
+      Creature c = (Creature)getJoueurPlace(i);
+      if(c!=null)
         {
-          System.out.print(j.getSymbole());
+          System.out.print(c.getSymbole());
         }
       else
       {

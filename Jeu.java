@@ -11,6 +11,7 @@ public class Jeu extends Thread
   public void run()
   {
     m.ajoutCuisinier("Michel");
+    m.ajoutEnnemi('p');
     m.visualisation();
     boolean arret=false; //fin du jeu
     int i=0;
@@ -22,7 +23,7 @@ public class Jeu extends Thread
         i++;
         try
         {
-          this.sleep(1000);
+          this.sleep(100);
         }
         catch(Exception e){e.printStackTrace();}
       }

@@ -120,7 +120,12 @@ public class Ennemis extends Creature
     {
       while (!super.getArret())
         {
-          //deplacement
+          deplaceGauche();
+          try
+          {
+            this.sleep((int)Math.random()*200);
+          }
+          catch(Exception e){e.printStackTrace();}
         }
     }
 }

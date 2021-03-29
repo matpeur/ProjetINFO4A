@@ -78,15 +78,15 @@ public abstract class Creature extends Thread
 
   public abstract void run();
 
-  public void deplaceHaut()
+  public synchronized void deplaceHaut()
   {
     if (getPlateau().testMonte(getPlace()))
     {
-    setPlace(getPlateau().getNbColonne()-getPlace());
+    setPlace(getPlace()-getPlateau().getNbColonne());
     }
   }
 
-  public void deplaceDroite()
+  public synchronized void deplaceDroite()
   {
     if (getPlateau().testDroite(getPlace()))
     {
@@ -94,7 +94,7 @@ public abstract class Creature extends Thread
     }
   }
 
-  public void deplaceGauche()
+  public synchronized void deplaceGauche()
   {
     if (getPlateau().testGauche(getPlace()))
     {
@@ -102,7 +102,7 @@ public abstract class Creature extends Thread
     }
   }
 
-  public void deplaceBas()
+  public synchronized void deplaceBas()
   {
     if (getPlateau().testDescend(getPlace()))
     {

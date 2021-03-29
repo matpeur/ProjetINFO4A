@@ -31,7 +31,7 @@ public class Joueur extends Creature
           }
           else if(commande==commandes[1])
           {
-            deplaceDroite();
+            deplaceGauche();
           }
           else if(commande==commandes[2])
           {
