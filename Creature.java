@@ -5,6 +5,17 @@ public abstract class Creature extends Thread
   private Plateau plateau;
   private int place;
   private char symbole;
+  private boolean arret;
+
+  public void setArret(boolean a)
+  {
+    arret=a;
+  }
+
+  public boolean getArret()
+  {
+    return this.arret;
+  }
 
   public int getIdentifiant()
   {

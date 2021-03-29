@@ -3,7 +3,6 @@ import java.io.*;
 public class Joueur extends Creature
 {
   char[] commandes;
-  boolean arret;
 
  public Joueur(Plateau I1,String nom, int id, char symbole)
  {
@@ -21,7 +20,7 @@ public class Joueur extends Creature
   @Override
   public void run()
   {
-    while(!arret)
+    while(!super.getFin())
     {
       try
       {
@@ -44,7 +43,7 @@ public class Joueur extends Creature
             deplaceDroite();
           }
         }
-        catch(IOException e){}
+        catch(IOException e){e.printStackTrace();}
     }
   }
 
