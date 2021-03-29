@@ -8,7 +8,6 @@ public class Joueur extends Creature
  {
    super(nom, id, I1);
    commandes = new char[]{'z', 'q', 's', 'd'};
-   arret=false;
    super.setSymbole(symbole);
  }
 
@@ -20,7 +19,7 @@ public class Joueur extends Creature
   @Override
   public void run()
   {
-    while(!super.getFin())
+    while(!super.getArret())
     {
       try
       {

@@ -73,6 +73,7 @@ public abstract class Creature extends Thread
     setIdentifiant(id);
     setPlateau(it);
     setPlace(19*getPlateau().getNbColonne()+2);
+    setArret(false);
   }
 
   public abstract void run();
