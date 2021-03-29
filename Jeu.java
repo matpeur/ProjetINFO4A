@@ -14,7 +14,8 @@ public class Jeu extends Thread
     m.visualisation();
     boolean arret=false; //fin du jeu
     int i=0;
-    while(i<10)
+    m.startJeu();
+    while(true)
       {
         System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         m.visualisation();

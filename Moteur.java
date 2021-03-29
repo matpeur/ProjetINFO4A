@@ -73,7 +73,7 @@ public class Moteur
     }
   }
 
-  public void start()
+  public void startJeu()
   {
     for (int i=0; i<getNbJoueur(); i++)
       getJoueur(i).start();

@@ -82,7 +82,7 @@ public abstract class Creature extends Thread
   {
     if (getPlateau().testMonte(getPlace()))
     {
-    setPlace(getPlateau().getNbColonne()+getPlace());
+    setPlace(getPlateau().getNbColonne()-getPlace());
     }
   }
 
@@ -106,7 +106,7 @@ public abstract class Creature extends Thread
   {
     if (getPlateau().testDescend(getPlace()))
     {
-    setPlace(getPlateau().getNbColonne()-getPlace());
+    setPlace(getPlateau().getNbColonne()+getPlace());
     }
   }
 }
