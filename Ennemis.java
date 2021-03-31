@@ -1,17 +1,20 @@
 public class Ennemis extends Creature
 {
 
-public Ennemis(Plateau I1,String nom, int id)
-{
+    public Ennemis(Moteur m, String nom, int id)
+    {
+      super(nom, id, m);
+      setPlace(19*getPlateau().getNbColonne()+48);
+    }
 
-super(I1,nom,id);
+    public void capturer(){}
 
+    public void setPlace(int i )
+    {
+      super.setPlace(i);
+    }
 
-
-}
-
-void capturer(){}
-
+<<<<<<< HEAD
 void setIndice(int i )
 {
    this.id=i;
@@ -29,10 +32,29 @@ void setIndice(int i )
             {
              setIndice(getID(getLigne(id1),getColonne(id1)+1);
                 distance++;
+=======
+    public int distmin(int id1, int id2)
+    {
+      int p=id1;
+      int distance=0;
+      Plateau P = super.getPlateau();
+      do
+      {
+        if(P.getLigne(id2)>P.getLigne(id1)&&(P.testDescend(id1)))
+        {
+          setPlace(P.getIdentifiant(P.getLigne(id1)+1,P.getColonne(id1)));
+          distance++;
+          if(P.getColonne(id2)>P.getColonne(id1)&&P.testDroite(id1))
+            {
+              setPlace(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)+1));
+              distance++;
+>>>>>>> 32a4fecda68218d103522e5fbc0d97a37607061f
             }
           else
-            { if(getColonne(id1)>getColonne(id2)&&testGauche(id1))
+            {
+              if(P.getColonne(id1)>P.getColonne(id2)&&P.testGauche(id1))
               {
+<<<<<<< HEAD
                 setIndice(getID(getLigne(id1),getColonne(id1)-1);
                 distance++;
               }
@@ -49,25 +71,40 @@ void setIndice(int i )
             {
             setIndice(getID(getLigne(id1),getColonne(id1)+1);
                 distance++;
-            }
-          else
-            { if(getColonne(id1)>getColonne(id2)&&testGauche(id1))
-              {
-                setIndice(getID(getLigne(id1),getColonne(id1)-1);
+=======
+                setPlace(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)-1));
                 distance++;
               }
-
+>>>>>>> 32a4fecda68218d103522e5fbc0d97a37607061f
             }
-
-       }else
-       {
-
-
-
-          if(getLigne(id1)==getLigne(id2||getligne(id1)==getLigne(this.i.getTaille())||getLigne(id1)==getLigne(0))
+          }
+          else
           {
-           if(getColonne(id2)>getColonne(id1)&&testDroite(id1))
+            if(P.getLigne(id1)>P.getLigne(id2)&&(P.testMonte(id1)))
             {
+              setPlace(P.getIdentifiant(P.getLigne(id1)-1,P.getColonne(id1)));
+              distance++;
+              if(P.getColonne(id2)>P.getColonne(id1)&&P.testDroite(id1))
+              {
+<<<<<<< HEAD
+                setIndice(getID(getLigne(id1),getColonne(id1)-1);
+=======
+                setPlace(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)+1));
+>>>>>>> 32a4fecda68218d103522e5fbc0d97a37607061f
+                distance++;
+              }
+              else
+              {
+                if(P.getColonne(id1)>P.getColonne(id2)&&P.testGauche(id1))
+                {
+                  setPlace(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)-1));
+                  distance++;
+                }
+              }
+            }
+            else
+            {
+<<<<<<< HEAD
             setIndice(getID(getLigne(id1),getColonne(id1)+1);
                 distance++;
             }
@@ -76,19 +113,34 @@ void setIndice(int i )
               {
                 setIndice(getID(getLigne(id1),getColonne(id1)-1);
                 distance++;
+=======
+              if(P.getLigne(id1)==P.getLigne(id2)||P.getLigne(id1)==P.getLigne(P.getTaille())||P.getLigne(id1)==P.getLigne(0))
+              {
+                if(P.getColonne(id2)>P.getColonne(id1)&&P.testDroite(id1))
+                {
+                  setPlace(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)+1));
+                  distance++;
+                }
+                else
+                {
+                  if(P.getColonne(id1)>P.getColonne(id2)&&P.testGauche(id1))
+                  {
+                    setPlace(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)-1));
+                    distance++;
+                  }
+                }
+>>>>>>> 32a4fecda68218d103522e5fbc0d97a37607061f
               }
-
             }
-         }
 
-
-       }
-
+          }
+      }
+      while(id1!=id2);
+      setPlace(p);
+      return distance;
     }
- }while(id1!=id2);
- setIndice(p);
- return distance;
 
+<<<<<<< HEAD
 }*/
 int distmin(inti1,inti2)
 {​​​​​​​​    int col=I1.getColonne(i1);
@@ -184,27 +236,49 @@ void deplaceEnnemi(int id1,int id2)
         setIndice(p) ;
         setIndice(getID(getLigne(id1),getColonne(id1)-1));
        
+=======
+    void deplaceEnnemi(int id1,int id2)
+    {
+      int p=id1;
+      int icteur=1000000000;
+      Plateau P=super.getPlateau();
+      if(P.testMonte(id1)&&icteur>distmin(id1,id2))
+      {
+        setPlace(P.getIdentifiant(P.getLigne(id1)+1,P.getColonne(id1)));
+         icteur=distmin(p,id2);
       }
-}
+       if(P.testDescend(id1)&&icteur>distmin(P.getIdentifiant(P.getLigne(id1)-1,P.getColonne(id1)),id2))
+      {
 
+        setPlace(p) ;
+        setPlace(P.getIdentifiant(P.getLigne(id1)-1,P.getColonne(id1)));
+        icteur=distmin(P.getIdentifiant(P.getLigne(id1)-1,P.getColonne(id1)),id2);
+      }
+      if(P.testDroite(id1)&&icteur>distmin(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)+1),id2))
+      {
+        setPlace(p);
+        setPlace(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)+1));
+        icteur=distmin(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)+1),id2);
+      }
+      if(P.testGauche(id1)&&icteur>distmin(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)-1),id2))
+      {
+        setPlace(p) ;
+        setPlace(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)-1));
+        icteur=distmin(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)-1),id2);
+>>>>>>> 32a4fecda68218d103522e5fbc0d97a37607061f
+      }
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public void run()
+    {
+      while (!super.getArret())
+        {
+          deplaceGauche();
+          try
+          {
+            this.sleep((int)Math.random()*20000);
+          }
+          catch(Exception e){e.printStackTrace();}
+        }
+    }
 }
