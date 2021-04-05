@@ -1,17 +1,19 @@
 import java.io.*;
 
+
 public class Joueur extends Creature
 {
   char[] commandes;
-  boolean arret;
 
- public Joueur(Plateau I1,String nom, int id, char symbole)
+ public Joueur(Moteur m,String nom, int id, char symbole)
  {
-   super(nom, id, I1);
+   super(nom, id, m);
    commandes = new char[]{'z', 'q', 's', 'd'};
-   arret=false;
    super.setSymbole(symbole);
  }
+
+
+ 
 
   public String toString()
   {
@@ -21,7 +23,7 @@ public class Joueur extends Creature
   @Override
   public void run()
   {
-    while(!arret)
+    while(!super.getArret())
     {
       try
       {
@@ -33,7 +35,7 @@ public class Joueur extends Creature
           }
           else if(commande==commandes[1])
           {
-            deplaceDroite();
+            deplaceGauche();
           }
           else if(commande==commandes[2])
           {
@@ -44,7 +46,7 @@ public class Joueur extends Creature
             deplaceDroite();
           }
         }
-        catch(IOException e){}
+        catch(IOException e){e.printStackTrace();}
     }
   }
 
