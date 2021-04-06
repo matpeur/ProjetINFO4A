@@ -1,7 +1,7 @@
 import java.io.*;
 
 
-public class Joueur extends Creature
+public abstract class Joueur extends Creature
 {
   char[] commandes;
 
@@ -13,7 +13,7 @@ public class Joueur extends Creature
  }
 
 
- 
+
 
   public String toString()
   {
@@ -23,7 +23,7 @@ public class Joueur extends Creature
   @Override
   public void run()
   {
-    while(!super.getArret())
+    while(true)
     {
       try
       {
@@ -49,5 +49,7 @@ public class Joueur extends Creature
         catch(IOException e){e.printStackTrace();}
     }
   }
+
+  public abstract void mort();
 
 }

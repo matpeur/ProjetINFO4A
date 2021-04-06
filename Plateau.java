@@ -62,7 +62,7 @@ public class Plateau{
     return niveau[ligne][colonne];
   }
 
-  private void setIndice(int i, int j, int id)
+  public void setIndice(int i, int j, int id)
   {
     niveau[i][j]=id;
   }

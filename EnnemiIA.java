@@ -1,13 +1,13 @@
-public class Ennemis extends Creature
+public class EnnemiIA extends Creature
 {
 
-    public Ennemis(Moteur m, String nom, int id)
+    public EnnemiIA(Moteur m, String nom, int id)
     {
       super(nom, id, m);
       setPlace(19*getPlateau().getNbColonne()+48);
     }
 
-    public void capturer(){}
+    public void mort(){}
 
     public void setPlace(int i )
     {
@@ -23,7 +23,7 @@ void setIndice(int i )
 { int p=id1;
     int distance=0;
    do{
-  
+
     if(getLigne(id2)>getLigne(id1)&&(testDescend(id1)))
       {
          setIndice(getID(getLigne(id1)+1,getColonne(id1));
@@ -145,22 +145,22 @@ void setIndice(int i )
 int distmin(inti1,inti2)
 {​​​​​​​​    int col=I1.getColonne(i1);
      int ligne=I1.getLigne(i1);
-     int col2=I1.getColonne(i2); 
+     int col2=I1.getColonne(i2);
      int ligne2=I1.getLigne(i2);
      int distance=0;
 do{​​​​​​​​
 if(Grille[getID(ligne+1,col)]==0)
       {​​​​​​​​
          distance=distance+1;
-         ligne=ligne+1;  
- 
-      }​​​​​​​​  
+         ligne=ligne+1;
+
+      }​​​​​​​​
 else
     {​​​​​​​​  //printf("hello ");
       if(Grille[getID(ligne,col+1)]==0)
-       {​​​​​​​​  
+       {​​​​​​​​
          distance=distance+1;
-         col=col+1;  
+         col=col+1;
        }​​​​​​​​
       else
      {​​​​​​​​
@@ -169,40 +169,40 @@ else
            if(Grille[getID(ligne-1,col)]==0)
               {​​​​​​​​  Grille[getID(ligne,col)]=2;
                   distance=distance-1;
-                  ligne=ligne-1;  
+                  ligne=ligne-1;
               }​​​​​​​​
- 
+
          }​​​​​​​​
        else
               {​​​​​​​​
                if(0<col)
                   {​​​​​​​​  if(Grille[getID(ligne,col-1)]==0)
                      {​​​​​​​​
-                      Grille[getID(ligne,col)]=2;  
+                      Grille[getID(ligne,col)]=2;
                       col=col-1;
                       distance=distance-1;
                       Systeme.out.println("je vais marche arriere ");
                      System.out.println(getID(ligne,col));
                      }​​​​​​​​
- 
+
                   }​​​​​​​​
                else
                   {​​​​​​​​
                       System.out.println("le labyrinthe n'est pas connexe");
                   }​​​​​​​​
- 
+
               }​​​​​​​​
 
 
- 
+
       }​​​​​​​​
 
 
 
- 
+
     }​​​​​​​​
 
- 
+
   }​​​​​​​​ while(getID(ligne,col)!=i2);
 return distance;
 }​​​​​​​​
@@ -213,29 +213,29 @@ void deplaceEnnemi(int id1,int id2)
       if(testMonte(id1)&&icteur>distmin(id1,id2))
       {
          setIndice(getID(getLigne(id1)+1,getColonne(id1)));
-         icteur=distmin(p,id2); 
+         icteur=distmin(p,id2);
       }
        if(testDescend(id1)&&icteur>distmin(getID((getLigne(id1)-1,getColonne(id1)),id2))
-      { 
-        
+      {
+
         icteur=distmin(getID((getLigne(id1)-1,getColonne(id1)),id2);
         setIndice(getID(getLigne(id1)-1,getColonne(id1)));
         setIndice(p);
-         
+
       }
       if(testDroite(id1)&&icteur>distmin(getID(getLigne(id1),getColonne(id1)+1),id2))
-      { 
+      {
         icteur=distmin(getID((getLigne(id1),getColonne(id1)+1),id2),id2);
         setIndice(p) ;
         setIndice(getID(getLigne(id1),getColonne(id1)+1));
-         
+
       }
        if(testGauche(id1)&&icteur>distmin(getID(getLigne(id1),getColonne(id1)-1),id2))
       {
         icteur=distmin(getID(getLigne(id1),getColonne(id1)-1),id2);
         setIndice(p) ;
         setIndice(getID(getLigne(id1),getColonne(id1)-1));
-       
+
 =======
     void deplaceEnnemi(int id1,int id2)
     {

@@ -2,7 +2,7 @@ public abstract class Creature extends Thread
 {
   private String nom;
   private int identifiant;
-  private Plateau plateau;
+  private Moteur moteur;
   private int place;
   private char symbole;
 
@@ -28,12 +28,12 @@ public abstract class Creature extends Thread
 
   public Plateau getPlateau()
   {
-    return this.plateau;
+    return this.moteur.getPlateau();
   }
 
-  public void setPlateau(Plateau it)
+  public void setMoteur(Moteur m)
   {
-    plateau=it;
+    this.moteur = m;;
   }
 
   public void setNom(String nom)
@@ -56,21 +56,22 @@ public abstract class Creature extends Thread
     this.place = i;
   }
 
-  public Creature(String s, int id, Plateau it)
+  public Creature(String s, int id, Moteur m)
   {
     nom=s;
     setIdentifiant(id);
-    setPlateau(it);
+    setMoteur(m);
     setPlace(19*getPlateau().getNbColonne()+2);
   }
 
   public abstract void run();
+  public abstract void mort();
 
   public void deplaceHaut()
   {
     if (getPlateau().testMonte(getPlace()))
     {
-    setPlace(getPlateau().getNbColonne()+getPlace());
+    setPlace(getPlateau().getNbColonne()-getPlace());
     }
   }
 
@@ -94,7 +95,8 @@ public abstract class Creature extends Thread
   {
     if (getPlateau().testDescend(getPlace()))
     {
-    setPlace(getPlateau().getNbColonne()-getPlace());
+    setPlace(getPlateau().getNbColonne()+getPlace());
     }
   }
+
 }
