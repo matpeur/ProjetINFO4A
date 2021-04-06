@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Moteur
+public class Moteur implements Serializable
 {
   public Plateau plateau;
   private ArrayList<Creature> creature;
@@ -26,8 +26,8 @@ public class Moteur
     Joueur j=new Joueur(plateau, Nom, getNbJoueur(), ' ');
     creature.add((Creature)j);
   }
-  
-  
+
+
 public void ajoutBurger(Burger B)
 {   B=new Burger(Joueur j,10, plateau);//je ne sais pas koi mettre comme premier parametre du constructeur "joueur courant"
 	Burgers.add(B);
@@ -38,32 +38,32 @@ public void ajoutComposants(Elements e)
    {  if(i==1)
 	  {   e= new Elements("Burger1PainDessous",5,Burgers.get(0),plateau) ;
 		  cmp.add((PainDessous)e);
-		  
+
 	   }
 	  if(i==2)
 	   {   e= new Elements("Burger1Salade",5,Burgers.get(0),plateau)  ;
 		   cmp.add((SaladeViandeetc)e);
-	   
+
 	   }
 	  if(i==3)
-	   {     e= new Elements("Burger1PainDessus",5,Burgers.get(0),plateau);  
+	   {     e= new Elements("Burger1PainDessus",5,Burgers.get(0),plateau);
 		     cmp.add((PainDessus)e);
 		}
-	}	
+	}
 	if(1<i%3<=2)
    {
 	    if(i==4)
 	  {   e= new Elements("Burger2PainDessous",5,Burgers.get(1),plateau) ;
 		  cmp.add((PainDessous)e);
-		  
+
 	   }
 	  if(i==5)
 	   {   e= new Elements("Burger2Salade",5,Burgers.get(1),plateau)  ;
 		   cmp.add((SaladeViandeetc)e);
-	   
+
 	   }
 	  if(i==6)
-	   {     e= new Elements("Burger2PainDessus",5,Burgers.get(1),plateau);  
+	   {     e= new Elements("Burger2PainDessus",5,Burgers.get(1),plateau);
 		     cmp.add((PainDessus)e);
 		}
    }
@@ -72,15 +72,15 @@ public void ajoutComposants(Elements e)
 	   if(i==7)
 	  {   e= new Elements("Burger3PainDessous",5,Burgers.get(2),plateau) ;
 		  cmp.add((PainDessous)e);
-		  
+
 	   }
 	  if(i==8)
 	   {   e= new Elements("Burger3Salade",5,Burgers.get(2),plateau)  ;
 		   cmp.add((SaladeViandeetc)e);
-	   
+
 	   }
 	  if(i==9)
-	   {     e= new Elements("Burger3PainDessus",5,Burgers.get(2),plateau);  
+	   {     e= new Elements("Burger3PainDessus",5,Burgers.get(2),plateau);
 		     cmp.add((PainDessus)e);
 		}
 	}
@@ -114,7 +114,7 @@ public void ajoutComposants(Elements e)
     }
     return r;
   }
-//pour la visualisation des burgers j'ai fait une fonction affiche() dans Burger mais je pense ke c'est pas suffisant  
+//pour la visualisation des burgers j'ai fait une fonction affiche() dans Burger mais je pense ke c'est pas suffisant
 // car il faudra toute affiché les burgers meme vide et les composants sur le plateau   donc je te laisse l'inserer dans celle ci
   public void visualisation()
   {
