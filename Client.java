@@ -29,7 +29,7 @@ public class Client extends Thread
     {
       System.out.println("Quel adresse ?");
       String s="";
-      while(!s.equals(""))
+      while(s.equals(""))
       {
         BufferedReader saisie=new BufferedReader(new InputStreamReader(System.in));
         s =(String)saisie.readLine();
