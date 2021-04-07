@@ -41,11 +41,11 @@ public class Client extends Thread
         BufferedReader saisie=new BufferedReader(new InputStreamReader(System.in));
         s =(String)saisie.readLine();
       }
-      Socket  socket = new  Socket(s, port);
-      ObjectOutputStream  oss = new  ObjectOutputStream(socket.getOutputStream ());
-      ObjectInputStream  ois =   new  ObjectInputStream(socket.getInputStream ());
       while (arret)
       {
+        Socket  socket = new  Socket(s, port);
+        ObjectOutputStream  oss = new  ObjectOutputStream(socket.getOutputStream ());
+        ObjectInputStream  ois =   new  ObjectInputStream(socket.getInputStream ());
         oss.writeObject("MOTEUR");
         this.sleep(10000);
         Object o = ois.readObject();

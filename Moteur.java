@@ -20,7 +20,7 @@ public class Moteur implements Serializable
     plateau = new Plateau();
     creature = new ArrayList<Creature>();
     Burgers = new ArrayList<Burger>();
-    Burgers.add(new Burger(this, 15));
+    //Burgers.add(new Burger(this, 15));
   }
 
   public synchronized void ajoutCuisinier(String Nom)
