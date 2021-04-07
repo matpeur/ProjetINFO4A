@@ -1,12 +1,11 @@
 import java.util.*;
+import java.io.*;
 
-public class Moteur
+public class Moteur implements Serializable
 {
   public Plateau plateau;
   private ArrayList<Creature> creature;
   public ArrayList<Burger> Burgers;
-  int n;
-
 
   public int getNbCreature()
   {
@@ -21,7 +20,6 @@ public class Moteur
     plateau = new Plateau();
     creature = new ArrayList<Creature>();
     Burgers = new ArrayList<Burger>();
-    n=1;
     Burgers.add(new Burger(this, 15));
   }
 
