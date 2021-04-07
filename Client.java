@@ -41,6 +41,7 @@ public class Client extends Thread
       {
         oss.writeObject("MOTEUR");
         Object o = ois.readObject();
+        this.sleep(1000);
         if(o.getClass() == moteur.getClass())
         {
           Moteur m =(Moteur) o;

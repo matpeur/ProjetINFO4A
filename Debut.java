@@ -27,7 +27,6 @@ public class Debut{
       c.start();
       while(c.getMoteur()==null)
       {
-
       }
       System.out.println("Fichier reçu");
       System.out.println(c.getMoteur().getCreature(0).getNom());
