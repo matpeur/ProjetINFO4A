@@ -29,7 +29,8 @@ public class Debut{
       {
       }
       System.out.println("Fichier reçu");
-      System.out.println(c.getMoteur().getCreature(0).getNom());
+      Moteur m =c.getMoteur();
+      m.visualisation();
     }
     //m.start();
     //boolean arret=false; //fin du jeu
