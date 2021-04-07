@@ -2,10 +2,6 @@ import java.io.*;
 public class Debut{
   public static void main(String[] args)
   {
-    Moteur m=new Moteur();
-    m.ajoutCuisinier("Michel");
-    m.getCreature(0).setPlace(4*m.getPlateau().getNbColonne()+15);
-    m.visualisation();
     System.out.println("Quel adresse ?");
     String s="";
     while(s.equals(""))
@@ -18,6 +14,10 @@ public class Debut{
     }
     if(s.equals("server"))
     {
+      Moteur m=new Moteur();
+      m.ajoutCuisinier("Michel");
+      m.getCreature(0).setPlace(4*m.getPlateau().getNbColonne()+15);
+      m.visualisation();
       Serveur serveur = new Serveur(m);
       serveur.start();
     }
