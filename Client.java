@@ -4,17 +4,35 @@ public class Client
 {
   static  final  int  port = 8080;
 
+  private synchronized Moteur moteur;
+
+  public void setMoteur(Moteur m)
+  {
+    while(!m.tryLock())
+    {
+      m.lock();
+      this.moteur = m;
+      m.unlock();
+    }
+  }
+
+  public synchronized void getMoteur()
+  {
+    return moteur;
+  }
+
   public  static  void  main(String [] args) throws  Exception
   {
     Socket  socket = new  Socket(args[0], port);
     ObjectOutputStream  oss = new  ObjectOutputStream(socket.getOutputStream ());
-    oss.writeObject(new  Moteur());
-    //  attention  aux  commandes  de type  protocole
-    oss.writeObject("MOTEUR") ;
+    ObjectInputStream  ois =   new  ObjectInputStream(socket.getInputStream ());
+
     while (true)
     {
-      Object o = ois.readObject ();
-      if (o.equals("END")) break;
+      oss.writeObject("MOTEUR");
+      Moteur m =(Moteur) ois.readObject ();
+      while(!moteur.tryLock())
+
     }
     oss.close();
     socket.close();
@@ -32,7 +50,7 @@ public class Client
     }
     oss.close();
     socket.close();
-    ObjectInputStream  ois =   new  ObjectInputStream(soc.getInputStream ());
+
     while (true)
     {
       Object o = ois.readObject ();
