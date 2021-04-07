@@ -31,14 +31,14 @@ public class Moteur implements Serializable
 
   public synchronized void ajoutEnnemiJoueur(String Nom)
   {
-    Ennemi e=new Ennemi(this, Nom, getNbCreature());
-    creature.add((Creature)e);
+    //Ennemi e=new Ennemi(this, Nom, getNbCreature());
+    //creature.add((Creature)e);
   }
 
   public synchronized void ajoutEnnemiIA(String Nom)
   {
-    EnnemiIA e=new EnnemiIA(this, Nom, getNbCreature());
-    creature.add((Creature)e);
+    //EnnemiIA e=new EnnemiIA(this, Nom, getNbCreature());
+    //creature.add((Creature)e);
   }
 
   public Creature getCreature(int i)

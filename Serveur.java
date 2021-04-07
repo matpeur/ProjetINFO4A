@@ -1,22 +1,24 @@
 import java.io.*;
+import java.net.*;
+
 public class Serveur extends Thread
 {
   public int  port = 8080;
-  private synchronized Moteur moteur;
+  private Moteur moteur;
 
   public Serveur( Moteur m)
   {
     moteur = m;
   }
 
-  public void setMoteur(Moteur m)
+  public synchronized void setMoteur(Moteur m)
   {
-    while(!m.tryLock())
-    {
-      m.lock();
       this.moteur = m;
-      m.unlock();
-    }
+  }
+
+  public synchronized Moteur getMoteur()
+  {
+    return moteur;
   }
 
   public void  run()
@@ -31,20 +33,13 @@ public class Serveur extends Thread
       {
         Object o = ois.readObject ();
         if(o.equals("MOTEUR"))
-        {
-          while(!m.tryLock())
-          {
-          m.Lock();
-          oss.writeObject(m);
-          m.unLock();
-          }
-        }
+            oss.writeObject(getMoteur());
         if (o.equals("END")) break;
       }
       oss.close();
       ois.close();
       soc.close();
     }
-    catch(Execption e){e.printStackTrace();}
+    catch(Exception e){e.printStackTrace();}
   }
 }
