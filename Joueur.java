@@ -1,7 +1,7 @@
 import java.io.*;
 
 
-public abstract class Joueur extends Creature
+public abstract class Joueur extends Creature implements Serializable
 {
   char[] commandes;
 

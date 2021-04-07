@@ -1,5 +1,7 @@
 import java.util.*;
-public class Burger{
+import java.io.*;
+public class Burger implements Serializable
+{
 
 	private ArrayList<Elements> composants;
 	private Moteur moteur;

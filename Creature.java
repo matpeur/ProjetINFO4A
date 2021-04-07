@@ -1,4 +1,5 @@
-public abstract class Creature extends Thread
+import java.io.*;
+public abstract class Creature extends Thread implements Serializable
 {
   private String nom;
   private int identifiant;
