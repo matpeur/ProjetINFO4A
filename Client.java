@@ -9,7 +9,7 @@ public class Client extends Thread
 
   public Client()
   {
-    moteur = null;
+    moteur = new Moteur();;
   }
 
   public synchronized void setMoteur(Moteur m)
@@ -40,10 +40,12 @@ public class Client extends Thread
       while (arret)
       {
         oss.writeObject("MOTEUR");
-        Object o = ois.readObject();
         this.sleep(1000);
+        Object o = ois.readObject();
+        System.out.println("Quelquechose est recu");
         if(o.getClass() == moteur.getClass())
         {
+          System.out.println("C'est un moteur");
           Moteur m =(Moteur) o;
           setMoteur(m);
         }
