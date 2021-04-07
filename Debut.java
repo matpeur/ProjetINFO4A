@@ -55,7 +55,7 @@ public class Debut{
       while (true)
       {
         Moteur mot = c.getMoteur();
-        if(mot != m)
+        if(mot.equals(m))
         {
           m = mot;
           m.visualisation();
