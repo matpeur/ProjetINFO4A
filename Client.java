@@ -7,6 +7,11 @@ public class Client extends Thread
 
   private Moteur moteur;
 
+  public Client()
+  {
+    moteur = null;
+  }
+
   public synchronized void setMoteur(Moteur m)
   {
       this.moteur = m;
