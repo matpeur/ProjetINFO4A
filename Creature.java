@@ -100,4 +100,13 @@ public abstract class Creature extends Thread implements Serializable
     }
   }
 
+  public boolean equals(Creature c)
+  {
+    if(c.getClass() != this.getClass())
+      return false;
+    if(this.getSymbole() != c.getSymbole())
+      return false;
+    return this.getPlace() == c.getPlace();
+  }
+
 }
