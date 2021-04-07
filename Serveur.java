@@ -25,10 +25,11 @@ public class Serveur extends Thread
   {
     try
     {
+      ServerSocket s = new  ServerSocket(port);
+      Socket  soc;
       while (true)
       {
-        ServerSocket s = new  ServerSocket(port);
-        Socket  soc = s.accept ();
+        soc = s.accept ();
         System.out.println("Socket accepté");
         ObjectOutputStream  oss = new  ObjectOutputStream(soc.getOutputStream ());
         ObjectInputStream  ois =   new  ObjectInputStream(soc.getInputStream ());
@@ -41,8 +42,8 @@ public class Serveur extends Thread
         if (o.equals("END")) break;
         oss.close();
         ois.close();
-        soc.close();
       }
+      soc.close();
     }
     catch(Exception e){e.printStackTrace();}
   }
