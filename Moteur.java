@@ -23,10 +23,22 @@ public class Moteur implements Serializable
     Burgers.add(new Burger(this, 15));
   }
 
-  public void ajoutCuisinier(String Nom)
+  public synchronized void ajoutCuisinier(String Nom)
   {
     Cuisinier c=new Cuisinier(this, Nom, getNbCreature());
     creature.add((Creature)c);
+  }
+
+  public synchronized void ajoutEnnemiJoueur(String Nom)
+  {
+    Ennemi e=new Ennemi(this, Nom, getNbCreature());
+    creature.add((Creature)e);
+  }
+
+  public synchronized void ajoutEnnemiIA(String Nom)
+  {
+    EnnemiIA e=new EnnemiIA(this, Nom, getNbCreature());
+    creature.add((Creature)e);
   }
 
   public Creature getCreature(int i)
