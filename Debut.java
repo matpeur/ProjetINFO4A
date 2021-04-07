@@ -53,9 +53,10 @@ public class Debut{
       m.visualisation();
       while (true)
       {
-        if(c.getMoteur() != m)
+        Moteur mot = c.getMoteur();
+        if(mot != m)
         {
-          m = c.getMoteur();
+          m = mot;
           m.visualisation();
         }
       }
