@@ -25,7 +25,7 @@ public class Debut{
     {
       Client c= new Client();
       c.start();
-      while(c.getMoteur()==new Moteur())
+      while(c.getMoteur().equals(new Moteur()))
       {
       }
       System.out.println("Fichier reçu");

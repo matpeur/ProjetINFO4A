@@ -75,6 +75,11 @@ public class Moteur implements Serializable
     return resultat;
   }
 
+  public Burger getBurger(int i)
+  {
+    return Burgers.get(i);
+  }
+
   public void visualisation()
   {
     for (int i=0; i<plateau.getTaille(); i++)
@@ -107,5 +112,30 @@ public class Moteur implements Serializable
       getCreature(i).start();
     for (int i = 0; i < Burgers.size(); i++)
       Burgers.get(i).debut();
+  }
+
+  public boolean equals(Moteur m)
+  {
+    if(!this.plateau.equals(m.getPlateau()))
+      return false;
+    for(int i = 0; i<creature.size(); i++)
+    {
+      try
+      {
+        if(!creature.get(i).equals(m.getCreature(i)));
+          return false;
+      }
+      catch (Exception e) {return false;}
+      }
+    for (int i = 0; i<Burgers.size(); i++)
+    {
+      try
+      {
+        if(!Burgers.get(i).equals(m.getBurger(i)));
+          return false;
+      }
+      catch (Exception e) {return false;}
+    }
+    return true;
   }
 }

@@ -21,6 +21,15 @@ public class Burger implements Serializable
 		return null;
 	}
 
+	public Elements getElement(int id)
+	{
+		return composants.get(id);
+	}
+
+	public int getNbComposants()
+	{
+		return composants.size();
+	}
 
 	private void creerBurger(int colonne)
 	{
@@ -87,5 +96,15 @@ public class Burger implements Serializable
 	{
 		for(int i = 0; i < composants.size(); i++)
 			composants.get(i).start();
+	}
+
+	public boolean equals(Burger b)
+	{
+		if(composants.size() != b.getNbComposants())
+			return false;
+		for(int i = 0; i<composants.size(); i++)
+			if(b.getElement(i) != composants.get(i))
+				return false;
+		return true;
 	}
 }

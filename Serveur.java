@@ -25,13 +25,13 @@ public class Serveur extends Thread
   {
     try
     {
-      ServerSocket s = new  ServerSocket(port);
-      Socket  soc = s.accept ();
-      System.out.println("Socket accepté");
-      ObjectOutputStream  oss = new  ObjectOutputStream(soc.getOutputStream ());
-      ObjectInputStream  ois =   new  ObjectInputStream(soc.getInputStream ());
       while (true)
       {
+        ServerSocket s = new  ServerSocket(port);
+        Socket  soc = s.accept ();
+        System.out.println("Socket accepté");
+        ObjectOutputStream  oss = new  ObjectOutputStream(soc.getOutputStream ());
+        ObjectInputStream  ois =   new  ObjectInputStream(soc.getInputStream ());
         Object o = ois.readObject ();
         if(o.equals("MOTEUR"))
         {
@@ -39,10 +39,10 @@ public class Serveur extends Thread
             System.out.println("Moteur envoyé");
         }
         if (o.equals("END")) break;
+        oss.close();
+        ois.close();
+        soc.close();
       }
-      oss.close();
-      ois.close();
-      soc.close();
     }
     catch(Exception e){e.printStackTrace();}
   }

@@ -125,6 +125,20 @@ public class Plateau implements Serializable
     return false;
   }
 
+  public boolean equals(Plateau p)
+  {
+    boolean result =true;
+    if(getTaille() != p.getTaille())
+      return false;
+    int i = 0;
+    while(result && i<this.getTaille())
+    {
+      if(!(getIndice(getLigne(i), getColonne(i)) == p.getIndice(getLigne(i), getColonne(i))))
+        result = false;
+    }
+    return result;
+  }
+
 int[][] niveau1 = {
                     {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
                     {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
