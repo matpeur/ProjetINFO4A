@@ -6,15 +6,22 @@ public class Client extends Thread
   static  final  int  port = 8080;
 
   private Moteur moteur;
+  private boolean arret;
 
   public Client()
   {
     moteur = new Moteur();;
+    arret = true;
   }
 
   public synchronized void setMoteur(Moteur m)
   {
       this.moteur = m;
+  }
+
+  public void arret()
+  {
+    this.arret = false;
   }
 
   public synchronized Moteur getMoteur()
@@ -49,7 +56,6 @@ public class Client extends Thread
           Moteur m =(Moteur) o;
           setMoteur(m);
         }
-        arret = false;
       }
     oss.close();
     socket.close();
