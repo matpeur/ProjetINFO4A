@@ -101,10 +101,14 @@ public class Burger implements Serializable
 	public boolean equals(Burger b)
 	{
 		if(composants.size() != b.getNbComposants())
+		{
 			return false;
+		}
 		for(int i = 0; i<composants.size(); i++)
-			if(b.getElement(i) != composants.get(i))
+			if(!(b.getElement(i).equals(composants.get(i))))
+			{
 				return false;
+			}
 		return true;
 	}
 }

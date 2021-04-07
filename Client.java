@@ -54,6 +54,7 @@ public class Client extends Thread
     oss.close();
     socket.close();
     ois.close();
+    System.out.println("Fin");
     }
     catch(Exception e){e.printStackTrace();}
   }

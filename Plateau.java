@@ -129,12 +129,17 @@ public class Plateau implements Serializable
   {
     boolean result =true;
     if(getTaille() != p.getTaille())
-      return false;
+      {
+        return false;
+      }
     int i = 0;
     while(result && i<this.getTaille())
     {
       if(!(getIndice(getLigne(i), getColonne(i)) == p.getIndice(getLigne(i), getColonne(i))))
+      {
         result = false;
+      }
+      i++;
     }
     return result;
   }

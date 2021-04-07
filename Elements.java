@@ -107,7 +107,9 @@ class Elements extends Thread implements Serializable
   public boolean equals(Elements e)
   {
     if(this.getSymbole() != e.getSymbole())
+    {
       return false;
+    }
     return this.getIdentifiant() == e.getIdentifiant();
   }
 }
