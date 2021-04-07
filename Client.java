@@ -47,7 +47,7 @@ public class Client extends Thread
         ObjectOutputStream  oss = new  ObjectOutputStream(socket.getOutputStream ());
         ObjectInputStream  ois =   new  ObjectInputStream(socket.getInputStream ());
         oss.writeObject("MOTEUR");
-        this.sleep(1000);
+        this.sleep(10);
         Object o = ois.readObject();
         if(o.getClass() == moteur.getClass())
         {
