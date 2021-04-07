@@ -21,7 +21,7 @@ public class Serveur extends Thread
     return moteur;
   }
 
-  public void  run()
+  public void run()
   {
     try
     {

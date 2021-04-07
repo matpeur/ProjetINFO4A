@@ -1,3 +1,4 @@
+import java.io.*;
 public class Debut{
   public static void main(String[] args)
   {
@@ -7,15 +8,18 @@ public class Debut{
     m.visualisation();
     System.out.println("Quel adresse ?");
     String s="";
-    while(!s.equals(""))
+    while(s.equals(""))
     {
-      BufferedReader saisie=new BufferedReader(new InputStreamReader(System.in));
-      s =(String)saisie.readLine();
+      try
+      {
+        BufferedReader saisie=new BufferedReader(new InputStreamReader(System.in));
+        s =(String)saisie.readLine();
+      }catch(Exception e){e.printStackTrace();}
     }
     if(s.equals("server"))
     {
-      Server s = new Server(m);
-      s.start();
+      Serveur serveur = new Serveur(m);
+      serveur.start();
     }
     else
     {
@@ -26,7 +30,7 @@ public class Debut{
 
       }
       System.out.println("Fichier reçu");
-      System.out.println(c.getMoteur().getCreature().getNom());
+      System.out.println(c.getMoteur().getCreature(0).getNom());
     }
     //m.start();
     //boolean arret=false; //fin du jeu
