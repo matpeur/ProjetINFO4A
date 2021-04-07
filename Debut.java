@@ -29,13 +29,13 @@ public class Debut{
         }catch(Exception e){e.printStackTrace();}
       }
       m.start();
-      while(true)
+      //while(true)
         {
-          m.visualisation();
+          //m.visualisation();
           try
           {
             //efface la console
-            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+            //System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
             for(int i=0; i<1000000000; i++)
             {}
           }catch(Exception e){e.printStackTrace();}

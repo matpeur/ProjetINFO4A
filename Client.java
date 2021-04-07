@@ -47,7 +47,7 @@ public class Client extends Thread
       while (arret)
       {
         oss.writeObject("MOTEUR");
-        this.sleep(1000);
+        this.sleep(10000);
         Object o = ois.readObject();
         System.out.println("Quelquechose est recu");
         if(o.getClass() == moteur.getClass())

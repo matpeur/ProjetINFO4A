@@ -42,8 +42,8 @@ public class Serveur extends Thread
         if (o.equals("END")) break;
         oss.close();
         ois.close();
+        soc.close();
       }
-      soc.close();
     }
     catch(Exception e){e.printStackTrace();}
   }
