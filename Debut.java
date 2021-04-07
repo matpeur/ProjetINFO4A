@@ -51,6 +51,7 @@ public class Debut{
       System.out.println("Fichier reçu");
       Moteur m =c.getMoteur();
       m.visualisation();
+      m.start();
       while (true)
       {
         Moteur mot = c.getMoteur();

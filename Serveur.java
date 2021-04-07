@@ -30,7 +30,6 @@ public class Serveur extends Thread
       while (true)
       {
         soc = s.accept ();
-        System.out.println("Socket accepté");
         ObjectOutputStream  oss = new  ObjectOutputStream(soc.getOutputStream ());
         ObjectInputStream  ois =   new  ObjectInputStream(soc.getInputStream ());
         Object o = ois.readObject ();
