@@ -1,4 +1,5 @@
-class Elements extends Thread
+import java.io.*;
+class Elements extends Thread implements Serializable
 {
 
 
