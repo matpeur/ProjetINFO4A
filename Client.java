@@ -56,10 +56,10 @@ public class Client extends Thread
           Moteur m =(Moteur) o;
           setMoteur(m);
         }
+        oss.close();
+        socket.close();
+        ois.close();
       }
-    oss.close();
-    socket.close();
-    ois.close();
     System.out.println("Fin");
     }
     catch(Exception e){e.printStackTrace();}
