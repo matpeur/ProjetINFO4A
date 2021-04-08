@@ -6,7 +6,7 @@ public class Debut{
     Scores sc= new Scores();
     System.out.println("Bienvenu dans BurgeTime");
     System.out.println("Un projet réalisé par BELLEGUEULLE Mathieu et TRAORE Moussa");
-    s.afficheScore();
+    sc.afficheScores();
     System.out.println("Enter quelquechose pour démarrer le jeu");
     String s;
     while(s == null)
@@ -37,15 +37,16 @@ public class Debut{
     {
       System.out.println("1. En local");
       System.out.println("2. En ligne");
-      int i=-1;
+      i = 0;
       while (i!=1 && i!= 2)
       {
         try
         {
           BufferedReader saisie=new BufferedReader(new InputStreamReader(System.in));
-          i +=Integer.parseInt(saisie.readLine());
+          i =Integer.parseInt(saisie.readLine());
         }catch(Exception e){e.printStackTrace();}
       }
+      i += 2;
     }
     return i;
   }
@@ -60,7 +61,7 @@ public class Debut{
       try
       {
         BufferedReader saisie=new BufferedReader(new InputStreamReader(System.in));
-        return s =(String)saisie.readLine();
+         s =(String)saisie.readLine();
       }catch(Exception e){e.printStackTrace();}
     }
     int i=1;
@@ -68,7 +69,16 @@ public class Debut{
     {
       Moteur m=new Moteur(i);
       m.ajoutCuisinier(s);
-      
+      m.ajoutEnnemis();
+      m.start();
+      Moteur affichagecourant = new Moteur();
+      while(!m.fin())
+      {
+        if(affichagecourant.equals(m))
+        {
+          affichagecourant = new Moteur(m);
+        }
+      }
     }
   }
   public static void main(String[] args)
@@ -76,7 +86,7 @@ public class Debut{
 
     if(ecranTitre() == "demo")
     {
-      demo();
+      m.demo();
     }
     else
     {
