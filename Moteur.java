@@ -25,6 +25,17 @@ public class Moteur implements Serializable
     Burgers.add(new Burger(this, 54));
   }
 
+  public Moteur(Moteur m)
+  {
+    plateau = new Plateau(m.getPlateau());
+    creature = new ArrayList<Creature>();
+    for(int i = 0; i<m.getNbCreature(); i++)
+    {
+      //ajoutCreature(new Creature(m.getCreature(i), this));
+    }
+    Burgers = new ArrayList<Burger>();
+  }
+
   public synchronized void ajoutCuisinier(String Nom)
   {
     Cuisinier c=new Cuisinier(this, Nom, getNbCreature());
@@ -41,6 +52,11 @@ public class Moteur implements Serializable
   {
     //EnnemiIA e=new EnnemiIA(this, Nom, getNbCreature());
     //creature.add((Creature)e);
+  }
+
+  public void ajoutCreature(Creature c)
+  {
+    creature.add(c);
   }
 
   public Creature getCreature(int i)
