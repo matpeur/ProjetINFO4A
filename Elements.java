@@ -41,25 +41,25 @@ class Elements extends Thread implements Serializable
     System.out.println(identifiant);
     while(!pose)
     {
-      Creature c =m.getCreaturePlace(getIdentifiant()-getPlateau().getNbColonne());
+      Creature c =m.getCreaturePlace(getIdentifiant());
       if(c != null)
         if(c.getSymbole() == 'C')
         {
           setIdentifiant(getIdentifiant()+getPlateau().getNbColonne());
         }
-        if(getPlateau().getIndice(getPlateau().getLigne(identifiant), getPlateau().getLigne(identifiant)) != 1)
+      if(getPlateau().getIndice(getPlateau().getLigne(identifiant), getPlateau().getColonne(identifiant)) != 1)
+      {
+        if(possibliliteDeChute())
         {
-          if(possibliliteDeChute())
-          {
-            chute();
-          }
+          chute();
         }
-        c = m.getCreaturePlace(getIdentifiant()+getPlateau().getNbColonne());
-        if(c != null)
-        {
-          if(c.getSymbole() != 'C')
-            c.mort();
-        }
+      }
+      c = m.getCreaturePlace(getIdentifiant()+getPlateau().getNbColonne());
+      if(c != null)
+      {
+        if(c.getSymbole() != 'C')
+          c.mort();
+      }
     }
   }
 
