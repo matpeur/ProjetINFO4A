@@ -75,6 +75,7 @@ public class Plateau implements Serializable
       {
         case 1 : return '_';
         case 3 : return '=';
+        case 4 : return '-';
       }
       return ' ';
   }

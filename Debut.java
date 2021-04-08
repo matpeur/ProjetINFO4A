@@ -29,16 +29,20 @@ public class Debut{
         }catch(Exception e){e.printStackTrace();}
       }
       m.start();
+      Moteur affichagecourant = new Moteur();
       while(true)
         {
-          m.visualisation();
-          try
+          if(!(affichagecourant.equals(m)))
           {
-            //efface la console
             System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-            for(int i=0; i<1000000000; i++)
-            {}
-          }catch(Exception e){e.printStackTrace();}
+            affichagecourant = m;
+            affichagecourant.visualisation();
+            try
+            {
+              //efface la console
+
+            }catch(Exception e){e.printStackTrace();}
+          }
         }
     }
     else

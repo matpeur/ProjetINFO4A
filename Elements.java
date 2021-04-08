@@ -38,7 +38,6 @@ class Elements extends Thread implements Serializable
 
   public void run()
   {
-    System.out.println(identifiant);
     while(!pose)
     {
       Creature c =m.getCreaturePlace(getIdentifiant());
@@ -54,35 +53,45 @@ class Elements extends Thread implements Serializable
           chute();
         }
       }
-      c = m.getCreaturePlace(getIdentifiant()+getPlateau().getNbColonne());
-      if(c != null)
+      try
       {
-        if(c.getSymbole() != 'C')
-          c.mort();
+        sleep(100);
       }
+      catch(Exception e){}
     }
   }
 
   public void chute()
   {
-    int l;
-    int c;
-    do
+    int l = getPlateau().getLigne(getIdentifiant());;
+    int c = getPlateau().getColonne(getIdentifiant());;
+    while(getPlateau().getIndice(l, c) != 1&& getPlateau().getIndice(l, c) !=4 &&!getPose())
     {
-	     l = getPlateau().getLigne(getIdentifiant());
-	     c = getPlateau().getColonne(getIdentifiant());
-	     setIdentifiant(l+m.getPlateau().getNbColonne()*c);
-       if(burger.getElement(l+1, c) != null)
+       Elements dessous = burger.getElement(l+1, c);
+	     setIdentifiant(getIdentifiant()+m.getPlateau().getNbColonne());
+       l = getPlateau().getLigne(getIdentifiant());
+       c = getPlateau().getColonne(getIdentifiant());
+       if(dessous != null)
        {
-         if(burger.getElement(l+1, c).getPose())
+         if(dessous.getPose())
           this.pose = true;
          else
          {
-           burger.getElement(l+1, c).chute();
+           dessous.setIdentifiant(dessous.getIdentifiant()+(m.getPlateau().getNbColonne())*2);
          }
       }
+      Creature creature = m.getCreaturePlace(getIdentifiant()+getPlateau().getNbColonne());
+      if(creature != null)
+      {
+        if(creature.getSymbole() != 'C')
+          creature.mort();
+      }
+      try
+      {
+        sleep(200);
+      }
+      catch(Exception e){}
     }
-    while(getPlateau().getIndice(l, c) != 1&& getPlateau().getIndice(l, c)!=4 && !getPose());
     if(getPlateau().getIndice(l, c) == 4)
     {
       pose=true;
@@ -98,7 +107,9 @@ class Elements extends Thread implements Serializable
     while(chute && i<4)
     {
       if(burger.getElement(ligne,colonne+i) != null)
-        chute = false;
+        {
+          chute = false;
+        }
       i++;
     }
     return chute;
