@@ -13,16 +13,40 @@ public class Cuisinier extends Joueur
 
 
   public void  poivrer()
-  {
-     Plateau I=m.getplateau();
-     int L=I.getLigne(this.id);
-     int C=I.getColonne(this.id);
-     boolean a=(super.getCotechoisi()==0&&(I.getIndice[L-1,C]==2));
-     boolean b=(super.getCotechoisi()==1&&(I.getIndice[L,C-1]==2));
-     boolean c=(super.getCotechoisi()==2&&( I.getIndice[L+1,C]==2));
-     boolean d=(super.getCotechoisi()==3&&(I.getIndice[L,C+1]==2));// 2  car toutefois  on mettra à 2 la case occupée par un ennemi
-     if(a||b||c||d)
-           poivre=true;
+  {   Plateau I=super.getMoteur().getPlateau();
+      int L=super.getMoteur().I.getLigne(super.getPlace());
+      int C=super.getMoteur().I.getColonne(super.getPlace());
+      if(super.getMoteur().getCreaturePlace(I.getIdentifiant(L+1,C)).getClass()==EnnemiIA)
+       {
+
+		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L-1,C)).setAsome();
+		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L+1,C)).setAsome();
+		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C+1)).setAsome();
+		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C-1)).setAsome();
+	   }
+	   if((super.getMoteur().getCreaturePlace(I.getIdentifiant(L-1,C))).getClass()==EnnemiIA)
+       {
+
+		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L-1,C)).setAsome();
+		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L+1,C)).setAsome();
+		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C+1)).setAsome();
+		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C-1)).setAsome();
+	   }
+	   if(super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C-1)).getClass()==EnnemiIA)
+       {
+
+		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L-1,C)).setAsome();
+		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L+1,C)).setAsome();
+		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C+1)).setAsome();
+		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C-1)).setAsome();
+	   }
+	   if((super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C+1))).getClass()==EnnemiIA)
+       {
+		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L-1,C)).setAsome();
+		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L+1,C)).setAsome();
+		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C+1)).setAsome();
+		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C-1)).setAsome();
+	   }
 
   }
 
@@ -30,5 +54,36 @@ public class Cuisinier extends Joueur
   {
     setPlace(19*super.getPlateau().getNbColonne()+2);
     vie--;
+  }
+   @Override
+  public void run()
+  {
+    while(true)
+    {
+      try
+      {
+        BufferedReader saisie=new BufferedReader(new InputStreamReader(System.in));
+        char commande =(char)saisie.read();
+        if(commande==commandes[0])
+          {
+            deplaceHaut();
+          }
+          else if(commande==commandes[1])
+          {
+            deplaceGauche();
+          }
+          else if(commande==commandes[2])
+          {
+            deplaceBas();
+
+          }
+          else if(commande==commandes[3])
+          {
+            deplaceDroite();
+          }else if(commmande==commandes[4])
+          {   poivrer();  }
+        }
+        catch(IOException e){e.printStackTrace();}
+    }
   }
 }
