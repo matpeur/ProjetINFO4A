@@ -67,18 +67,18 @@ public class EnnemiIA extends Creature
 
 public int distmin(int id1, int id2)
 {
-      int p=id1;
+
       int distance=0;
       Plateau P = super.getMoteur().getPlateau();
       do
       {
         if(P.getLigne(id2)>P.getLigne(id1)&&(P.testDescend(id1)))
         {
-          setPlace(P.getIdentifiant(P.getLigne(id1)+1,P.getColonne(id1)));
+         place=P.getIdentifiant(P.getLigne(id1)+1,P.getColonne(id1));
           distance++;
           if(P.getColonne(id2)>P.getColonne(id1)&&P.testDroite(id1))
             {
-              setPlace(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)+1));
+              place=P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)+1);
               distance++;
 
             }
@@ -86,8 +86,7 @@ public int distmin(int id1, int id2)
             {
               if(P.getColonne(id1)>P.getColonne(id2)&&P.testGauche(id1))
               {
-
-                setPlace(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)-1));
+               place=P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)-1);
                 distance++;
               }
 
@@ -101,26 +100,29 @@ public int distmin(int id1, int id2)
                distance++;
           if(P.getColonne(id2)>P.getColonne(id1)&&P.testDroite(id1))
             {
-             setPlace(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)+1));
-                distance++;
+              distance++;
+            }
+            else
+              {
+                  if(P.getColonne(id2)>P.getColonne(id1)&&P.testGauche(id1))
+                  {
 
-                setPlace(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)-1));
-                distance++;
-              }
+                   distance++;
+                  }
+
+
+            }
 
         }
         else
          {
            if(P.getLigne(id1)>P.getLigne(id2)&&(P.testMonte(id1)))
            {
-              setPlace(P.getIdentifiant(P.getLigne(id1)-1,P.getColonne(id1)));
+
               distance++;
               if(P.getColonne(id2)>P.getColonne(id1)&&P.testDroite(id1))
               {
 
-                setPlace(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)-1));
-
-                setPlace(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)+1));
 
                 distance++;
               }
@@ -128,14 +130,14 @@ public int distmin(int id1, int id2)
               {
                 if(P.getColonne(id1)>P.getColonne(id2)&&P.testGauche(id1))
                 {
-                  setPlace(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)-1));
+
                   distance++;
                 }else
                  {
                   if(P.getColonne(id2)>P.getColonne(id1)&&P.testGauche(id1))
                   {
-                    setPlace(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)+1));
-                    distance++;
+
+                   distance++;
                   }
                 }
               }
@@ -144,20 +146,19 @@ public int distmin(int id1, int id2)
              {
               if(P.getColonne(id1)>P.getColonne(id2)&&P.testGauche(id1))
                {
-                 setPlace(P.getIndice(P.getLigne(id1),P.getColonne(id1)-1));
-                distance++;
+                   distance++;
                 if(P.getLigne(id1)==P.getLigne(id2)||P.getLigne(id1)==P.getLigne(P.getTaille())||P.getLigne(id1)==P.getLigne(0))
                 {
                  if(P.getColonne(id2)>P.getColonne(id1)&&P.testDroite(id1))
                  {
-                  setPlace(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)+1));
+
                   distance++;
                  }
                  else
                  {
                   if(P.getColonne(id1)>P.getColonne(id2)&&P.testGauche(id1))
                   {
-                    setPlace(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)-1));
+
                     distance++;
                   }
                 }
@@ -171,40 +172,43 @@ public int distmin(int id1, int id2)
     }
 
  }while(id1!=id2);
-      setPlace(p);
+
       return distance;
 }
 
-   void deplaceEnnemi(int id1,int id2)
+    void deplaceEnnemi(int id1,int id2)
     {
-   do{ int p=id1;
-      int icteur=100000;
+   do{
+      int icteur=1000000000;
+      int place=0;
       Plateau P=super.getPlateau();
       if(P.testMonte(id1)&&icteur>distmin(id1,id2))
       {
-        setPlace(P.getIdentifiant(P.getLigne(id1)-1,P.getColonne(id1)));
+       place=P.getIdentifiant(P.getLigne(id1)-1,P.getColonne(id1));
          icteur=distmin(P.getIdentifiant(P.getLigne(id1)-1,P.getColonne(id1)),id2);
       }
        if(P.testDescend(id1)&&icteur>distmin(P.getIdentifiant(P.getLigne(id1)+1,P.getColonne(id1)),id2))
       {
-        setPlace(p) ;
-        setPlace(P.getIdentifiant(P.getLigne(id1)+1,P.getColonne(id1)));
+
+        place=P.getIdentifiant(P.getLigne(id1)+1,P.getColonne(id1));
         icteur=distmin(P.getIdentifiant(P.getLigne(id1)+1,P.getColonne(id1)),id2);
       }
       if(P.testDroite(id1)&&icteur>distmin(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)+1),id2))
       {
-        setPlace(p);
-        setPlace(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)+1));
+
+        place=P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)+1);
         icteur=distmin(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)+1),id2);
       }
       if(P.testGauche(id1)&&icteur>distmin(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)-1),id2))
       {
-        setPlace(p) ;
-        setPlace(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)-1));
-        icteur=distmin(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)-1),id2);
+
+       place=P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)-1);
+       icteur=distmin(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)-1),id2);
       }
     }while(id1!=id2);
+    id1=place;
    }
+   
  public static void main (String[] args)
   {
 	Moteur m=new Moteur();
@@ -214,7 +218,7 @@ public int distmin(int id1, int id2)
 
   public void run()
   {
-    
+
   }
 
 
