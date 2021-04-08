@@ -1,13 +1,25 @@
 public class EnnemiIA extends Creature
 {
-
+ boolean b ;
     public EnnemiIA(Moteur m, String nom, int id)
     {
       super(nom, id, m);
       setPlace(19*getPlateau().getNbColonne()+48);
+      b=false ;
+      
     }
 
-    public void mort(){}
+    
+   public setAsome()
+   {
+	    int i=0;
+	    while(i!=15)
+	    { this.b=true;
+	     i++;
+	    }
+	}
+   public getAsomme(){return this.b;}
+    public void mort(){ }
 
     public void setPlace(int i )
     {
@@ -274,11 +286,8 @@ void deplaceEnnemi(int id1,int id2)
       while (!super.getArret())
         {
           deplaceGauche();
-          try
-          {
-            this.sleep((int)Math.random()*20000);
-          }
-          catch(Exception e){e.printStackTrace();}
+          
         }
     }
 }
+
