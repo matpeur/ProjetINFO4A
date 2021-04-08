@@ -27,12 +27,21 @@ public class Plateau implements Serializable
     niveau=niveau1;
   }
 
-  private Plateau(int ligne, int colonne)
+  public Plateau(int ligne, int colonne)
   {
     niveau=new int[ligne][colonne];//initialisation d'un niveau vierge
     for(int i=0;i<niveau.length;i++)
       for(int j=0;j<niveau[0].length;j++)
         niveau[i][j]=0;
+  }
+
+  public Plateau(Plateau p)
+  {
+    niveau=new int[p.getNbLigne()][p.getNbColonne()];
+    for(int i = 0; i<p.getTaille(); i++)
+    {
+      setIndice(getLigne(i), getColonne(i), p.getIndice(getLigne(i),getColonne(i)));
+    }
   }
   public int getTaille()
   {
