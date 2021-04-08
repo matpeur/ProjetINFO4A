@@ -1,112 +1,90 @@
-import java.io.*;
-public abstract class Creature extends Thread implements Serializable
+public class Cuisinier extends Joueur
 {
-  private String nom;
-  private int identifiant;
-  private Moteur moteur;
-  private int place;
-  private char symbole;
-
-  public int getIdentifiant()
+  boolean poivre ;
+  int vie;
+   
+  public Cuisinier (Moteur m, String nom, int id)
   {
-    return this.identifiant;
+   super(m, nom, id, 'C');
+   this.poivre = false;
+   this.vie=3;
+    
   }
 
-  public void setIdentifiant(int id)
-  {
-    this.identifiant=id;
+
+  public void  poivrer()
+  {   Plateau I=super.getMoteur().getPlateau();
+      int L=super.getMoteur().I.getLigne(super.getPlace());
+      int C=super.getMoteur().I.getColonne(super.getPlace());
+      if(super.getMoteur().getCreaturePlace(I.getIdentifiant(L+1,C)).getClass()==EnnemiIA)
+       {
+		   
+		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L-1,C)).setAsome();
+		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L+1,C)).setAsome();
+		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C+1)).setAsome();
+		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C-1)).setAsome();
+	   }
+	   if((super.getMoteur().getCreaturePlace(I.getIdentifiant(L-1,C))).getClass()==EnnemiIA)
+       {
+		   
+		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L-1,C)).setAsome();
+		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L+1,C)).setAsome();
+		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C+1)).setAsome();
+		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C-1)).setAsome();
+	   }
+	   if(super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C-1)).getClass()==EnnemiIA)
+       {
+		  
+		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L-1,C)).setAsome();
+		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L+1,C)).setAsome();
+		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C+1)).setAsome();
+		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C-1)).setAsome();
+	   }
+	   if((super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C+1))).getClass()==EnnemiIA)
+       {
+		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L-1,C)).setAsome();
+		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L+1,C)).setAsome();
+		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C+1)).setAsome();
+		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C-1)).setAsome();
+	   }
+  
   }
 
-  public char getSymbole()
+  public void mort()
   {
-    return this.symbole;
+    setPlace(19*super.getPlateau().getNbColonne()+2);
+    vie--;
   }
-
-  public void setSymbole(char c)
+   @Override
+  public void run()
   {
-    this.symbole=c;
-  }
-
-  public Plateau getPlateau()
-  {
-    return this.moteur.getPlateau();
-  }
-
-  public void setMoteur(Moteur m)
-  {
-    this.moteur = m;;
-  }
-
-  public void setNom(String nom)
-  {
-    this.nom=nom;
-  }
-
-  public String getNom()
-  {
-    return this.nom;
-  }
-
-  public int getPlace()
-  {
-    return this.place;
-  }
-
-  public void setPlace(int i)
-  {
-    this.place = i;
-  }
-
-  public Creature(String s, int id, Moteur m)
-  {
-    nom=s;
-    setIdentifiant(id);
-    setMoteur(m);
-    setPlace(19*getPlateau().getNbColonne()+2);
-  }
-
-  public abstract void run();
-  public abstract void mort();
-
-  public void deplaceHaut()
-  {
-    if (getPlateau().testMonte(getPlace()))
+    while(true)
     {
-    setPlace(getPlateau().getNbColonne()-getPlace());
+      try
+      {
+        BufferedReader saisie=new BufferedReader(new InputStreamReader(System.in));
+        char commande =(char)saisie.read();
+        if(commande==commandes[0])
+          {
+            deplaceHaut();
+          }
+          else if(commande==commandes[1])
+          {
+            deplaceGauche();
+          }
+          else if(commande==commandes[2])
+          {
+            deplaceBas();
+          
+          }
+          else if(commande==commandes[3])
+          {
+            deplaceDroite();
+          }else if(commmande==commandes[4])
+          {   poivrer();  }
+        }
+        catch(IOException e){e.printStackTrace();}
     }
   }
-
-  public void deplaceDroite()
-  {
-    if (getPlateau().testDroite(getPlace()))
-    {
-    setPlace(1+getPlace());
-    }
-  }
-
-  public void deplaceGauche()
-  {
-    if (getPlateau().testGauche(getPlace()))
-    {
-    setPlace(getPlace()-1);
-    }
-  }
-
-  public void deplaceBas()
-  {
-    if (getPlateau().testDescend(getPlace()))
-    {
-    setPlace(getPlateau().getNbColonne()+getPlace());
-    }
-  }
-
-  public boolean equals(Creature c)
-  {
-    if(c.getClass() != this.getClass())
-      return false;
-    if(this.getSymbole() != c.getSymbole())
-      return false;
-    return this.getPlace() == c.getPlace();
-  }
-
 }
+
