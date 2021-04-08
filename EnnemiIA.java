@@ -175,22 +175,21 @@ public int distmin(int id1, int id2)
       return distance;
 } 
  
-    void deplaceEnnemi(int id1,int id2)
+   void deplaceEnnemi(int id1,int id2)
     {
-      int p=id1;
+   do{ int p=id1;
       int icteur=1000000000;
       Plateau P=super.getPlateau();
       if(P.testMonte(id1)&&icteur>distmin(id1,id2))
       {
-        setPlace(P.getIdentifiant(P.getLigne(id1)+1,P.getColonne(id1)));
-         icteur=distmin(p,id2);
-      }
-       if(P.testDescend(id1)&&icteur>distmin(P.getIdentifiant(P.getLigne(id1)-1,P.getColonne(id1)),id2))
-      {
-
-        setPlace(p) ;
         setPlace(P.getIdentifiant(P.getLigne(id1)-1,P.getColonne(id1)));
-        icteur=distmin(P.getIdentifiant(P.getLigne(id1)-1,P.getColonne(id1)),id2);
+         icteur=distmin(P.getIdentifiant(P.getLigne(id1)-1,P.getColonne(id1)),id2);
+      }
+       if(P.testDescend(id1)&&icteur>distmin(P.getIdentifiant(P.getLigne(id1)+1,P.getColonne(id1)),id2))
+      {
+        setPlace(p) ;
+        setPlace(P.getIdentifiant(P.getLigne(id1)+1,P.getColonne(id1)));
+        icteur=distmin(P.getIdentifiant(P.getLigne(id1)+1,P.getColonne(id1)),id2);
       }
       if(P.testDroite(id1)&&icteur>distmin(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)+1),id2))
       {
@@ -204,11 +203,8 @@ public int distmin(int id1, int id2)
         setPlace(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)-1));
         icteur=distmin(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)-1),id2);
       }
-    }
-public void run() {
-       System.out.print(distmin(0,25));
-    }
-     
+    }while(id1!=id2); 
+   } 
 }
 public class EnnemiIA{
  public static void main (String[] args)
