@@ -47,7 +47,10 @@ public class Cuisinier extends Joueur
 
   public void mort()
   {
-    setPlace(super.getMoteur().getPlateau().getApparitionJoueur());
+    int i=0;
+    while(super.getMoteur().getCreaturePlace(super.getMoteur().getPlateau().getApparitionJoueur()+i) != null)
+       i++;
+    setPlace(super.getMoteur().getPlateau().getApparitionJoueur()+i);
     vie--;
   }
    @Override

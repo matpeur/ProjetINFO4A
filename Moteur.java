@@ -114,10 +114,22 @@ public class Moteur implements Serializable
     //creature.add((Creature)e);
   }
 
-  public synchronized void ajoutEnnemiIA(String Nom)
+  public synchronized void ajoutEnnemiIA(EnnemiIA e)
   {
-    //EnnemiIA e=new EnnemiIA(this, Nom);
-    //creature.add((Creature)e);
+    creature.add((Creature)e);
+  }
+
+  public void ajoutEnnemis()
+  {
+    EnnemiIA a = new EnnemiIA(this, "Pepper");
+    a.setSymbole('P');
+    ajoutEnnemiIA(a);
+    EnnemiIA b = new EnnemiIA(this, "Egg");
+    a.setSymbole('O');
+    ajoutEnnemiIA(b);
+    EnnemiIA c = new EnnemiIA(this, "Sausage");
+    a.setSymbole('S');
+    ajoutEnnemiIA(c);
   }
 
   public void ajoutCreature(Creature c)
