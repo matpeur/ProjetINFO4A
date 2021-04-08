@@ -70,6 +70,7 @@ public int distmin(int id1, int id2)
 
       int distance=0;
       Plateau P = super.getMoteur().getPlateau();
+      int place;
       do
       {
         if(P.getLigne(id2)>P.getLigne(id1)&&(P.testDescend(id1)))
@@ -178,37 +179,37 @@ public int distmin(int id1, int id2)
 
     void deplaceEnnemi(int id1,int id2)
     {
-   do{
       int icteur=1000000000;
       int place=0;
       Plateau P=super.getPlateau();
-      if(P.testMonte(id1)&&icteur>distmin(id1,id2))
+      do
       {
-       place=P.getIdentifiant(P.getLigne(id1)-1,P.getColonne(id1));
-         icteur=distmin(P.getIdentifiant(P.getLigne(id1)-1,P.getColonne(id1)),id2);
-      }
+
+        if(P.testMonte(id1)&&icteur>distmin(id1,id2))
+        {
+          place=P.getIdentifiant(P.getLigne(id1)-1,P.getColonne(id1));
+          icteur=distmin(P.getIdentifiant(P.getLigne(id1)-1,P.getColonne(id1)),id2);
+        }
        if(P.testDescend(id1)&&icteur>distmin(P.getIdentifiant(P.getLigne(id1)+1,P.getColonne(id1)),id2))
-      {
+       {
+          place=P.getIdentifiant(P.getLigne(id1)+1,P.getColonne(id1));
+          icteur=distmin(P.getIdentifiant(P.getLigne(id1)+1,P.getColonne(id1)),id2);
+       }
+       if(P.testDroite(id1)&&icteur>distmin(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)+1),id2))
+       {
+          place=P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)+1);
+          icteur=distmin(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)+1),id2);
+       }
+       if(P.testGauche(id1)&&icteur>distmin(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)-1),id2))
+       {
+          place=P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)-1);
+          icteur=distmin(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)-1),id2);
+       }
+     }
+     while(id1!=id2);
+     id1=place;
+    }
 
-        place=P.getIdentifiant(P.getLigne(id1)+1,P.getColonne(id1));
-        icteur=distmin(P.getIdentifiant(P.getLigne(id1)+1,P.getColonne(id1)),id2);
-      }
-      if(P.testDroite(id1)&&icteur>distmin(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)+1),id2))
-      {
-
-        place=P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)+1);
-        icteur=distmin(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)+1),id2);
-      }
-      if(P.testGauche(id1)&&icteur>distmin(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)-1),id2))
-      {
-
-       place=P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)-1);
-       icteur=distmin(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)-1),id2);
-      }
-    }while(id1!=id2);
-    id1=place;
-   }
-   
  public static void main (String[] args)
   {
 	Moteur m=new Moteur();

@@ -108,9 +108,9 @@ public class Moteur implements Serializable
     creature.add((Creature)c);
   }
 
-  public synchronized void ajoutEnnemiJoueur(String Nom)
+  public synchronized void ajoutEnnemiJoueur(String Nom, char Symbole)
   {
-    //Ennemi e=new Ennemi(this, Nom);
+    //Ennemi e=new Ennemi(this, Nom, Symbole);
     //creature.add((Creature)e);
   }
 
