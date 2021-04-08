@@ -67,10 +67,10 @@ class Elements extends Thread implements Serializable
     int c = getPlateau().getColonne(getIdentifiant());;
     while(getPlateau().getIndice(l, c) != 1&& getPlateau().getIndice(l, c) !=4 &&!getPose())
     {
-       Elements dessous = burger.getElement(l+1, c);
 	     setIdentifiant(getIdentifiant()+m.getPlateau().getNbColonne());
        l = getPlateau().getLigne(getIdentifiant());
        c = getPlateau().getColonne(getIdentifiant());
+       Elements dessous = burger.getElement(l+1, c);
        if(dessous != null)
        {
          if(dessous.getPose())
