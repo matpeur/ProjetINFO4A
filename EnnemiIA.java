@@ -178,7 +178,7 @@ public int distmin(int id1, int id2)
    void deplaceEnnemi(int id1,int id2)
     {
    do{ int p=id1;
-      int icteur=1000000000;
+      int icteur=100000;
       Plateau P=super.getPlateau();
       if(P.testMonte(id1)&&icteur>distmin(id1,id2))
       {
