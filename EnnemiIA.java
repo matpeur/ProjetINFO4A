@@ -20,7 +20,10 @@ public class EnnemiIA extends Creature
     public EnnemiIA(Moteur m, String nom)
     {
       super(nom, m);
-      setPlace(m.getSpawnEnnemi());
+      int i=0;
+      while(super.getMoteur().getCreaturePlace(super.getMoteur().getPlateau().getApparitionJoueur()+i) != null)
+         i++;
+      setPlace(m.getSpawnEnnemi()+i);
       assomme=false;
     }
 
