@@ -13,6 +13,17 @@ public class Burger implements Serializable
 		creerBurger(colonne);
 	}
 
+	public Burger(Burger b, Moteur m)
+	{
+		moteur = m;
+		composants = new ArrayList<Elements>();
+		for (int i = 0; i<getNbComposants(); i = i+4)
+		{
+			if(getElement(i).getSymbole() == 'm')
+				creerBurger(this.moteur.getPlateau().getColonne(getElement(i).getIdentifiant()));
+		}
+	}
+
 	public Elements getElement(int ligne, int colonne)
 	{
 		for(int i = 0; i<composants.size(); i++)

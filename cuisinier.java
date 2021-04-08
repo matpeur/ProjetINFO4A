@@ -1,64 +1,59 @@
+import java.io.*;
+
 public class Cuisinier extends Joueur
 {
   boolean poivre ;
   int vie;
 
-  public Cuisinier (Moteur m, String nom, int id)
+  public Cuisinier (Moteur m, String nom)
   {
-   super(m, nom, id, 'C');
+   super(m, nom, 'C');
    this.poivre = false;
    this.vie=3;
-
+   int i = 0;
+   while(super.getMoteur().getCreaturePlace(super.getMoteur().getPlateau().getApparitionJoueur()+i) != null)
+      i++;
+   super.setPlace(super.getMoteur().getPlateau().getApparitionJoueur()+i);
+   super.setCommandes(new char[]{'z', 'q', 's', 'd', ' '});
   }
 
+  public Cuisinier (Cuisinier c, Moteur m)
+  {
+    super(m, c.getNom(), c.getSymbole());
+    this.poivre = c.getPoivre();
+    this.vie = c.getVie();
+    super.setPlace(c.getPlace());
+  }
 
-  public void  poivrer()
+  public int getVie(){ return vie;}
+  public boolean getPoivre(){return poivre;}
+  public int getPlace(){return super.getPlace();}
+  public char getSymbole(){return super.getSymbole();}
+
+
+  public void poivrer()
   {   Plateau I=super.getMoteur().getPlateau();
-      int L=super.getMoteur().I.getLigne(super.getPlace());
-      int C=super.getMoteur().I.getColonne(super.getPlace());
-      if(super.getMoteur().getCreaturePlace(I.getIdentifiant(L+1,C)).getClass()==EnnemiIA)
-       {
-
-		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L-1,C)).setAsome();
-		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L+1,C)).setAsome();
-		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C+1)).setAsome();
-		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C-1)).setAsome();
-	   }
-	   if((super.getMoteur().getCreaturePlace(I.getIdentifiant(L-1,C))).getClass()==EnnemiIA)
-       {
-
-		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L-1,C)).setAsome();
-		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L+1,C)).setAsome();
-		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C+1)).setAsome();
-		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C-1)).setAsome();
-	   }
-	   if(super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C-1)).getClass()==EnnemiIA)
-       {
-
-		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L-1,C)).setAsome();
-		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L+1,C)).setAsome();
-		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C+1)).setAsome();
-		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C-1)).setAsome();
-	   }
-	   if((super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C+1))).getClass()==EnnemiIA)
-       {
-		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L-1,C)).setAsome();
-		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L+1,C)).setAsome();
-		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C+1)).setAsome();
-		   super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C-1)).setAsome();
-	   }
-
+      int L=I.getLigne(super.getPlace());
+      int C=I.getColonne(super.getPlace());
+      if(super.getMoteur().getCreaturePlace(I.getIdentifiant(L+1,C)) != null)
+		      super.getMoteur().getCreaturePlace(I.getIdentifiant(L+1,C)).Assomme();
+	    if((super.getMoteur().getCreaturePlace(I.getIdentifiant(L-1,C))) != null)
+		      super.getMoteur().getCreaturePlace(I.getIdentifiant(L-1,C)).Assomme();
+	    if(super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C-1)) != null)
+		      super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C-1)).Assomme();
+	    if((super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C+1))) != null)
+		      super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C+1)).Assomme();
   }
 
   public void mort()
   {
-    setPlace(19*super.getPlateau().getNbColonne()+2);
+    setPlace(super.getMoteur().getPlateau().getApparitionJoueur());
     vie--;
   }
    @Override
   public void run()
   {
-    while(true)
+    while(!super.getMoteur().fin())
     {
       try
       {
@@ -80,7 +75,7 @@ public class Cuisinier extends Joueur
           else if(commande==commandes[3])
           {
             deplaceDroite();
-          }else if(commmande==commandes[4])
+          }else if(commande==commandes[4])
           {   poivrer();  }
         }
         catch(IOException e){e.printStackTrace();}

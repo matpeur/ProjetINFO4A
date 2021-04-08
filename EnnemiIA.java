@@ -1,36 +1,67 @@
 public class EnnemiIA extends Creature
 {
- boolean b ;
-    public EnnemiIA(Moteur m, String nom, int id)
-    {
-      super(nom, id, m);
-      setPlace(19*getPlateau().getNbColonne()+48);
-      b=false ;
-      
-    }
+    private boolean assomme;
 
-    
-   public setAsome()
-   {
-	    int i=0;
-	    while(i!=15)
-	    { this.b=true;
-	     i++;
-	    }
-	}
-   public getAsomme(){return this.b;}
-    public void mort(){ }
+    public String getNom()
+    {
+      return super.getNom();
+    }
 
     public void setPlace(int i )
     {
       super.setPlace(i);
     }
 
-<<<<<<< HEAD
-void setIndice(int i )
-{
-   this.id=i;
-}
+    public int getPlace()
+    {
+      return super.getPlace();
+    }
+
+    public EnnemiIA(Moteur m, String nom)
+    {
+      super(nom, m);
+      setPlace(m.getSpawnEnnemi());
+      assomme=false;
+    }
+
+    public EnnemiIA()
+    {
+      super("", null);
+    }
+
+    public EnnemiIA(EnnemiIA e, Moteur m)
+    {
+      super(e.getNom(), m);
+      setPlace(e.getPlace());
+      assomme = e.getAssomme();
+    }
+
+
+    public void Assomme()
+    {
+      this.assomme = true;
+	  }
+
+    public boolean getAssomme(){return this.assomme;}
+
+    public void mort()
+    {
+      super.getMoteur().addScore(100);
+      try
+      {
+      sleep((int)(Math.random()*100)+100);
+      }catch(Exception e){}
+      while(super.getMoteur().getCreaturePlace(super.getMoteur().getSpawnEnnemi()) != null)
+      {
+        try
+        {
+        sleep(100);
+        }catch(Exception e){}
+      }
+      setPlace(super.getMoteur().getSpawnEnnemi());
+    }
+
+
 /*int distmin(int id1 ,int id2 )
 { int p=id1;
     int distance=0;
@@ -153,7 +184,7 @@ void setIndice(int i )
     }
 
 <<<<<<< HEAD
-}*/
+}
 int distmin(inti1,inti2)
 {​​​​​​​​    int col=I1.getColonne(i1);
      int ligne=I1.getLigne(i1);
@@ -280,14 +311,13 @@ void deplaceEnnemi(int id1,int id2)
 >>>>>>> 32a4fecda68218d103522e5fbc0d97a37607061f
       }
     }
-
+*/
     public void run()
     {
-      while (!super.getArret())
+      while (!super.getMoteur().fin())
         {
           deplaceGauche();
-          
+
         }
     }
 }
-

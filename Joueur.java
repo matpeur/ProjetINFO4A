@@ -4,18 +4,29 @@ import java.io.*;
 public abstract class Joueur extends Creature
 {
   char[] commandes;
-   
 
- public Joueur(Moteur m,String nom, int id, char symbole)
+
+ public Joueur(Moteur m,String nom, char symbole)
  {
-   super(nom, id, m);
-   commandes = new char[]{'z', 'q', 's', 'd','P'};
- 
+   super(nom, m);
+   commandes = new char[]{'z', 'q', 's', 'd'};
+
    super.setSymbole(symbole);
  }
 
   public int getPlace(){return super.getPlace();}
-  public Moteur getMoteur(){return this.m;}
+  public void setPlace(int i){super.setPlace(i);}
+  public Moteur getMoteur(){return super.getMoteur();}
+
+  public void setCommandes(char [] tab)
+  {
+    commandes = tab;
+  }
+
+  public char[] getCommandes()
+  {
+    return this.commandes;
+  }
 
   public String toString()
   {
@@ -42,7 +53,7 @@ public abstract class Joueur extends Creature
           else if(commande==commandes[2])
           {
             deplaceBas();
-          
+
           }
           else if(commande==commandes[3])
           {
@@ -52,7 +63,9 @@ public abstract class Joueur extends Creature
         catch(IOException e){e.printStackTrace();}
     }
   }
-  
+
   public abstract void mort();
 
+  @Override
+  public void Assomme(){}
 }

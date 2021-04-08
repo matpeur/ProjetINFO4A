@@ -4,8 +4,8 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
-class Score
-{ 
+public class Scores
+{
    int n;
    int[] tabScore;
    String[] tabNom;
@@ -13,39 +13,48 @@ class Score
    int id;
    int[] MeilleursScore;
    String[] NoMmeilleurjoueur;
-    public Score(int NbJOUeur)
+    public Scores(int NbJOUeur)
     {
-    
+
       n=NbJOUeur;
       tabScore=new int[n];
       tabNom=new String[n];
       MeilleursScore=new int[10];
       id=0;
       NoMmeilleurjoueur=new String[10];
-     
+
       indice=0;
+    }
+
+    public Scores()
+    {
+
     }
 
 
 
-  
-  
+  public void addScore(int i)
+  {
 
+  }
+
+  public void afficheScores()
+  {}
 public void Scoretotal(String NomGrp)
- {  
-      
+ {
+
    if(indice==0)
    { try {
       File file = new File("c:\\Moussa.txt");
-      BufferedWriter bufferedwriter= new BufferedWriter(new FileWriter(file)); 
+      BufferedWriter bufferedwriter= new BufferedWriter(new FileWriter(file));
       int somme=0;
       for(int i=0;i<indice;i++)
-      {     
-      somme=somme+tabScore[i]; 
-      } 
+      {
+      somme=somme+tabScore[i];
+      }
      String s=String.valueOf(somme);
      bufferedwriter.write(NomGrp);
-     bufferedwriter.newLine(); 
+     bufferedwriter.newLine();
      bufferedwriter.write(s);
      bufferedwriter.close();
        if (file.createNewFile()){
@@ -53,37 +62,37 @@ public void Scoretotal(String NomGrp)
        }else{
          System.out.println("Fichier existe déjà.");
        }
-       
+
      } catch (IOException e) {
        e.printStackTrace();}
-     
-    
-  }else 
+
+
+  }else
   {
    try{ FileWriter fw =new FileWriter("c:\\Moussa.txt",false);
 	  int somme=0;
       for(int i=0;i<indice;i++)
-      {     
-      somme=somme+tabScore[i]; 
-      } 
+      {
+      somme=somme+tabScore[i];
+      }
       String s=String.valueOf(somme);
       fw.write(NomGrp+" ");
-      //fw.newLine(); 
+      //fw.newLine();
       fw.write(s+" ");
-      fw.close();  
+      fw.close();
 	  } catch (IOException e) {
        e.printStackTrace();}
     }
 
-  
+
  }
  public   void classement()
     {   if(indice==0)
 		{
-				
+
 			  MeilleursScore[id]=tabScore[0];
                NoMmeilleurjoueur[id]=tabNom[0];
-              id++;	
+              id++;
 		}
 		else
 		 { for(int i=0;i<indice-1;i++)
@@ -107,19 +116,19 @@ public void Scoretotal(String NomGrp)
 public void CreerfichierMeilleusrJoueurs()
  {
    if(id==0)
-   { 
+   {
      classement();
-         
+
      try {
-       
+
        File file = new File("c:\\Record.txt");
-       
+
        if (file.createNewFile()){
          System.out.println("Fichier créé!");
        }else{
          System.out.println("Fichier existe déjà.");
        }
-       
+
     BufferedWriter bufferedwriter= new BufferedWriter(new FileWriter(file));
      for(int i=0;i<id;i++)
     {
@@ -130,24 +139,24 @@ public void CreerfichierMeilleusrJoueurs()
     }
   } catch(IOException e){ e.printStackTrace();}
 
-     
-       
- }else 
+
+
+ }else
   {
-	   try{ 
+	   try{
 		   FileWriter fw =new FileWriter("c:\\Record.txt",false);
-	       
+
 	  for(int i=0;i<id;i++)
-       {  
+       {
 		      String p=String.valueOf(MeilleursScore[i]);
         fw.write(NoMmeilleurjoueur[i]);
         fw.write(" "+MeilleursScore[i]);
-       
+
       }
-	  
-	  
+
+
    } catch(IOException e){ e.printStackTrace();}
- 
+
   }
  }
  public void scoreJOueur(String Nom ,int sc )
@@ -155,29 +164,13 @@ public void CreerfichierMeilleusrJoueurs()
 	 tabScore[indice]=sc;
 	 tabNom[indice]=Nom;
      indice++;
-     
- 
+
+
  }
 
 
-  
-  
- 
-  
-}
-}
 
- public class Scores{
 
- public static void main (String[] args)
-  { 
-     Score s= new Score(4);
-     s.scoreJOueur("Moussa",3);
-     s.scoreJOueur("Mathieu",3);
-     s.scoreJOueur("Eric",4);
-     s.Scoretotal("grp1");  
-     s.scoreJOueur("Eric",6);
-     s.CreerfichierMeilleusrJoueurs();   
-  } 
+
+
 }
-  

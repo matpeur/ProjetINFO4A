@@ -38,7 +38,7 @@ class Elements extends Thread implements Serializable
 
   public void run()
   {
-    while(!pose)
+    while(!pose && !m.fin())
     {
       Creature c =m.getCreaturePlace(getIdentifiant());
       if(c != null)

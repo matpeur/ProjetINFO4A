@@ -2,20 +2,9 @@ import java.io.*;
 public abstract class Creature extends Thread implements Serializable
 {
   private String nom;
-  private int identifiant;
   private Moteur moteur;
   private int place;
   private char symbole;
-
-  public int getIdentifiant()
-  {
-    return this.identifiant;
-  }
-
-  public void setIdentifiant(int id)
-  {
-    this.identifiant=id;
-  }
 
   public char getSymbole()
   {
@@ -34,7 +23,12 @@ public abstract class Creature extends Thread implements Serializable
 
   public void setMoteur(Moteur m)
   {
-    this.moteur = m;;
+    this.moteur = m;
+  }
+
+  public Moteur getMoteur()
+  {
+    return moteur;
   }
 
   public void setNom(String nom)
@@ -57,16 +51,15 @@ public abstract class Creature extends Thread implements Serializable
     this.place = i;
   }
 
-  public Creature(String s, int id, Moteur m)
+  public Creature(String s, Moteur m)
   {
     nom=s;
-    setIdentifiant(id);
     setMoteur(m);
-    setPlace(19*getPlateau().getNbColonne()+2);
   }
 
   public abstract void run();
   public abstract void mort();
+  public abstract void Assomme();
 
   public void deplaceHaut()
   {

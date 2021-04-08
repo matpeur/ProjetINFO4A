@@ -49,6 +49,11 @@ public class Plateau implements Serializable
       setIndice(getLigne(i), getColonne(i), p.getIndice(getLigne(i),getColonne(i)));
     }
   }
+
+  public int getApparitionJoueur()
+  {
+    return apparitionJoueur;
+  }
   public int getTaille()
   {
     return niveau.length*niveau[0].length;
@@ -82,6 +87,11 @@ public class Plateau implements Serializable
   public void setIndice(int i, int j, int id)
   {
     niveau[i][j]=id;
+  }
+
+  public int getIdentifiant(int ligne, int colonne)
+  {
+    return ligne*getNbColonne()+colonne;
   }
 
   public char getChar(int id)
