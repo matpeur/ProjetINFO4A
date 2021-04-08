@@ -80,13 +80,13 @@ public int distmin(int id1, int id2)
             {
               setPlace(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)+1));
               distance++;
- 
+
             }
           else
             {
               if(P.getColonne(id1)>P.getColonne(id2)&&P.testGauche(id1))
               {
- 
+
                 setPlace(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)-1));
                 distance++;
               }
@@ -103,11 +103,11 @@ public int distmin(int id1, int id2)
             {
              setPlace(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)+1));
                 distance++;
- 
+
                 setPlace(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)-1));
                 distance++;
               }
- 
+
         }
         else
          {
@@ -117,11 +117,11 @@ public int distmin(int id1, int id2)
               distance++;
               if(P.getColonne(id2)>P.getColonne(id1)&&P.testDroite(id1))
               {
- 
+
                 setPlace(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)-1));
- 
+
                 setPlace(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)+1));
- 
+
                 distance++;
               }
               else
@@ -139,9 +139,9 @@ public int distmin(int id1, int id2)
                   }
                 }
               }
-            }  
+            }
             else
-             {     
+             {
               if(P.getColonne(id1)>P.getColonne(id2)&&P.testGauche(id1))
                {
                  setPlace(P.getIndice(P.getLigne(id1),P.getColonne(id1)-1));
@@ -161,20 +161,20 @@ public int distmin(int id1, int id2)
                     distance++;
                   }
                 }
- 
+
               }
             }
 
           }
       }
-     
+
     }
 
  }while(id1!=id2);
       setPlace(p);
       return distance;
-} 
- 
+}
+
    void deplaceEnnemi(int id1,int id2)
     {
    do{ int p=id1;
@@ -203,14 +203,19 @@ public int distmin(int id1, int id2)
         setPlace(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)-1));
         icteur=distmin(P.getIdentifiant(P.getLigne(id1),P.getColonne(id1)-1),id2);
       }
-    }while(id1!=id2); 
-   } 
-}
-public class EnnemiIA{
+    }while(id1!=id2);
+   }
  public static void main (String[] args)
   {
-	Moteur m=new Moteur();   
+	Moteur m=new Moteur();
 	Thread t1=new EnnemiIA(m,"ghjk");
-	t1.start();    	
+	t1.start();
   }
-} 
+
+  public void run()
+  {
+    
+  }
+
+
+}
