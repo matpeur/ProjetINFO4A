@@ -2,6 +2,12 @@ import java.io.*;
 public class Debut{
   public static void main(String[] args)
   {
+    Score s= new Score();
+    System.out.println("Bienvenu dans BurgeTime");
+    System.out.println("Un projet réalisé par BELLEGUEULLE Mathieu et TRAORE Moussa");
+    s.afficheScore();
+    System.out.println("Appuyer sur entrer pour démarrer le jeu");
+
     System.out.println("Quel adresse ?");
     String s="";
     while(s.equals(""))
