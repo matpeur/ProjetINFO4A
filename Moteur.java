@@ -20,6 +20,13 @@ public class Moteur implements Serializable
     plateau = new Plateau();
     creature = new ArrayList<Creature>();
     Burgers = new ArrayList<Burger>();
+  }
+
+  public Moteur(int i)
+  {
+    plateau = new Plateau(i);
+    creature = new ArrayList<Creature>();
+    Burgers = new ArrayList<Burger>();
     Burgers.add(new Burger(this, 15));
     Burgers.add(new Burger(this, 40));
     Burgers.add(new Burger(this, 54));

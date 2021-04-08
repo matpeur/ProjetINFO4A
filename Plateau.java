@@ -14,6 +14,7 @@ public class Plateau implements Serializable
 
   */
   private int niveau[][];
+  private int apparitionJoueur;
 
   public Plateau()
   {
@@ -21,10 +22,15 @@ public class Plateau implements Serializable
     for(int i=0;i<niveau.length;i++)
       for(int j=0;j<niveau[0].length;j++)
         niveau[i][j]=0;
-    for(int i = 0; i<getNbColonne(); i++)
-      niveau[3][i] = 1;
+  }
 
-    niveau=niveau1;
+  public Plateau(int niveau)
+  {
+    switch(niveau)
+    {
+      case 1 : this.niveau=niveau1;
+               apparitionJoueur = 19*getNbLigne()+2;
+    }
   }
 
   public Plateau(int ligne, int colonne)
