@@ -36,7 +36,6 @@ public class Serveur extends Thread
         if(o.equals("MOTEUR"))
         {
             oss.writeObject(getMoteur());
-            System.out.println("Moteur envoyé");
         }
         if (o.equals("END")) break;
         oss.close();
