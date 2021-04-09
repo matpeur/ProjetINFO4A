@@ -43,7 +43,8 @@ public class Scores
 
   public void afficheScores()
   {
-	   for(int i=0;i<indice;i++)
+	  int somme=0;
+      for(int i=0;i<indice;i++)
       {
       somme=somme+tabScore[i];
       }
