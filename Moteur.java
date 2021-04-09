@@ -73,7 +73,7 @@ public class Moteur implements Serializable
 
     switch(i)
     {
-      case 1 : spawnEnnemi = 19*plateau.getNbColonne()+80;
+      case 1 : spawnEnnemi = 19*plateau.getNbColonne()+97;
                spawnJoueur = plateau.getApparitionJoueur();
     }
   }
@@ -90,7 +90,7 @@ public class Moteur implements Serializable
         creature.add((Creature)new EnnemiIA((EnnemiIA)m.getCreature(i), this));
       else
       {
-        //creatures.add((Creature)new Ennemi((Ennemi)m.getCreature(i), this));
+        creature.add((Creature)new Ennemi((Ennemi)m.getCreature(i), this));
       }
     }
     Burgers = new ArrayList<Burger>();
@@ -108,10 +108,10 @@ public class Moteur implements Serializable
     creature.add((Creature)c);
   }
 
-  public synchronized void ajoutEnnemiJoueur(String Nom, char Symbole)
+  public synchronized void ajoutEnnemi(String Nom, char Symbole)
   {
-    //Ennemi e=new Ennemi(this, Nom, Symbole);
-    //creature.add((Creature)e);
+    Ennemi e=new Ennemi(this, Nom, Symbole);
+    creature.add((Creature)e);
   }
 
   public synchronized void ajoutEnnemiIA(EnnemiIA e)
@@ -214,6 +214,7 @@ public class Moteur implements Serializable
   {
     if(!this.plateau.equals(m.getPlateau()))
     {
+      System.out.println("Plateau");
       return false;
     }
     for(int i = 0; i<creature.size(); i++)
@@ -222,6 +223,7 @@ public class Moteur implements Serializable
       {
         if(!creature.get(i).equals(m.getCreature(i)))
         {
+          System.out.println("Creature");
           return false;
         }
       }
@@ -233,11 +235,27 @@ public class Moteur implements Serializable
       {
         if(!Burgers.get(i).equals(m.getBurger(i)))
         {
+          System.out.println("Burger");
           return false;
         }
       }
       catch (Exception e) {return false;}
     }
     return true;
+  }
+
+  public void demo()
+  {
+    plateau = new Plateau(1);
+    creature = new ArrayList<Creature>();
+    Burgers = new ArrayList<Burger>();
+    Burgers.add(new Burger(this, 15));
+    Burgers.add(new Burger(this, 40));
+    Burgers.add(new Burger(this, 54));
+    spawnEnnemi = 19*plateau.getNbColonne()+97;
+    spawnJoueur = plateau.getApparitionJoueur();
+    //ajoutEnnemi("Didier" , 'P');
+    ajoutCuisinier("Michel");
+
   }
 }

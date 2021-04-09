@@ -17,10 +17,9 @@ public class Burger implements Serializable
 	{
 		moteur = m;
 		composants = new ArrayList<Elements>();
-		for (int i = 0; i<getNbComposants(); i = i+4)
+		for (int i = 0; i<b.getNbComposants(); i++)
 		{
-			if(getElement(i).getSymbole() == 'm')
-				creerBurger(this.moteur.getPlateau().getColonne(getElement(i).getIdentifiant()));
+			composants.add(new Elements(b.getElement(i), this));
 		}
 	}
 
@@ -30,6 +29,11 @@ public class Burger implements Serializable
 			if(composants.get(i).getIdentifiant() == ligne*moteur.getPlateau().getNbColonne()+colonne)
 				return composants.get(i);
 		return null;
+	}
+
+	public Moteur getMoteur()
+	{
+		return moteur;
 	}
 
 	public Elements getElement(int id)
@@ -59,14 +63,14 @@ public class Burger implements Serializable
 				if(i == 0)
 					for(int j = 0; j < 4; j++)
 					{
-						composants.add(new PainDessus(this.moteur.getPlateau().getNbColonne()*indice[i]+colonne+j, this, moteur));
+						composants.add(new PainDessus(this.moteur.getPlateau().getNbColonne()*indice[i]+colonne+j, this));
 					}
 				else if(i == (compteur-1))
 					for(int j = 0; j < 4; j++)
-						composants.add(new PainDessous(this.moteur.getPlateau().getNbColonne()*indice[i]+colonne+j, this, moteur));
+						composants.add(new PainDessous(this.moteur.getPlateau().getNbColonne()*indice[i]+colonne+j, this));
 				else
 					for(int j = 0; j < 4; j++)
-						composants.add(new SaladeViandeetc(this.moteur.getPlateau().getNbColonne()*indice[i]+colonne+j, this, moteur));
+						composants.add(new SaladeViandeetc(this.moteur.getPlateau().getNbColonne()*indice[i]+colonne+j, this));
 			}
 			for(int j = 0; j < 4; j++)
 				moteur.getPlateau().setIndice(moteur.getPlateau().getNbLigne()-1, colonne+j, 4);
@@ -113,11 +117,13 @@ public class Burger implements Serializable
 	{
 		if(composants.size() != b.getNbComposants())
 		{
+			System.out.println("Nombre Elements");
 			return false;
 		}
 		for(int i = 0; i<composants.size(); i++)
 			if(!(b.getElement(i).equals(composants.get(i))))
 			{
+				System.out.println("Elements");
 				return false;
 			}
 		return true;

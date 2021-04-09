@@ -66,7 +66,7 @@ public abstract class Creature extends Thread implements Serializable
   {
     if (getPlateau().testMonte(getPlace()))
     {
-    setPlace(getPlateau().getNbColonne()-getPlace());
+    setPlace(getPlace()-getPlateau().getNbColonne());
     }
   }
 

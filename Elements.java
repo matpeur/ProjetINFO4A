@@ -9,13 +9,21 @@ class Elements extends Thread implements Serializable
   char symbole;
   boolean pose;
 
-  public Elements(Burger B1,Moteur moteur, int identifiant, char Symbole)
+  public Elements(Burger B1, int identifiant, char Symbole)
   {
 	  burger = B1;
-	  m = moteur;
+	  m = B1.getMoteur();
     this.identifiant = identifiant;
     this.symbole = Symbole;
     pose = false;
+  }
+
+  public Elements(Elements e, Burger b)
+  {
+    burger = b;
+    m = b.getMoteur();
+    identifiant = e.getIdentifiant();
+    setSymbole(e.getSymbole());
   }
 
   public int getIdentifiant(){ return this.identifiant;}

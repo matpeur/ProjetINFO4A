@@ -1,8 +1,8 @@
 import java.io.*;
 public class  PainDessous extends Elements implements Serializable
 {
-  public PainDessous(int identifiant1,Burger B1,Moteur m)
+  public PainDessous(int identifiant1,Burger B1)
   {
-    super(B1, m, identifiant1, 'u');
+    super(B1, identifiant1, 'u');
   }
 }

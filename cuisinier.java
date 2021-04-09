@@ -54,7 +54,8 @@ public class Cuisinier extends Joueur
     setPlace(super.getMoteur().getPlateau().getApparitionJoueur()+i);
     vie--;
   }
-   @Override
+
+  @Override
   public void run()
   {
     while(!super.getMoteur().fin())
@@ -62,28 +63,35 @@ public class Cuisinier extends Joueur
       int place = getPlace();
       try
       {
+        System.out.println("oui");
         BufferedReader saisie=new BufferedReader(new InputStreamReader(System.in));
         char commande =(char)saisie.read();
+        Creature c = null;
         if(commande==commandes[0])
           {
+            c = getMoteur().getCreaturePlace(getPlace()-getPlateau().getNbColonne());
             deplaceHaut();
           }
           else if(commande==commandes[1])
           {
+            c = getMoteur().getCreaturePlace(getPlace()-1);
             deplaceGauche();
           }
           else if(commande==commandes[2])
           {
+            c = getMoteur().getCreaturePlace(getPlace()+getPlateau().getNbColonne());
             deplaceBas();
-
           }
           else if(commande==commandes[3])
           {
+            c = getMoteur().getCreaturePlace(getPlace()+1);
             deplaceDroite();
-          }else if(commande==commandes[4])
-          {   poivrer();  }
-          Creature c = getMoteur().getCreaturePlace(getPlace());
-          if( c != null)
+          }
+          else if(commande==commandes[4])
+          {
+            poivrer();
+          }
+          if( c != null && place != getPlace())
           {
             if(c.getSymbole() == 'C')
             {

@@ -29,7 +29,7 @@ public class Plateau implements Serializable
     switch(niveau)
     {
       case 1 : this.niveau=niveau1;
-               apparitionJoueur = 19*getNbLigne()+2;
+               apparitionJoueur = 19*getNbColonne()+2;
     }
   }
 
