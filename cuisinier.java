@@ -29,6 +29,7 @@ public class Cuisinier extends Joueur
   public boolean getPoivre(){return poivre;}
   public int getPlace(){return super.getPlace();}
   public char getSymbole(){return super.getSymbole();}
+  public boolean getAssomme(){return false;}
 
 
   public void poivrer()
@@ -58,6 +59,7 @@ public class Cuisinier extends Joueur
   {
     while(!super.getMoteur().fin())
     {
+      int place = getPlace();
       try
       {
         BufferedReader saisie=new BufferedReader(new InputStreamReader(System.in));
@@ -80,6 +82,23 @@ public class Cuisinier extends Joueur
             deplaceDroite();
           }else if(commande==commandes[4])
           {   poivrer();  }
+          Creature c = getMoteur().getCreaturePlace(getPlace());
+          if( c != null)
+          {
+            if(c.getSymbole() == 'C')
+            {
+              setPlace(place);
+            }
+            else
+            {
+              if(c.getAssomme())
+                c.mort();
+              else
+              {
+                mort();
+              }
+            }
+          }
         }
         catch(IOException e){e.printStackTrace();}
     }

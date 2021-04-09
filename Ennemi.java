@@ -27,6 +27,12 @@ public class Ennemi extends Joueur
  public void Assomme()
  {
    this.assomme = true;
+   try
+   {
+     sleep(500);
+   }
+   catch(Exception e){}
+   this.assomme = false;
  }
 
  public boolean getAssomme(){return this.assomme;}
@@ -50,6 +56,7 @@ public class Ennemi extends Joueur
   {
     while(true)
     {
+      int place = getPlace();
       try
       {
         BufferedReader saisie=new BufferedReader(new InputStreamReader(System.in));
@@ -73,6 +80,18 @@ public class Ennemi extends Joueur
           }
         }
         catch(IOException e){e.printStackTrace();}
+        Creature c = getMoteur().getCreaturePlace(getPlace());
+        if( c != null)
+        {
+          if(c.getSymbole() != 'C')
+          {
+            setPlace(place);
+          }
+          else
+          {
+            c.mort();
+          }
+        }
     }
   }
 

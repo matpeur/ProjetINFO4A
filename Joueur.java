@@ -65,6 +65,7 @@ public abstract class Joueur extends Creature
   }
 
   public abstract void mort();
+  public abstract boolean getAssomme();
 
   @Override
   public void Assomme(){}

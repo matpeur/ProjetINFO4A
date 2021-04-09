@@ -8,8 +8,8 @@ public class Debut{
     System.out.println("Un projet réalisé par BELLEGUEULLE Mathieu et TRAORE Moussa");
     sc.afficheScores();
     System.out.println("Enter quelquechose pour démarrer le jeu");
-    String s;
-    while(s == null)
+    String s = "null";
+    while(s == "null")
     {
       try
       {
@@ -17,6 +17,7 @@ public class Debut{
         return s =(String)saisie.readLine();
       }catch(Exception e){e.printStackTrace();}
     }
+    return s;
   }
 
   public static int modeDeJeu()
@@ -55,7 +56,7 @@ public class Debut{
   {
     boolean fin = false;
     System.out.println("Entrez votre nom :");
-    String s;
+    String s = null;
     while(s == null)
     {
       try
@@ -74,7 +75,7 @@ public class Debut{
       Moteur affichagecourant = new Moteur();
       while(!m.fin())
       {
-        if(affichagecourant.equals(m))
+        if(!(affichagecourant.equals(m)))
         {
           affichagecourant = new Moteur(m);
         }
@@ -86,16 +87,17 @@ public class Debut{
 
     if(ecranTitre() == "demo")
     {
-      m.demo();
+      //m.demo();
     }
     else
     {
       switch(modeDeJeu())
       {
-        case 1: solo();
-        case 3: local();
-        case 4: ligne();
+        case 1: solo(); break;
+        case 3: //local(); break;
+        case 4: //ligne(); break;
       }
+      /*
       System.out.println("Quel adresse ?");
       String s="";
       while(s.equals(""))
@@ -161,6 +163,7 @@ public class Debut{
         }
 
       }
+      */
     }
   }
 
