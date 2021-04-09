@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Scores
 {
    int n;
-   int[] tabScore;
+   int somme ;
    String[] tabNom;
    int indice;
    int id;
@@ -36,20 +36,33 @@ public class Scores
   public void addScore(int i)
   {
  
-	 tabScore[indice]=i; 
+	 tabScore[indice]=sc; 
       indice++;
  
   }
-
-  public void afficheScores()
+  public void Sauvegarde(String Nom)
   {
-	  int somme=0;
-      for(int i=0;i<indice;i++)
-      {
-      somme=somme+tabScore[i];
-      }
+	  
+	NoMmeilleurjoueur[id]=Nom;
+	MeilleursScore[id]=somme;
+	id++;  
+	  
+  }
+
+  public void afficheScoreCourant()
+  {
+	System.out.println("score courant :");  
 	System.out.println(somme); 
 	
+  }
+  public void afficheScores()
+  {  System.out.println("Reccords:");  
+  	for(int i=0;i<id-1;i++)
+     {
+        System.out.println(NoMmeilleurjoueur[i]); 
+        System.out.println(MeilleursScore[i]);  
+     
+     }   
   }
 public void FichierScorePartie(String NomGrp)
  {
@@ -58,11 +71,7 @@ public void FichierScorePartie(String NomGrp)
    { try {
       File file = new File("c:\\Score.txt");
       BufferedWriter bufferedwriter= new BufferedWriter(new FileWriter(file));
-      int somme=0;
-      for(int i=0;i<indice;i++)
-      {
-      somme=somme+tabScore[i];
-      }
+       
      String s=String.valueOf(somme);
      bufferedwriter.write(NomGrp);
      bufferedwriter.newLine();
@@ -81,14 +90,9 @@ public void FichierScorePartie(String NomGrp)
   }else
   {
    try{ FileWriter fw =new FileWriter("c:\\Score.txt",false);
-	  int somme=0;
-      for(int i=0;i<indice;i++)
-      {
-      somme=somme+tabScore[i];
-      }
       String s=String.valueOf(somme);
       fw.write(NomGrp+" ");
-      //fw.newLine();
+     
       fw.write(s+" ");
       fw.close();
 	  } catch (IOException e) {
@@ -98,30 +102,20 @@ public void FichierScorePartie(String NomGrp)
 
  }
  public   void classement()
-    {   if(indice==0)
-		{
-
-			  MeilleursScore[id]=tabScore[0];
-               NoMmeilleurjoueur[id]=tabNom[0];
-              id++;
-		}
-		else
-		 { for(int i=0;i<indice-1;i++)
+    {    for(int i=0;i<id-1;i++)
              {
-              if(tabScore[i]<tabScore[i+1])
+              if(MeilleursScore[i]<MeilleursScore[i+1])
                {
-                int temps=tabScore[i+1];
-                tabScore[i+1]=tabScore[i];
-                tabScore[i]=temps;
-                String temp=tabNom[i+1];
-                tabNom[i+1]=tabNom[i];
-                tabNom[i]=temp;
+                int temps=MeilleursScore[i+1];
+                MeilleursScore[i+1]=MeilleursScore[i];
+                MeilleursScore[i]=temps;
+                String temp=NoMmeilleurjoueur[i+1];
+                NoMmeilleurjoueur[i+1]=NoMmeilleurjoueur[i];
+                NoMmeilleurjoueur[i]=temp;
                 }
-              MeilleursScore[id]=tabScore[0];
-              NoMmeilleurjoueur[id]=tabNom[0];
-              id++;
+              
            }
-      }
+       
     }
 
 public void CreerfichierMeilleusrJoueurs()
@@ -170,19 +164,7 @@ public void CreerfichierMeilleusrJoueurs()
 
   }
  }
- public void scoreJOueur(String Nom ,int sc )
- {
-	 tabScore[indice]=sc;
-	 tabNom[indice]=Nom;
-     indice++;
-
-
- }
-
-
-
-
-
+  
 
 
 
