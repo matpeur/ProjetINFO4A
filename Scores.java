@@ -18,7 +18,7 @@ public class Scores
 
       n=NbJOUeur;
       tabScore=new int[n];
-      tabNom=new String[n];
+     
       MeilleursScore=new int[10];
       id=0;
       NoMmeilleurjoueur=new String[10];
@@ -35,17 +35,27 @@ public class Scores
 
   public void addScore(int i)
   {
-
+ 
+	 tabScore[indice]=sc; 
+      indice++;
+ 
   }
 
   public void afficheScores()
-  {}
-public void Scoretotal(String NomGrp)
+  {
+	   for(int i=0;i<indice;i++)
+      {
+      somme=somme+tabScore[i];
+      }
+	System.out.println(somme); 
+	
+  }
+public void FichierScorePartie(String NomGrp)
  {
 
    if(indice==0)
    { try {
-      File file = new File("c:\\Moussa.txt");
+      File file = new File("c:\\Score.txt");
       BufferedWriter bufferedwriter= new BufferedWriter(new FileWriter(file));
       int somme=0;
       for(int i=0;i<indice;i++)
@@ -69,7 +79,7 @@ public void Scoretotal(String NomGrp)
 
   }else
   {
-   try{ FileWriter fw =new FileWriter("c:\\Moussa.txt",false);
+   try{ FileWriter fw =new FileWriter("c:\\Score.txt",false);
 	  int somme=0;
       for(int i=0;i<indice;i++)
       {
@@ -167,6 +177,8 @@ public void CreerfichierMeilleusrJoueurs()
 
 
  }
+
+
 
 
 
