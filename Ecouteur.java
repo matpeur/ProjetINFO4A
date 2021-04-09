@@ -16,6 +16,7 @@ public class Ecouteur extends Thread
           try
           {
           Joueur j=(Joueur) moteur.getCreature(t);
+          flux[t] = new PipedWriter();
           flux[t].connect(j.getFlux());
           }catch(Exception e){}
         }

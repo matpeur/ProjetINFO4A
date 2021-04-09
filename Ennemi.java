@@ -27,12 +27,6 @@ public class Ennemi extends Joueur
  public void Assomme()
  {
    this.assomme = true;
-   try
-   {
-     sleep(500);
-   }
-   catch(Exception e){}
-   this.assomme = false;
  }
 
  public boolean getAssomme(){return this.assomme;}
@@ -54,43 +48,44 @@ public class Ennemi extends Joueur
   @Override
   public void run()
   {
-    while(!assomme)
+    while(!getMoteur().fin())
     {
-      int place = getPlace();
-      Creature c = null;
-      try
+      if(!assomme)
       {
-        BufferedReader saisie=new BufferedReader(getFlux());
-        if(saisie.ready())
+        int place = getPlace();
+        Creature c = null;
+        try
         {
-          char commande =(char)saisie.read();
-          System.out.println("Ennemi");
-          if(commande==commandes[0])
-            {
-              c = getMoteur().getCreaturePlace(getPlace()-getPlateau().getNbColonne());
+          BufferedReader saisie=new BufferedReader(getFlux());
+          if(saisie.ready())
+          {
+            char commande =(char)saisie.read();
+            if(commande==commandes[0])
+              {
+                c = getMoteur().getCreaturePlace(getPlace()-getPlateau().getNbColonne());
 
-              deplaceHaut();
-            }
-            else if(commande==commandes[1])
-            {
-              c = getMoteur().getCreaturePlace(getPlace()-1);
-              deplaceGauche();
-            }
-            else if(commande==commandes[2])
-            {
-              c = getMoteur().getCreaturePlace(getPlace()+getPlateau().getNbColonne());
-              deplaceBas();
-            }
-            else if(commande==commandes[3])
-            {
-              c = getMoteur().getCreaturePlace(getPlace()+1);
-              deplaceDroite();
-            }
-            else
-            {
+                deplaceHaut();
+              }
+              else if(commande==commandes[1])
+              {
+                c = getMoteur().getCreaturePlace(getPlace()-1);
+                deplaceGauche();
+              }
+              else if(commande==commandes[2])
+              {
+                c = getMoteur().getCreaturePlace(getPlace()+getPlateau().getNbColonne());
+                deplaceBas();
+              }
+              else if(commande==commandes[3])
+              {
+                c = getMoteur().getCreaturePlace(getPlace()+1);
+                deplaceDroite();
+              }
+              else
+              {
 
+              }
             }
-          }
         }
         catch(IOException e){}
         if( c != null && place != getPlace())
@@ -104,6 +99,7 @@ public class Ennemi extends Joueur
             c.mort();
           }
         }
+      }
     }
   }
 

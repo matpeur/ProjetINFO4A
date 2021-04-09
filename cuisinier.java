@@ -68,7 +68,6 @@ public class Cuisinier extends Joueur
         {
           char commande =(char)saisie.read();
           Creature c = null;
-          System.out.println("Cuisinier");
           if(commande==commandes[0])
           {
             c = getMoteur().getCreaturePlace(getPlace()-getPlateau().getNbColonne());
@@ -92,6 +91,7 @@ public class Cuisinier extends Joueur
           else if(commande==commandes[4])
           {
             poivrer();
+            System.out.println("Poivrer!");
           }
           if( c != null && place != getPlace())
           {
@@ -102,7 +102,9 @@ public class Cuisinier extends Joueur
             else
             {
               if(c.getAssomme())
+              {
                 c.mort();
+              }
               else
               {
                 mort();

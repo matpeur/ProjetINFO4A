@@ -255,7 +255,7 @@ public class Moteur implements Serializable
     Burgers.add(new Burger(this, 15));
     Burgers.add(new Burger(this, 40));
     Burgers.add(new Burger(this, 54));
-    spawnEnnemi = 19*plateau.getNbColonne()+97;
+    spawnEnnemi = 19*plateau.getNbColonne()+4;
     spawnJoueur = plateau.getApparitionJoueur();
     ajoutEnnemi("Didier" , 'P');
     ajoutCuisinier("Michel");

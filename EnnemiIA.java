@@ -48,6 +48,14 @@ public class EnnemiIA extends Creature
     public void Assomme()
     {
       this.assomme = true;
+      System.out.println("Assomme");
+      try
+      {
+        sleep(7000);
+      }
+      catch(Exception e){}
+      System.out.println("Non Assomme");
+      this.assomme = false;
 	  }
 
     public boolean getAssomme(){return this.assomme;}
