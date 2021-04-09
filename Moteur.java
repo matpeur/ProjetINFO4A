@@ -3,12 +3,13 @@ import java.io.*;
 
 public class Moteur implements Serializable
 {
-  public Plateau plateau;
+  private Plateau plateau;
   private ArrayList<Creature> creature;
-  public ArrayList<Burger> Burgers;
+  private ArrayList<Burger> Burgers;
   public int spawnEnnemi;
   public int spawnJoueur;
   public Scores score;
+  private Ecouteur ecoute;
 
   public void addScore(int i)
   {
@@ -208,6 +209,8 @@ public class Moteur implements Serializable
       getCreature(i).start();
     for (int i = 0; i < Burgers.size(); i++)
       Burgers.get(i).debut();
+    ecoute = new Ecouteur(this);
+    ecoute.start();
   }
 
   public boolean equals(Moteur m)
@@ -254,8 +257,7 @@ public class Moteur implements Serializable
     Burgers.add(new Burger(this, 54));
     spawnEnnemi = 19*plateau.getNbColonne()+97;
     spawnJoueur = plateau.getApparitionJoueur();
-    //ajoutEnnemi("Didier" , 'P');
+    ajoutEnnemi("Didier" , 'P');
     ajoutCuisinier("Michel");
-
   }
 }

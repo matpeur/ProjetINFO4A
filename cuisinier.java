@@ -63,11 +63,13 @@ public class Cuisinier extends Joueur
       int place = getPlace();
       try
       {
-        System.out.println("oui");
-        BufferedReader saisie=new BufferedReader(new InputStreamReader(System.in));
-        char commande =(char)saisie.read();
-        Creature c = null;
-        if(commande==commandes[0])
+        BufferedReader saisie=new BufferedReader(getFlux());
+        if(saisie.ready())
+        {
+          char commande =(char)saisie.read();
+          Creature c = null;
+          System.out.println("Cuisinier");
+          if(commande==commandes[0])
           {
             c = getMoteur().getCreaturePlace(getPlace()-getPlateau().getNbColonne());
             deplaceHaut();
@@ -108,7 +110,8 @@ public class Cuisinier extends Joueur
             }
           }
         }
-        catch(IOException e){e.printStackTrace();}
+      }
+      catch(IOException e){}
     }
   }
 }

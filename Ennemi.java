@@ -7,7 +7,7 @@ public class Ennemi extends Joueur
  public Ennemi(Moteur m, String nom, char Symbole)
  {
    super(m, nom, Symbole);
-   commandes = new char[]{'z', 'q', 's', 'd'};
+   commandes = new char[]{'5', '1', '2', '3'};
    int i=0;
    while(super.getMoteur().getCreaturePlace(super.getMoteur().getPlateau().getApparitionJoueur()+i) != null)
       i++;
@@ -54,34 +54,46 @@ public class Ennemi extends Joueur
   @Override
   public void run()
   {
-    while(true)
+    while(!assomme)
     {
       int place = getPlace();
+      Creature c = null;
       try
       {
-        BufferedReader saisie=new BufferedReader(new InputStreamReader(System.in));
-        char commande =(char)saisie.read();
-        if(commande==commandes[0])
-          {
-            deplaceHaut();
-          }
-          else if(commande==commandes[1])
-          {
-            deplaceGauche();
-          }
-          else if(commande==commandes[2])
-          {
-            deplaceBas();
+        BufferedReader saisie=new BufferedReader(getFlux());
+        if(saisie.ready())
+        {
+          char commande =(char)saisie.read();
+          System.out.println("Ennemi");
+          if(commande==commandes[0])
+            {
+              c = getMoteur().getCreaturePlace(getPlace()-getPlateau().getNbColonne());
 
-          }
-          else if(commande==commandes[3])
-          {
-            deplaceDroite();
+              deplaceHaut();
+            }
+            else if(commande==commandes[1])
+            {
+              c = getMoteur().getCreaturePlace(getPlace()-1);
+              deplaceGauche();
+            }
+            else if(commande==commandes[2])
+            {
+              c = getMoteur().getCreaturePlace(getPlace()+getPlateau().getNbColonne());
+              deplaceBas();
+            }
+            else if(commande==commandes[3])
+            {
+              c = getMoteur().getCreaturePlace(getPlace()+1);
+              deplaceDroite();
+            }
+            else
+            {
+
+            }
           }
         }
-        catch(IOException e){e.printStackTrace();}
-        Creature c = getMoteur().getCreaturePlace(getPlace());
-        if( c != null)
+        catch(IOException e){}
+        if( c != null && place != getPlace())
         {
           if(c.getSymbole() != 'C')
           {

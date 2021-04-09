@@ -61,6 +61,7 @@ public abstract class Creature extends Thread implements Serializable
   public abstract void mort();
   public abstract void Assomme();
   public abstract boolean getAssomme();
+  public abstract char[] getCommandes();
 
   public void deplaceHaut()
   {

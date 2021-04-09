@@ -7,6 +7,11 @@ public class EnnemiIA extends Creature
       return super.getNom();
     }
 
+    public char[] getCommandes()
+    {
+      return new char[0];
+    }
+
     public void setPlace(int i )
     {
       super.setPlace(i);

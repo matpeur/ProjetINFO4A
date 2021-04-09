@@ -70,7 +70,6 @@ public class Debut{
       Moteur m=new Moteur(i);
       m.ajoutCuisinier(s);
       m.ajoutEnnemis();
-      m.start();
       Moteur affichagecourant = new Moteur();
       while(!m.fin())
       {
@@ -87,18 +86,17 @@ public class Debut{
 
     if(ecranTitre().equals("demo"))
     {
-      Moteur m = new Moteur(1);
-      m.ajoutCuisinier("Michel");
-      //m.demo();
+      Moteur m = new Moteur();
+      //m.ajoutCuisinier("Michel");
+      m.demo();
       m.start();
-      m.visualisation();
+      //m.visualisation();
       Moteur affichagecourant = new Moteur();
       while(!m.fin())
       {
         if(!(affichagecourant.equals(m)))
         {
           affichagecourant = new Moteur(m);
-          m.visualisation();
           affichagecourant.visualisation();
         }
       }
