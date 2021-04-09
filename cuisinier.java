@@ -95,25 +95,29 @@ public class Cuisinier extends Joueur
           }
           if( c != null && place != getPlace())
           {
+
             if(c.getSymbole() == 'C')
             {
               setPlace(place);
             }
             else
             {
+
               if(c.getAssomme())
               {
                 c.mort();
+                System.out.println("Ennemi tue");
               }
               else
               {
                 mort();
+                System.out.println("Je suis mort");
               }
             }
           }
         }
       }
-      catch(IOException e){}
+      catch(IOException e){e.printStackTrace();}
     }
   }
 }

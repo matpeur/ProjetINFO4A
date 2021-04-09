@@ -8,12 +8,12 @@ public class Moteur implements Serializable
   private ArrayList<Burger> Burgers;
   public int spawnEnnemi;
   public int spawnJoueur;
-  public Scores score;
+  //public Scores score;
   private Ecouteur ecoute;
 
   public void addScore(int i)
   {
-    score.addScore(i);
+    //score.addScore(i);
   }
 
   public int getSpawnEnnemi()
@@ -68,14 +68,14 @@ public class Moteur implements Serializable
     plateau = new Plateau(i);
     creature = new ArrayList<Creature>();
     Burgers = new ArrayList<Burger>();
-    Burgers.add(new Burger(this, 15));
-    Burgers.add(new Burger(this, 40));
-    Burgers.add(new Burger(this, 54));
-
     switch(i)
     {
       case 1 : spawnEnnemi = 19*plateau.getNbColonne()+97;
                spawnJoueur = plateau.getApparitionJoueur();
+               Burgers.add(new Burger(this, 16));
+               Burgers.add(new Burger(this, 40));
+               Burgers.add(new Burger(this, 54));
+               Burgers.add(new Burger(this, 78));
     }
   }
 
@@ -252,12 +252,14 @@ public class Moteur implements Serializable
     plateau = new Plateau(1);
     creature = new ArrayList<Creature>();
     Burgers = new ArrayList<Burger>();
-    Burgers.add(new Burger(this, 15));
+    Burgers.add(new Burger(this, 16));
     Burgers.add(new Burger(this, 40));
     Burgers.add(new Burger(this, 54));
-    spawnEnnemi = 19*plateau.getNbColonne()+4;
+    Burgers.add(new Burger(this, 78));
+    spawnEnnemi = 19*plateau.getNbColonne()+97;
     spawnJoueur = plateau.getApparitionJoueur();
     ajoutEnnemi("Didier" , 'P');
+    creature.get(0).setPlace( 19*plateau.getNbColonne()+4);
     ajoutCuisinier("Michel");
   }
 }

@@ -81,6 +81,44 @@ public class Debut{
       }
     }
   }
+
+  public static void ligne()
+  {
+    System.out.println("1. Héberger");
+    System.out.println("2. Joindre");
+    int i = 0;
+    while( i!= 1 && i != 2)
+    {
+      try
+      {
+        BufferedReader saisie=new BufferedReader(new InputStreamReader(System.in));
+        i =saisie.read();
+      }catch(Exception e){e.printStackTrace();}
+    }
+    switch (i)
+    {
+      case 1: int i=1;
+              do
+              {
+                Moteur m = new Moteur(i);
+                Serveur serveur = new Serveur(m);
+                m.ajoutCuisinier(selectionneNom());
+              }while(i<2);
+
+    }
+  }
+
+  public String selectionneNom()
+  {
+    System.out.println("Saisissez votre nom");
+    try
+    {
+      BufferedReader saisie=new BufferedReader(new InputStreamReader(System.in));
+      String nom =saisie.readLine();
+    }catch(Exception e){e.printStackTrace();}
+
+  }
+
   public static void main(String[] args)
   {
 
@@ -107,7 +145,7 @@ public class Debut{
       {
         case 1: solo(); break;
         case 3: //local(); break;
-        case 4: //ligne(); break;
+        case 4: ligne(); break;
       }
       /*
       System.out.println("Quel adresse ?");
@@ -122,11 +160,11 @@ public class Debut{
       }
       if(s.equals("server"))
       {
-        Moteur m=new Moteur();
+
         m.ajoutCuisinier("Michel");
         m.getCreature(0).setPlace(4*m.getPlateau().getNbColonne()+15);
         m.visualisation();
-        Serveur serveur = new Serveur(m);
+
         serveur.start();
         while(s.equals("pret"))
         {

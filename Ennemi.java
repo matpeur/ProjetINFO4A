@@ -3,17 +3,19 @@ public class Ennemi extends Joueur
 {
   private char[] commandes;
   private boolean assomme;
+  private boolean tue;
 
  public Ennemi(Moteur m, String nom, char Symbole)
  {
    super(m, nom, Symbole);
    commandes = new char[]{'5', '1', '2', '3'};
    int i=0;
-   while(super.getMoteur().getCreaturePlace(super.getMoteur().getPlateau().getApparitionJoueur()+i) != null)
+   while(super.getMoteur().getCreaturePlace(super.getMoteur().getPlateau().getApparitionJoueur()-i) != null)
       i++;
    setPlace(m.getSpawnEnnemi()+i);
    assomme=false;
    super.setSymbole(Symbole);
+   tue = false;
  }
  public Ennemi(Ennemi e, Moteur m)
  {
@@ -21,6 +23,7 @@ public class Ennemi extends Joueur
    setPlace(e.getPlace());
    assomme = e.getAssomme();
    setCommandes(e.getCommandes());
+   tue = e.getTue();
  }
 
 
@@ -29,8 +32,8 @@ public class Ennemi extends Joueur
    this.assomme = true;
  }
 
- public boolean getAssomme(){return this.assomme;}
-
+  public boolean getAssomme(){return this.assomme;}
+  public boolean getTue(){return tue;}
   public int getPlace(){return super.getPlace();}
   public void setPlace(int i){super.setPlace(i);}
   public Moteur getMoteur(){return super.getMoteur();}
@@ -50,6 +53,14 @@ public class Ennemi extends Joueur
   {
     while(!getMoteur().fin())
     {
+      if(getTue())
+      {
+        try
+        {
+          sleep(1500);
+          tue=false;
+        }catch(Exception e){e.printStackTrace();}
+      }
       if(!assomme)
       {
         int place = getPlace();
@@ -81,13 +92,9 @@ public class Ennemi extends Joueur
                 c = getMoteur().getCreaturePlace(getPlace()+1);
                 deplaceDroite();
               }
-              else
-              {
-
-              }
             }
         }
-        catch(IOException e){}
+        catch(IOException e){e.printStackTrace();}
         if( c != null && place != getPlace())
         {
           if(c.getSymbole() != 'C')
@@ -97,6 +104,7 @@ public class Ennemi extends Joueur
           else
           {
             c.mort();
+            System.out.println(c.getNom()+" perd une vie.");
           }
         }
       }
@@ -106,18 +114,17 @@ public class Ennemi extends Joueur
   public void mort()
   {
     super.getMoteur().addScore(100);
-    try
-    {
-    sleep((int)(Math.random()*100)+100);
-    }catch(Exception e){}
+    assomme = false;
     while(super.getMoteur().getCreaturePlace(super.getMoteur().getSpawnEnnemi()) != null)
     {
+      System.out.println(super.getMoteur().getCreaturePlace(super.getMoteur().getSpawnEnnemi()));
       try
       {
-      sleep(100);
-      }catch(Exception e){}
+        sleep((int)(Math.random()*100)+100);
+      }catch(Exception e){e.printStackTrace();}
     }
     setPlace(super.getMoteur().getSpawnEnnemi());
+    this.tue = true;
   }
 
   public boolean equals(Ennemi e)
