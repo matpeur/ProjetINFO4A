@@ -36,7 +36,7 @@ public class Scores
   public void addScore(int i)
   {
  
-	 tabScore[indice]=sc; 
+	 tabScore[indice]=i; 
       indice++;
  
   }
