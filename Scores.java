@@ -36,9 +36,7 @@ public class Scores
   public void addScore(int i)
   {
  
-	 tabScore[indice]=sc; 
-      indice++;
- 
+	somme=somme+1;
   }
   public void Sauvegarde(String Nom)
   {
@@ -57,6 +55,7 @@ public class Scores
   }
   public void afficheScores()
   {  System.out.println("Reccords:");  
+         classement()
   	for(int i=0;i<id-1;i++)
      {
         System.out.println(NoMmeilleurjoueur[i]); 
