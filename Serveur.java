@@ -32,10 +32,19 @@ public class Serveur extends Thread
         soc = s.accept ();
         ObjectOutputStream  oss = new  ObjectOutputStream(soc.getOutputStream ());
         ObjectInputStream  ois =   new  ObjectInputStream(soc.getInputStream ());
-        Object o = ois.readObject ();
+        Object o = ois.readObject();
         if(o.equals("MOTEUR"))
         {
             oss.writeObject(getMoteur());
+        }
+        else if(o.equals("JOUEUR"))
+        {
+          Joueur j=ois.readObject();
+          m.ajoutJoueur(j);
+        }
+        else if(o.equals("PRET"))
+        {
+          System.out.println(o.get)
         }
         if (o.equals("END")) break;
         oss.close();

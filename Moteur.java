@@ -115,6 +115,11 @@ public class Moteur implements Serializable
     creature.add((Creature)e);
   }
 
+  public void ajoutJoueur(Joueur j)
+  {
+    creature.add((Creature)j);
+  }
+
   public synchronized void ajoutEnnemiIA(EnnemiIA e)
   {
     creature.add((Creature)e);

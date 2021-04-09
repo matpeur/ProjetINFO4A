@@ -103,6 +103,7 @@ public class Debut{
                 Moteur m = new Moteur(i);
                 Serveur serveur = new Serveur(m);
                 m.ajoutCuisinier(selectionneNom());
+                
               }while(i<2);
 
     }
