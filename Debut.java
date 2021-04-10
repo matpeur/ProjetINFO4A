@@ -92,7 +92,8 @@ public class Debut{
       try
       {
         BufferedReader saisie=new BufferedReader(new InputStreamReader(System.in));
-        i =saisie.read();
+        String s = saisie.readLine();
+        i = Integer.parseInt(s);
       }catch(Exception e){e.printStackTrace();}
     }
     switch (i)
@@ -101,7 +102,7 @@ public class Debut{
               Moteur m = new Moteur(niveau);
               Serveur serveur = new Serveur(m);
               String nom = selectionneNom();
-              m.start();
+              serveur.start();
 
 
     }
