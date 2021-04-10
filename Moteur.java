@@ -9,7 +9,7 @@ public class Moteur implements Serializable
   public int spawnEnnemi;
   public int spawnJoueur;
   //public Scores score;
-  private Ecouteur ecoute;
+  //private Ecouteur ecoute;
 
   public void addScore(int i)
   {
@@ -219,8 +219,8 @@ public class Moteur implements Serializable
       getCreature(i).start();
     for (int i = 0; i < Burgers.size(); i++)
       Burgers.get(i).debut();
-    ecoute = new Ecouteur(this);
-    ecoute.start();
+    //ecoute = new Ecouteur(this);
+    //ecoute.start();
   }
 
   public boolean equals(Moteur m)
