@@ -37,7 +37,6 @@ public class Serveur extends Thread
     {
       ServerSocket s = new  ServerSocket(port);
       Socket  soc;
-      System.out.println(s.getInetAddress().getHostName());
       while (true)
       {
         soc = s.accept ();

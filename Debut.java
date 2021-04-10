@@ -107,7 +107,7 @@ public class Debut{
                serveur.start();
                boolean jeu = false;
                ArrayList<Creature> creatures = new ArrayList<Creature>();
-               while(!jeu)
+               while(niveau < 2)
                {
                  for(int j = 0; j < m.getNbCreature(); j++)
                  {
@@ -116,8 +116,16 @@ public class Debut{
                      creatures.add(m.getCreature(j));
                    }
                  }
-
-
+                 Moteur affichagecourant = new Moteur();
+                 while(!m.fin())
+                 {
+                   if(!(affichagecourant.equals(m)))
+                   {
+                     affichagecourant = new Moteur(m);
+                     affichagecourant.visualisation();
+                   }
+                 }
+                 niveau++;
                }
                break;
       case 2 : Client c = new Client();
@@ -152,7 +160,7 @@ public class Debut{
   public static String selectionne(String S)
   {
     System.out.println(S);
-    String result = "";
+    String result = null;
     try
     {
       BufferedReader saisie = new BufferedReader(new InputStreamReader(System.in));
