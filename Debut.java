@@ -118,6 +118,7 @@ public class Debut{
                  }
                  m.ajoutCuisinier(nom);
                  m.start();
+                 serveur.setMoteur(m);
                  Moteur affichagecourant = new Moteur();
                  while(!m.fin())
                  {
