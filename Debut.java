@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.*;
 public class Debut{
 
   public static String ecranTitre()
@@ -96,28 +97,68 @@ public class Debut{
         i = Integer.parseInt(s);
       }catch(Exception e){e.printStackTrace();}
     }
+    String nom;
     switch (i)
     {
-      case 1: int niveau = 1;
-              Moteur m = new Moteur(niveau);
-              Serveur serveur = new Serveur(m);
-              String nom = selectionneNom();
-              serveur.start();
+      case 1 : int niveau = 1;
+               Moteur m = new Moteur(niveau);
+               Serveur serveur = new Serveur(m);
+               nom = selectionne("Saisissez votre nom : ");
+               serveur.start();
+               boolean jeu = false;
+               ArrayList<Creature> creatures = new ArrayList<Creature>();
+               while(!jeu)
+               {
+                 for(int j = 0; j < m.getNbCreature(); j++)
+                 {
+                   if(!creatures.contains(m.getCreature(j)))
+                   {
+                     creatures.add(m.getCreature(j));
+                   }
+                 }
+
+
+               }
+               break;
+      case 2 : Client c = new Client();
+               c.start();
+               System.out.println("1. Ajouter un Ennemi");
+               System.out.println("2. Ajouter un Cuisinier");
+               int type = 0;
+               try
+               {
+                 BufferedReader saisie=new BufferedReader(new InputStreamReader(System.in));
+                 String s = saisie.readLine();
+                 type = Integer.parseInt(s);
+               }catch(Exception e){e.printStackTrace();}
+               switch(type)
+               {
+                 case 1 : nom = selectionne("Saisissez votre nom :");
+                          char Symbole = selectionne("Saisissez votre symbole :").charAt(0);
+                          Ennemi e = new Ennemi(c.getMoteur(), nom, Symbole);
+                          c.transmetJoueur((Joueur) e);
+                          break;
+                 case 2 : nom = selectionne("Saisissez votre nom :");
+                          Cuisinier cuisinier = new Cuisinier(c.getMoteur(), nom);
+                          c.transmetJoueur((Joueur) cuisinier);
+                          break;
+               }
+
 
 
     }
   }
 
-  public static String selectionneNom()
+  public static String selectionne(String S)
   {
-    System.out.println("Saisissez votre nom");
-    String nom = "";
+    System.out.println(S);
+    String result = "";
     try
     {
       BufferedReader saisie = new BufferedReader(new InputStreamReader(System.in));
-      nom =saisie.readLine();
+      result =saisie.readLine();
     }catch(Exception e){e.printStackTrace();}
-    return nom;
+    return result;
   }
 
   public static void main(String[] args)

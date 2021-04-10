@@ -4,6 +4,7 @@ public class Ecouteur extends Thread
 {
   Moteur moteur;
   PipedWriter [] flux;
+  Client client;
 
   public Ecouteur(Moteur m)
   {
@@ -21,6 +22,20 @@ public class Ecouteur extends Thread
           }catch(Exception e){}
         }
     }
+    client = null;
+  }
+
+  public Ecouteur(Client c, int i)
+  {
+    this.moteur=c.getMoteur();
+    flux = new PipedWriter[1];
+    try
+    {
+      Joueur j=(Joueur) moteur.getCreature(i);
+      flux[0] = new PipedWriter();
+      flux[0].connect(j.getFlux());
+    }catch(Exception e){}
+      this.client = c;
   }
 
   public void run()
@@ -49,9 +64,12 @@ public class Ecouteur extends Thread
           }
           if(envoye)
           {
-            flux[boucle].write(commande);
+            if(client == null)
+              flux[boucle].write(commande);
+            else
+              client.transmetCommande(commande);
           }
-          boucle = (boucle+1)%moteur.getNbCreature();
+          boucle = (boucle+1)%flux.length;
         }while(boucle != i && !envoye);
         i = boucle;
       }

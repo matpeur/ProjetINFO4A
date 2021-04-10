@@ -5,10 +5,12 @@ public class Serveur extends Thread
 {
   public int  port = 8080;
   private Moteur moteur;
+  private PipedWriter [] flux;
 
-  public Serveur( Moteur m)
+  public Serveur(Moteur m)
   {
     moteur = m;
+    flux = new PipedWriter[20];
   }
 
   public synchronized void setMoteur(Moteur m)
@@ -21,13 +23,21 @@ public class Serveur extends Thread
     return moteur;
   }
 
+  public void lier(PipedReader p, int i)
+  {
+    try
+    {
+      flux[i] = new PipedWriter(p);
+    }catch(Exception e){}
+  }
+
   public void run()
   {
     try
     {
       ServerSocket s = new  ServerSocket(port);
       Socket  soc;
-      System.out.println(s.getInetAddress().getCanonicalHostName());
+      System.out.println(s.getInetAddress().getHostName());
       while (true)
       {
         soc = s.accept ();
@@ -41,11 +51,16 @@ public class Serveur extends Thread
         else if(o.equals("JOUEUR"))
         {
           Joueur j=(Joueur) ois.readObject();
+          int numero = moteur.getNbCreature();
           moteur.ajoutJoueur(j);
+          lier(j.getFlux(), numero);
+          oss.write(numero);
         }
-        else if(o.equals("PRET"))
+        else if(o.equals("COMMANDE"))
         {
-
+          int numero = (int) ois.readInt();
+          char commande = (char) ois.readChar();
+          flux[numero].write(commande);
         }
         if (o.equals("END")) break;
         oss.close();
