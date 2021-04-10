@@ -56,6 +56,11 @@ public class Moteur implements Serializable
     return somme <= 0;
   }
 
+  public ArrayList<Creature> getToutesCreatures()
+  {
+    return creature;
+  }
+
   public Moteur()
   {
     plateau = new Plateau();

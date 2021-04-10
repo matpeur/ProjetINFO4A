@@ -47,12 +47,12 @@ public class Scores
 
   public void afficheScoreCourant()
   {
-	System.out.println("score courant :");
+	System.out.println("Score courant :");
 	System.out.println(somme);
 
   }
   public void afficheScores()
-  {  System.out.println("Reccords:");
+  {  System.out.println("Records:");
          classement();
   	for(int i=0;i<id-1;i++)
      {

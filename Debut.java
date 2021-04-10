@@ -84,7 +84,7 @@ public class Debut{
 
   public static void ligne()
   {
-    System.out.println("1. Héberger");
+    System.out.println("1. Heberger");
     System.out.println("2. Joindre");
     int i = 0;
     while( i!= 1 && i != 2)
@@ -98,13 +98,11 @@ public class Debut{
     switch (i)
     {
       case 1: int niveau = 1;
-              do
-              {
-                Moteur m = new Moteur(niveau);
-                Serveur serveur = new Serveur(m);
-                m.ajoutCuisinier(selectionneNom());
+              Moteur m = new Moteur(niveau);
+              Serveur serveur = new Serveur(m);
+              String nom = selectionneNom();
+              m.start();
 
-              }while(i<2);
 
     }
   }
