@@ -1,6 +1,6 @@
 import java.io.*;
 
-public class Ecouteur extends Thread
+public class Ecouteur extends Thread implements Serializable
 {
   Moteur moteur;
   PipedWriter [] flux;
