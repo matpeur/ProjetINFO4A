@@ -116,6 +116,8 @@ public class Debut{
                      creatures.add(m.getCreature(j));
                    }
                  }
+                 m.ajoutCuisinier(nom);
+                 m.start();
                  Moteur affichagecourant = new Moteur();
                  while(!m.fin())
                  {
