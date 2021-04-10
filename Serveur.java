@@ -27,6 +27,7 @@ public class Serveur extends Thread
     {
       ServerSocket s = new  ServerSocket(port);
       Socket  soc;
+      System.out.println(s.getInetAddress().getCanonicalHostName());
       while (true)
       {
         soc = s.accept ();
@@ -39,12 +40,12 @@ public class Serveur extends Thread
         }
         else if(o.equals("JOUEUR"))
         {
-          Joueur j=ois.readObject();
-          m.ajoutJoueur(j);
+          Joueur j=(Joueur) ois.readObject();
+          moteur.ajoutJoueur(j);
         }
         else if(o.equals("PRET"))
         {
-          System.out.println(o.get)
+
         }
         if (o.equals("END")) break;
         oss.close();

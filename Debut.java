@@ -97,27 +97,28 @@ public class Debut{
     }
     switch (i)
     {
-      case 1: int i=1;
+      case 1: int niveau = 1;
               do
               {
-                Moteur m = new Moteur(i);
+                Moteur m = new Moteur(niveau);
                 Serveur serveur = new Serveur(m);
                 m.ajoutCuisinier(selectionneNom());
-                
+
               }while(i<2);
 
     }
   }
 
-  public String selectionneNom()
+  public static String selectionneNom()
   {
     System.out.println("Saisissez votre nom");
+    String nom = "";
     try
     {
-      BufferedReader saisie=new BufferedReader(new InputStreamReader(System.in));
-      String nom =saisie.readLine();
+      BufferedReader saisie = new BufferedReader(new InputStreamReader(System.in));
+      nom =saisie.readLine();
     }catch(Exception e){e.printStackTrace();}
-
+    return nom;
   }
 
   public static void main(String[] args)

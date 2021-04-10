@@ -17,8 +17,6 @@ public class Scores
     {
 
       n=NbJOUeur;
-      tabScore=new int[n];
-     
       MeilleursScore=new int[10];
       id=0;
       NoMmeilleurjoueur=new String[10];
@@ -35,33 +33,33 @@ public class Scores
 
   public void addScore(int i)
   {
- 
+
 	somme=somme+1;
   }
   public void Sauvegarde(String Nom)
   {
-	  
+
 	NoMmeilleurjoueur[id]=Nom;
 	MeilleursScore[id]=somme;
-	id++;  
-	  
+	id++;
+
   }
 
   public void afficheScoreCourant()
   {
-	System.out.println("score courant :");  
-	System.out.println(somme); 
-	
+	System.out.println("score courant :");
+	System.out.println(somme);
+
   }
   public void afficheScores()
-  {  System.out.println("Reccords:");  
-         classement()
+  {  System.out.println("Reccords:");
+         classement();
   	for(int i=0;i<id-1;i++)
      {
-        System.out.println(NoMmeilleurjoueur[i]); 
-        System.out.println(MeilleursScore[i]);  
-     
-     }   
+        System.out.println(NoMmeilleurjoueur[i]);
+        System.out.println(MeilleursScore[i]);
+
+     }
   }
 public void FichierScorePartie(String NomGrp)
  {
@@ -70,7 +68,7 @@ public void FichierScorePartie(String NomGrp)
    { try {
       File file = new File("c:\\Score.txt");
       BufferedWriter bufferedwriter= new BufferedWriter(new FileWriter(file));
-       
+
      String s=String.valueOf(somme);
      bufferedwriter.write(NomGrp);
      bufferedwriter.newLine();
@@ -91,7 +89,7 @@ public void FichierScorePartie(String NomGrp)
    try{ FileWriter fw =new FileWriter("c:\\Score.txt",false);
       String s=String.valueOf(somme);
       fw.write(NomGrp+" ");
-     
+
       fw.write(s+" ");
       fw.close();
 	  } catch (IOException e) {
@@ -112,9 +110,9 @@ public void FichierScorePartie(String NomGrp)
                 NoMmeilleurjoueur[i+1]=NoMmeilleurjoueur[i];
                 NoMmeilleurjoueur[i]=temp;
                 }
-              
+
            }
-       
+
     }
 
 public void CreerfichierMeilleusrJoueurs()
@@ -163,7 +161,7 @@ public void CreerfichierMeilleusrJoueurs()
 
   }
  }
-  
+
 
 
 
