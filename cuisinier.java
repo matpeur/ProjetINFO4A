@@ -1,6 +1,6 @@
 import java.io.*;
 
-public class Cuisinier extends Joueur
+public class Cuisinier extends Joueur implements Serializable
 {
   boolean poivre ;
   int vie;
