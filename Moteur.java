@@ -9,7 +9,7 @@ public class Moteur implements Serializable
   public int spawnEnnemi;
   public int spawnJoueur;
   //public Scores score;
-  //private Ecouteur ecoute;
+  private Ecouteur ecoute;
 
   public void addScore(int i)
   {

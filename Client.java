@@ -1,7 +1,7 @@
 import java.io.*;
 import java.net.*;
 
-public class Client extends Thread
+public class Client extends Thread implements Serializable
 {
   static  final  int  port = 8080;
 
