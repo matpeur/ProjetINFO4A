@@ -117,12 +117,12 @@ public void FichierScorePartie(String NomGrp)
 
 
 public void Sauvegarder()
- { 
+ {
 
    try{
        File file = new File("c:\\Record.txt");
      if (file.createNewFile()){
-     {     
+     {
         try
         {
 	      BufferedWriter EcritureAvecBuffer = new  BufferedWriter (new FileWriter((file)));
@@ -135,16 +135,16 @@ public void Sauvegarder()
             }
         }
       catch(FileNotFoundException exc)
-      { 
+      {
 	     System.out.println("Erreur d'ouverture");
       }
-    
+
      }
-     else 
+     else
      {
 
-      
-       
+
+
        /*BufferedWriter bufferedwriter= new BufferedWriter(new FileWriter(file));
        FileWriter fw =new FileWriter("c:\\Record.txt",true);
         bufferedwriter.write("----------------------------------------\n");
@@ -172,7 +172,7 @@ public void Sauvegarder()
        {   if(i%2==0)
 		    NoMmeilleurjoueur[id]=ligne ;
 		   if(i%2!=0)
-		     MeilleursScore[id]=ligne;      
+		     MeilleursScore[id]=ligne;
        i++;
        }
    BufferedWriter EcritureAvecBuffer = new  BufferedWriter (new FileWriter((file)));
@@ -190,17 +190,4 @@ public void Sauvegarder()
 
   }
  }
-  
- 
-
 }
-public class Scores{
- public static void main (String[] args)
-  {
-	Thread t1=new Scores(4);
-    t1.addScore(5);
-    t1.addScore(6);
-    t1.addScore(7);
-    t1.cree
-  }
-} 

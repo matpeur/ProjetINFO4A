@@ -71,6 +71,7 @@ public class Debut{
       Moteur m=new Moteur(i);
       m.ajoutCuisinier(s);
       m.ajoutEnnemis();
+      m.start();
       Moteur affichagecourant = new Moteur();
       while(!m.fin())
       {
@@ -159,11 +160,11 @@ public class Debut{
                {
                  if(!affichagecourant.equals(c.getMoteur()))
                  {
-                   affichagecourant = new Moteur(c.getMoteur())
+                   affichagecourant = new Moteur(c.getMoteur());
                    affichagecourant.visualisation();
                  }
                }
-               break();
+               break;
 
     }
   }
@@ -184,7 +185,7 @@ public class Debut{
   public static void local()
   {
     int i=-1;
-    Moteur moteur = neww Moteur(1);
+    Moteur moteur = new Moteur(1);
     do
     {
       System.out.println("1. Ajouter un cuisinier");
