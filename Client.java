@@ -54,6 +54,7 @@ public class Client extends Thread implements Serializable
       oss.writeObject(j);
       numero = ois.readInt();
       ecouteur = new Ecouteur(this, numero);
+      ecouteur.start();
       oss.close();
       socket.close();
       ois.close();

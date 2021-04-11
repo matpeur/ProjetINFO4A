@@ -61,6 +61,19 @@ public class Moteur implements Serializable
     return creature;
   }
 
+  public boolean haveEnnemi()
+  {
+    boolean result = false;
+    int i=0;
+    while(!result && i<getNbCreature())
+    {
+      if(getCreature(i).getSymbole()!= 'C')
+        result = true;
+      i++;
+    }
+    return result;
+  }
+
   public Moteur()
   {
     plateau = new Plateau();

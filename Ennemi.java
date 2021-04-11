@@ -58,7 +58,7 @@ public class Ennemi extends Joueur implements Serializable
       {
         try
         {
-          sleep(1500);
+          sleep(2000);
           tue=false;
         }catch(Exception e){e.printStackTrace();}
       }
@@ -118,7 +118,6 @@ public class Ennemi extends Joueur implements Serializable
     assomme = false;
     while(super.getMoteur().getCreaturePlace(super.getMoteur().getSpawnEnnemi()) != null)
     {
-      System.out.println(super.getMoteur().getCreaturePlace(super.getMoteur().getSpawnEnnemi()));
       try
       {
         sleep((int)(Math.random()*100)+100);

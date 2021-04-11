@@ -154,8 +154,16 @@ public class Debut{
                           c.transmetJoueur((Joueur) cuisinier);
                           break;
                }
-
-
+               Moteur affichagecourant = new Moteur(c.getMoeur());
+               while(!affichagecourant.fin())
+               {
+                 if(!affichagecourant.equals(c.getMoteur()))
+                 {
+                   affichagecourant = new Moteur(c.getMoteur())
+                   affichagecourant.visualisation();
+                 }
+               }
+               break();
 
     }
   }
@@ -168,13 +176,15 @@ public class Debut{
     {
       BufferedReader saisie = new BufferedReader(new InputStreamReader(System.in));
       result =saisie.readLine();
-    }catch(Exception e){e.printStackTrace();}
+    }
+    catch(Exception e){e.printStackTrace();}
     return result;
   }
 
   public static void local()
   {
     int i=-1;
+    Moteur moteur = neww Moteur(1);
     do
     {
       System.out.println("1. Ajouter un cuisinier");
@@ -185,18 +195,51 @@ public class Debut{
       {
         BufferedReader saisie = new BufferedReader(new InputStreamReader(System.in));
         result =saisie.readLine();
-      }catch(Exception e){e.printStackTrace();}
+      }
+      catch(Exception e){e.printStackTrace();}
       i = Integer.parseInt(result);
       String nom = null;
       switch (i)
       {
         case 1 : nom = selectionne("Saisissez votre nom");
-
+                 Cuisinier c = new Cuisinier(moteur, nom);
+                 c.setCommandes().selectionneCommandes('C');
+                 moteur.ajoutCreature((Creature) c);
+                 break;
+        case 2 : nom = selectionne("Saisissez votre nom");
+                 char Symbole = selectionne("Saisissez votre symbole :").charAt(0);
+                 Ennemi e = new Ennemi(moteur, nom, Symbole);
+                 c.setCommandes().selectionneCommandes(Symbole);
+                 moteur.ajoutCreature((Creature) e);
       }
     }
+    while(i==1 || i == 2);
+    if(!m.haveEnnemi())
+      m.ajoutEnnemi();
+    while(!m.fin())
+    {
+      if(!(affichagecourant.equals(m)))
+      {
+        affichagecourant = new Moteur(m);
+        affichagecourant.visualisation();
+      }
+    }
+  }
 
-
-
+  public char[] selectionneCommandes(char symbole)
+  {
+    char [] result;
+    if(symbole == 'C')
+      result = new char[5];
+    else
+      result = new char[4];
+    result[0] = selectionne("Quelle touche pour aller en haut ?").charAt(0);
+    result[1] = selectionne("Quelle touche pour aller a gauche ?").charAt(0);
+    result[2] = selectionne("Quelle touche pour aller en bas ?").charAt(0);
+    result[3] = selectionne("Quelle touche pour aller a droite ?").charAt(0);
+    if(symbole == 'C')
+      result[4] = selectionne("Quelle touche pour poivrer ?").charAt(0);
+    return result;
   }
 
   public static void main(String[] args)
@@ -227,73 +270,6 @@ public class Debut{
         case 3: local(); break;
         case 4: ligne(); break;
       }
-      /*
-      System.out.println("Quel adresse ?");
-      String s="";
-      while(s.equals(""))
-      {
-        try
-        {
-          BufferedReader saisie=new BufferedReader(new InputStreamReader(System.in));
-          s =(String)saisie.readLine();
-        }catch(Exception e){e.printStackTrace();}
-      }
-      if(s.equals("server"))
-      {
-
-        m.ajoutCuisinier("Michel");
-        m.getCreature(0).setPlace(4*m.getPlateau().getNbColonne()+15);
-        m.visualisation();
-
-        serveur.start();
-        while(s.equals("pret"))
-        {
-          try
-          {
-            BufferedReader saisie=new BufferedReader(new InputStreamReader(System.in));
-            s =(String)saisie.readLine();
-          }catch(Exception e){e.printStackTrace();}
-        }
-        m.start();
-        Moteur affichagecourant = new Moteur();
-        while(true)
-          {
-            if(!(affichagecourant.equals(m)))
-            {
-              System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-              affichagecourant = m;
-              m.visualisation();
-              try
-              {
-                //efface la console
-
-              }catch(Exception e){e.printStackTrace();}
-            }
-          }
-      }
-      else
-      {
-        Client c= new Client();
-        c.start();
-        while(c.getMoteur().equals(new Moteur()))
-        {
-        }
-        System.out.println("Fichier reçu");
-        Moteur m =c.getMoteur();
-        m.visualisation();
-        m.start();
-        while (true)
-        {
-          Moteur mot = c.getMoteur();
-          if(!mot.equals(m))
-          {
-            m = mot;
-            m.visualisation();
-          }
-        }
-
-      }
-      */
     }
   }
 
