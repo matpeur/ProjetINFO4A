@@ -155,7 +155,7 @@ public class Debut{
                           c.transmetJoueur((Joueur) cuisinier);
                           break;
                }
-               Moteur affichagecourant = new Moteur(c.getMoeur());
+               Moteur affichagecourant = new Moteur(c.getMoteur());
                while(!affichagecourant.fin())
                {
                  if(!affichagecourant.equals(c.getMoteur()))
@@ -204,30 +204,31 @@ public class Debut{
       {
         case 1 : nom = selectionne("Saisissez votre nom");
                  Cuisinier c = new Cuisinier(moteur, nom);
-                 c.setCommandes().selectionneCommandes('C');
+                 c.setCommandes(selectionneCommandes('C'));
                  moteur.ajoutCreature((Creature) c);
                  break;
         case 2 : nom = selectionne("Saisissez votre nom");
                  char Symbole = selectionne("Saisissez votre symbole :").charAt(0);
                  Ennemi e = new Ennemi(moteur, nom, Symbole);
-                 c.setCommandes().selectionneCommandes(Symbole);
+                 e.setCommandes(selectionneCommandes(Symbole));
                  moteur.ajoutCreature((Creature) e);
       }
     }
     while(i==1 || i == 2);
-    if(!m.haveEnnemi())
-      m.ajoutEnnemi();
-    while(!m.fin())
+    if(!moteur.haveEnnemi())
+      moteur.ajoutEnnemis();
+    Moteur affichagecourant = new Moteur();
+    while(!moteur.fin())
     {
-      if(!(affichagecourant.equals(m)))
+      if(!(affichagecourant.equals(moteur)))
       {
-        affichagecourant = new Moteur(m);
+        affichagecourant = new Moteur(moteur);
         affichagecourant.visualisation();
       }
     }
   }
 
-  public char[] selectionneCommandes(char symbole)
+  public static char[] selectionneCommandes(char symbole)
   {
     char [] result;
     if(symbole == 'C')

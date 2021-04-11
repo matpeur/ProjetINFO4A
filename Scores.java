@@ -1,193 +1,110 @@
-import java.io.File;
 import java.io.*;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Scanner;
+
 public class Scores
 {
-   int n;
-   int somme ;
-   String[] tabNom;
-   int indice;
-   int id;
+   int scoreCourant ;
    int[] MeilleursScore;
-   String[] NoMmeilleurjoueur;
-    public Scores(int NbJOUeur)
-    {
-
-      n=NbJOUeur;
-      MeilleursScore=new int[10];
-      id=0;
-      NoMmeilleurjoueur=new String[10];
-
-      indice=0;
-    }
+   String[] NomMeilleurjoueur;
 
     public Scores()
     {
-
+      int i=0;
+      MeilleursScore = new int[11];
+      NomMeilleurjoueur = new String [11];
+      scoreCourant = 0;
+      try
+      {
+        File fichier = new File("Score.txt");
+        BufferedReader bufferedreader= new BufferedReader(new FileReader(fichier));
+        while(i < 10)
+        {
+          String nom = bufferedreader.readLine();
+          int score = Integer.parseInt(bufferedreader.readLine());
+          MeilleursScore[i]=score;
+          NomMeilleurjoueur[i] = nom;
+        }
+      }
+      catch(Exception e){}
     }
 
 
 
   public void addScore(int i)
   {
-
-	somme=somme+1;
+	   scoreCourant += i;
   }
-  public void Sauvegarde(String Nom)
+
+  public void Sauvegarder()
   {
-
-	NoMmeilleurjoueur[id]=Nom;
-	MeilleursScore[id]=somme;
-	id++;
-
+    try
+    {
+      File file = new File("Score.txt");
+      MeilleursScore[10] = scoreCourant;
+      System.out.println("Entrez un nom");
+      BufferedReader saisie = new BufferedReader(new InputStreamReader(System.in));
+      NomMeilleurjoueur[10] = saisie.readLine();
+      classement();
+      try
+      {
+        BufferedWriter EcritureAvecBuffer = new  BufferedWriter (new FileWriter(file, false));
+        for(int i=0;i<10;i++)
+        {
+          EcritureAvecBuffer.write(NomMeilleurjoueur[i]);
+          EcritureAvecBuffer.newLine();
+          EcritureAvecBuffer.write(MeilleursScore[i]);
+          EcritureAvecBuffer.newLine();
+        }
+      }
+      catch(FileNotFoundException exc)
+      {
+        System.out.println("Erreur d'ouverture");
+      }
+    }catch(Exception e){}
   }
 
   public void afficheScoreCourant()
   {
-	System.out.println("Score courant :");
-	System.out.println(somme);
-
+	   System.out.print("Score courant :");
+	    System.out.println(scoreCourant);
   }
   public void afficheScores()
   {  System.out.println("Records:");
-         classement();
-  	for(int i=0;i<id-1;i++)
+  	for(int i=0;i< 9;i++)
      {
-        System.out.println(NoMmeilleurjoueur[i]);
+        System.out.println(NomMeilleurjoueur[i]);
         System.out.println(MeilleursScore[i]);
-
      }
   }
-public void FichierScorePartie(String NomGrp)
- {
 
-   if(indice==0)
-   { try {
-      File file = new File("c:\\Score.txt");
-      BufferedWriter bufferedwriter= new BufferedWriter(new FileWriter(file));
-
-     String s=String.valueOf(somme);
-     bufferedwriter.write(NomGrp);
-     bufferedwriter.newLine();
-     bufferedwriter.write(s);
-     bufferedwriter.close();
-       if (file.createNewFile()){
-         System.out.println("Fichier créé!");
-       }else{
-         System.out.println("Fichier existe déjà.");
-       }
-
-     } catch (IOException e) {
-       e.printStackTrace();}
-
-
-  }else
+  public boolean trier()
   {
-   try{ FileWriter fw =new FileWriter("c:\\Score.txt",false);
-      String s=String.valueOf(somme);
-      fw.write(NomGrp+" ");
-
-      fw.write(s+" ");
-      fw.close();
-	  } catch (IOException e) {
-       e.printStackTrace();}
-    }
-
-
- }
- public   void classement()
-    {    for(int i=0;i<id-1;i++)
-             {
-              if(MeilleursScore[i]<MeilleursScore[i+1])
-               {
-                int temps=MeilleursScore[i+1];
-                MeilleursScore[i+1]=MeilleursScore[i];
-                MeilleursScore[i]=temps;
-                String temp=NoMmeilleurjoueur[i+1];
-                NoMmeilleurjoueur[i+1]=NoMmeilleurjoueur[i];
-                NoMmeilleurjoueur[i]=temp;
-                }
-
-           }
-
-    }
-
-
-public void Sauvegarder()
- {
-
-   try{
-       File file = new File("c:\\Record.txt");
-     if (file.createNewFile()){
-     {
-        try
-        {
-	      BufferedWriter EcritureAvecBuffer = new  BufferedWriter (new FileWriter((file)));
-	      for(int i=0;i<id;i++)
-           {
-            EcritureAvecBuffer.write(NoMmeilleurjoueur[i]);
-            EcritureAvecBuffer.newLine();
-            EcritureAvecBuffer.write(MeilleursScore[i]);
-            EcritureAvecBuffer.newLine();
-            }
-        }
-      catch(FileNotFoundException exc)
-      {
-	     System.out.println("Erreur d'ouverture");
-      }
-
-     }
-     else
-     {
-
-
-
-       /*BufferedWriter bufferedwriter= new BufferedWriter(new FileWriter(file));
-       FileWriter fw =new FileWriter("c:\\Record.txt",true);
-        bufferedwriter.write("----------------------------------------\n");
-        bufferedwriter.newLine();
-        bufferedwriter.write("Nouvelle partie");
-        bufferedwriter.newLine();
-     for(int i=0;i<id;i++)
+    boolean result = true;
+    int i=0;
+    while(result && i<10)
     {
-      bufferedwriter.write(NoMmeilleurjoueur[i]);
-      bufferedwriter.newLine();
-      bufferedwriter.write(MeilleursScore[i]);
-      bufferedwriter.newLine();
+      if(MeilleursScore[i]<MeilleursScore[i+1])
+        result = false;
+      i++;
     }
-  }catch(IOException e){ e.printStackTrace();}*/
-
-
-
- }else
-  {
-	   try{
-		  int i=3;
-
-
-      while((ligne = lecteurAvecBuffer.readLine()) != null)
-       {   if(i%2==0)
-		    NoMmeilleurjoueur[id]=ligne ;
-		   if(i%2!=0)
-		     MeilleursScore[id]=ligne;
-       i++;
-       }
-   BufferedWriter EcritureAvecBuffer = new  BufferedWriter (new FileWriter((file)));
-	    classement();
-	      for(int i=0;i<id;i++)
-           {
-            EcritureAvecBuffer.write(NoMmeilleurjoueur[i]);
-            EcritureAvecBuffer.newLine();
-            EcritureAvecBuffer.write(MeilleursScore[i]);
-            EcritureAvecBuffer.newLine();
-            }
-
-
-   } catch(IOException e){ e.printStackTrace();}
-
+    return result;
   }
- }
+
+  public void classement()
+  {
+    while(!trier())
+    {
+      for(int i=0;i<10;i++)
+      {
+        if(MeilleursScore[i]<MeilleursScore[i+1])
+        {
+          int temps=MeilleursScore[i+1];
+          MeilleursScore[i+1]=MeilleursScore[i];
+          MeilleursScore[i]=temps;
+          String temp=NomMeilleurjoueur[i+1];
+          NomMeilleurjoueur[i+1]=NomMeilleurjoueur[i];
+          NomMeilleurjoueur[i]=temp;
+        }
+      }
+    }
+  }
 }
