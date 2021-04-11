@@ -4,14 +4,14 @@ import java.io.*;
 public abstract class Joueur extends Creature implements Serializable
 {
   protected char[] commandes;
-  //private PipedReader flux;
+  private PipedReader flux;
 
 
  public Joueur(Moteur m,String nom, char symbole)
  {
    super(nom, m);
    commandes = new char[]{'z', 'q', 's', 'd'};
-   //flux = new PipedReader();
+   flux = new PipedReader();
    super.setSymbole(symbole);
  }
 

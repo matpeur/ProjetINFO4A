@@ -58,7 +58,7 @@ public class Cuisinier extends Joueur implements Serializable
   @Override
   public void run()
   {
-    /*
+
     while(!super.getMoteur().fin())
     {
       int place = getPlace();
@@ -119,7 +119,6 @@ public class Cuisinier extends Joueur implements Serializable
         }
       }
       catch(IOException e){e.printStackTrace();}
-    }
-    */
+    }    
   }
 }

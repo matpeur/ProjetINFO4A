@@ -50,15 +50,11 @@ public class Serveur extends Thread
         }
         else if(o.equals("JOUEUR"))
         {
-          System.out.println("Joueur demande");
           Joueur j=(Joueur) ois.readObject();
           int numero = moteur.getNbCreature();
           moteur.ajoutJoueur(j);
-          System.out.println("Joueur ajoute");
           lier(j.getFlux(), numero);
-          System.out.println("Joueur lier");
           oss.write(numero);
-          System.out.println("numero envoye");
         }
         else if(o.equals("COMMANDE"))
         {

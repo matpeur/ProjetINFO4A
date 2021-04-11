@@ -51,7 +51,7 @@ public class Ennemi extends Joueur implements Serializable
   @Override
   public void run()
   {
-    /*
+
     while(!getMoteur().fin())
     {
       if(getTue())
@@ -110,7 +110,6 @@ public class Ennemi extends Joueur implements Serializable
         }
       }
     }
-    */
   }
 
   public void mort()
