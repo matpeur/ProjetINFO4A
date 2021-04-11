@@ -115,23 +115,42 @@ public void FichierScorePartie(String NomGrp)
 
     }
 
-public void CreerfichierMeilleusrJoueurs()
- {
-   if(id==0)
-   {
-     classement();
 
-     try {
+public void Sauvegarder()
+ { 
 
+   try{
        File file = new File("c:\\Record.txt");
+     if (file.createNewFile()){
+     {     
+        try
+        {
+	      BufferedWriter EcritureAvecBuffer = new  BufferedWriter (new FileWriter((file)));
+	      for(int i=0;i<id;i++)
+           {
+            EcritureAvecBuffer.write(NoMmeilleurjoueur[i]);
+            EcritureAvecBuffer.newLine();
+            EcritureAvecBuffer.write(MeilleursScore[i]);
+            EcritureAvecBuffer.newLine();
+            }
+        }
+      catch(FileNotFoundException exc)
+      { 
+	     System.out.println("Erreur d'ouverture");
+      }
+    
+     }
+     else 
+     {
 
-       if (file.createNewFile()){
-         System.out.println("Fichier créé!");
-       }else{
-         System.out.println("Fichier existe déjà.");
-       }
-
-    BufferedWriter bufferedwriter= new BufferedWriter(new FileWriter(file));
+      
+       
+       /*BufferedWriter bufferedwriter= new BufferedWriter(new FileWriter(file));
+       FileWriter fw =new FileWriter("c:\\Record.txt",true);
+        bufferedwriter.write("----------------------------------------\n");
+        bufferedwriter.newLine();
+        bufferedwriter.write("Nouvelle partie");
+        bufferedwriter.newLine();
      for(int i=0;i<id;i++)
     {
       bufferedwriter.write(NoMmeilleurjoueur[i]);
@@ -139,30 +158,49 @@ public void CreerfichierMeilleusrJoueurs()
       bufferedwriter.write(MeilleursScore[i]);
       bufferedwriter.newLine();
     }
-  } catch(IOException e){ e.printStackTrace();}
+  }catch(IOException e){ e.printStackTrace();}*/
 
 
 
  }else
   {
 	   try{
-		   FileWriter fw =new FileWriter("c:\\Record.txt",false);
+		  int i=3;
 
-	  for(int i=0;i<id;i++)
-       {
-		      String p=String.valueOf(MeilleursScore[i]);
-        fw.write(NoMmeilleurjoueur[i]);
-        fw.write(" "+MeilleursScore[i]);
 
-      }
+      while((ligne = lecteurAvecBuffer.readLine()) != null)
+       {   if(i%2==0)
+		    NoMmeilleurjoueur[id]=ligne ;
+		   if(i%2!=0)
+		     MeilleursScore[id]=ligne;      
+       i++;
+       }
+   BufferedWriter EcritureAvecBuffer = new  BufferedWriter (new FileWriter((file)));
+	    classement();
+	      for(int i=0;i<id;i++)
+           {
+            EcritureAvecBuffer.write(NoMmeilleurjoueur[i]);
+            EcritureAvecBuffer.newLine();
+            EcritureAvecBuffer.write(MeilleursScore[i]);
+            EcritureAvecBuffer.newLine();
+            }
 
 
    } catch(IOException e){ e.printStackTrace();}
 
   }
  }
-
-
-
+  
+ 
 
 }
+public class Scores{
+ public static void main (String[] args)
+  {
+	Thread t1=new Scores(4);
+    t1.addScore(5);
+    t1.addScore(6);
+    t1.addScore(7);
+    t1.cree
+  }
+} 
