@@ -172,16 +172,43 @@ public class Debut{
     return result;
   }
 
+  public static void local()
+  {
+    int i=-1;
+    do
+    {
+      System.out.println("1. Ajouter un cuisinier");
+      System.out.println("2. Ajouter un ennemi");
+      System.out.println("3. Demarrer");
+      String result = null;
+      try
+      {
+        BufferedReader saisie = new BufferedReader(new InputStreamReader(System.in));
+        result =saisie.readLine();
+      }catch(Exception e){e.printStackTrace();}
+      i = Integer.parseInt(result);
+      String nom = null;
+      switch (i)
+      {
+        case 1 : nom = selectionne("Saisissez votre nom");
+
+      }
+    }
+
+
+
+  }
+
   public static void main(String[] args)
   {
 
     if(ecranTitre().equals("demo"))
     {
       Moteur m = new Moteur();
-      //m.ajoutCuisinier("Michel");
+      m.ajoutCuisinier("Michel");
       m.demo();
       m.start();
-      //m.visualisation();
+      m.visualisation();
       Moteur affichagecourant = new Moteur();
       while(!m.fin())
       {
@@ -197,7 +224,7 @@ public class Debut{
       switch(modeDeJeu())
       {
         case 1: solo(); break;
-        case 3: //local(); break;
+        case 3: local(); break;
         case 4: ligne(); break;
       }
       /*
