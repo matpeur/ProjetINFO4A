@@ -210,6 +210,7 @@ public class Moteur implements Serializable
 
   public void visualisation()
   {
+    getScores().afficheScoreCourant();
     for (int i=0; i<plateau.getTaille(); i++)
     {
       if(i!=0)
@@ -236,6 +237,7 @@ public class Moteur implements Serializable
 
   public void start()
   {
+
     for (int i = 0; i < getNbCreature(); i++)
       getCreature(i).start();
     for (int i = 0; i < Burgers.size(); i++)

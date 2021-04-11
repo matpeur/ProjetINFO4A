@@ -81,6 +81,8 @@ public class Debut{
           affichagecourant.visualisation();
         }
       }
+      Scores sc=m.getScores();
+      sc.Sauvegarder();
     }
   }
 
@@ -99,6 +101,7 @@ public class Debut{
       }catch(Exception e){e.printStackTrace();}
     }
     String nom;
+    Scores sc = new Scores();
     switch (i)
     {
       case 1 : int niveau = 1;
@@ -131,6 +134,7 @@ public class Debut{
                  }
                  niveau++;
                }
+               sc=m.getScores();
                break;
       case 2 : Client c = new Client();
                c.start();
@@ -164,9 +168,12 @@ public class Debut{
                    affichagecourant.visualisation();
                  }
                }
+               sc=c.getMoteur().getScores();
                break;
 
     }
+
+    sc.Sauvegarder();
   }
 
   public static String selectionne(String S)
@@ -186,6 +193,7 @@ public class Debut{
   {
     int i=-1;
     Moteur moteur = new Moteur(1);
+    Scores sc;
     do
     {
       System.out.println("1. Ajouter un cuisinier");
@@ -226,6 +234,8 @@ public class Debut{
         affichagecourant.visualisation();
       }
     }
+    sc=moteur.getScores();
+    sc.Sauvegarder();
   }
 
   public static char[] selectionneCommandes(char symbole)

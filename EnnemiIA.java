@@ -45,6 +45,7 @@ public class EnnemiIA extends Creature
     {
       super(e.getNom(), m);
       setPlace(e.getPlace());
+      setSymbole(e.getSymbole());
       assomme = e.getAssomme();
       tue = e.getTue();
     }

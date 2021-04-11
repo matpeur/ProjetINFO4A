@@ -18,7 +18,7 @@ public abstract class Joueur extends Creature implements Serializable
   public int getPlace(){return super.getPlace();}
   public void setPlace(int i){super.setPlace(i);}
   public Moteur getMoteur(){return super.getMoteur();}
-  public PipedReader getFlux(){return null/*flux*/;}
+  public PipedReader getFlux(){return flux;}
 
   public void setCommandes(char [] tab)
   {
