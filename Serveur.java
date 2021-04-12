@@ -1,7 +1,7 @@
 import java.io.*;
 import java.net.*;
 
-public class Serveur extends Thread
+public class Serveur extends Thread implements Serializable
 {
   public int  port = 8080;
   private Moteur moteur;
