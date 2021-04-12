@@ -1,5 +1,5 @@
 import java.io.*;
-public class Plateau
+public class Plateau implements Serializable
 {
 
   //point de spawn 19,2

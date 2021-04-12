@@ -1,11 +1,11 @@
 import java.io.*;
 import java.net.*;
 
-public class Client extends Thread
+public class Client extends Thread implements Serializable
 {
   static  final  int  port = 8080;
 
-  private String moteur;
+  private Moteur moteur;
   private boolean arret;
   private String adresse;
   private int numero;
@@ -13,7 +13,7 @@ public class Client extends Thread
 
   public Client()
   {
-    moteur = "";
+    moteur = new Moteur();;
     arret = true;
     try
     {
@@ -28,7 +28,7 @@ public class Client extends Thread
     numero = -1;
   }
 
-  public synchronized void setMoteur(String m)
+  public synchronized void setMoteur(Moteur m)
   {
       this.moteur = m;
   }
@@ -38,46 +38,9 @@ public class Client extends Thread
     this.arret = false;
   }
 
-  public synchronized String getMoteur()
+  public synchronized Moteur getMoteur()
   {
     return moteur;
-  }
-
-  public boolean fin()
-  {
-    boolean result = false;
-    try
-    {
-      Socket  socket = new  Socket(adresse, port);
-      ObjectOutputStream  oss = new  ObjectOutputStream(socket.getOutputStream ());
-      ObjectInputStream  ois =   new  ObjectInputStream(socket.getInputStream ());
-      oss.writeObject("FIN");
-      result = (boolean)ois.readObject();
-      oss.close();
-      socket.close();
-      ois.close();
-    }
-    catch(Exception e){}
-    return result;
-  }
-
-  public Joueur getJoueur(int i)
-  {
-    Joueur j=null;
-    try
-    {
-      Socket  socket = new  Socket(adresse, port);
-      ObjectOutputStream  oss = new  ObjectOutputStream(socket.getOutputStream ());
-      ObjectInputStream  ois =   new  ObjectInputStream(socket.getInputStream ());
-      oss.writeObject("GETJOUEUR");
-      oss.writeInt(i);
-      j = (Joueur) ois.readObject();
-      oss.close();
-      socket.close();
-      ois.close();
-    }
-    catch(Exception e){}
-    return j;
   }
 
   public void transmetJoueur(Joueur j)
@@ -123,15 +86,22 @@ public class Client extends Thread
     try
     {
 
+<<<<<<< HEAD
       while (!fin())
+=======
+      while (moteur.fin())
+>>>>>>> parent of 2aeb69d (ee)
       {
         Socket  socket = new  Socket(adresse, port);
         ObjectOutputStream  oss = new  ObjectOutputStream(socket.getOutputStream ());
         ObjectInputStream  ois =   new  ObjectInputStream(socket.getInputStream ());
         oss.writeObject("MOTEUR");
         Object o = ois.readObject();
-        String m =(String) o;
-        setMoteur(m);
+        if(o.getClass() == moteur.getClass())
+        {
+          Moteur m =(Moteur) o;
+          setMoteur(m);
+        }
         oss.close();
         socket.close();
         ois.close();

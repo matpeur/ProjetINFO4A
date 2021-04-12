@@ -1,5 +1,5 @@
 import java.io.*;
-public class  PainDessus extends Elements
+public class  PainDessus extends Elements implements Serializable
 {
   public PainDessus(int identifiant1,Burger B1)
   {

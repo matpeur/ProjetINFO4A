@@ -1,6 +1,6 @@
 import java.io.*;
 
-public class Ecouteur extends Thread
+public class Ecouteur extends Thread implements Serializable
 {
   Moteur moteur;
   PipedWriter [] flux;
@@ -27,10 +27,11 @@ public class Ecouteur extends Thread
 
   public Ecouteur(Client c, int i)
   {
+    this.moteur=c.getMoteur();
     flux = new PipedWriter[1];
     try
     {
-      Joueur j=c.getJoueur(i);
+      Joueur j=(Joueur) moteur.getCreature(i);
       flux[0] = new PipedWriter();
       flux[0].connect(j.getFlux());
     }catch(Exception e){}

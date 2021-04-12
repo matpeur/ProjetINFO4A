@@ -1,7 +1,7 @@
 import java.io.*;
 import java.net.*;
 
-public class Serveur extends Thread
+public class Serveur extends Thread implements Serializable
 {
   public int  port = 8080;
   private Moteur moteur;
@@ -45,7 +45,7 @@ public class Serveur extends Thread
         Object o = ois.readObject();
         if(o.equals("MOTEUR"))
         {
-            oss.writeObject(getMoteur().visualisationString());
+            oss.writeObject(getMoteur());
         }
         else if(o.equals("JOUEUR"))
         {
@@ -61,21 +61,13 @@ public class Serveur extends Thread
           lier(j.getFlux(), numero);
           oss.write(numero);
         }
-        else if(o.equals("GETJOUEUR"))
-        {
-          int numero = ois.readInt();
-          oss.writeObject(getMoteur().getCreature(numero));
-        }
         else if(o.equals("COMMANDE"))
         {
           int numero = (int) ois.readInt();
           char commande = (char) ois.readChar();
           flux[numero].write(commande);
         }
-        else if(o.equals("FIN"))
-        {
-          oss.writeObject(moteur.fin());
-        }
+        if (o.equals("END")) break;
         oss.close();
         ois.close();
         soc.close();
