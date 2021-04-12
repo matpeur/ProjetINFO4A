@@ -8,12 +8,12 @@ public class Moteur implements Serializable
   private ArrayList<Burger> Burgers;
   public int spawnEnnemi;
   public int spawnJoueur;
-  //public Scores score;
-  private Ecouteur ecoute;
+  public Scores score;
+  //private Ecouteur ecoute;
 
   public void addScore(int i)
   {
-    //score.addScore(i);
+    score.addScore(i);
   }
 
   public int getSpawnEnnemi()
@@ -23,7 +23,7 @@ public class Moteur implements Serializable
 
   public Scores getScores()
   {
-    return null ;//score;
+    return score;
   }
 
   public int getNbCreature()
@@ -88,7 +88,7 @@ public class Moteur implements Serializable
     plateau = new Plateau();
     creature = new ArrayList<Creature>();
     Burgers = new ArrayList<Burger>();
-    //score = new Scores();
+    score = new Scores();
   }
 
   public Moteur(int i)
@@ -96,7 +96,7 @@ public class Moteur implements Serializable
     plateau = new Plateau(i);
     creature = new ArrayList<Creature>();
     Burgers = new ArrayList<Burger>();
-    //score = new Scores();
+    score = new Scores();
     switch(i)
     {
       case 1 : spawnEnnemi = 19*plateau.getNbColonne()+97;
@@ -130,7 +130,7 @@ public class Moteur implements Serializable
     }
     spawnEnnemi = m.getSpawnEnnemi();
     spawnJoueur = m.getPlateau().getApparitionJoueur();
-    //score = m.getScores();
+    score = m.getScores();
   }
 
   public synchronized void ajoutCuisinier(String Nom)
@@ -214,7 +214,7 @@ public class Moteur implements Serializable
 
   public void visualisation()
   {
-    //getScores().afficheScoreCourant();
+    getScores().afficheScoreCourant();
     for (int i=0; i<plateau.getTaille(); i++)
     {
       if(i!=0)
@@ -246,8 +246,8 @@ public class Moteur implements Serializable
       getCreature(i).start();
     for (int i = 0; i < Burgers.size(); i++)
       Burgers.get(i).debut();
-    ecoute = new Ecouteur(this);
-    ecoute.start();
+    //ecoute = new Ecouteur(this);
+    //ecoute.start();
   }
 
   public boolean equals(Moteur m)
@@ -286,7 +286,7 @@ public class Moteur implements Serializable
     plateau = new Plateau(1);
     creature = new ArrayList<Creature>();
     Burgers = new ArrayList<Burger>();
-    //score = new Scores();
+    score = new Scores();
     Burgers.add(new Burger(this, 16));
     for(int i = 0; i<4; i++)
     {
