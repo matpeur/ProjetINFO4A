@@ -45,7 +45,6 @@ public class Serveur extends Thread
         Object o = ois.readObject();
         if(o.equals("MOTEUR"))
         {
-            System.out.println(getMoteur());
             oss.writeObject(getMoteur());
         }
         else if(o.equals("JOUEUR"))
