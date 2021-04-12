@@ -123,7 +123,7 @@ public class Client extends Thread
     try
     {
 
-      while (fin())
+      while (!fin())
       {
         Socket  socket = new  Socket(adresse, port);
         ObjectOutputStream  oss = new  ObjectOutputStream(socket.getOutputStream ());
