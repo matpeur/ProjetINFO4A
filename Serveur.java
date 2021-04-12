@@ -1,7 +1,7 @@
 import java.io.*;
 import java.net.*;
 
-public class Serveur extends Thread implements Serializable
+public class Serveur extends Thread
 {
   public int  port = 8080;
   private Moteur moteur;
@@ -45,15 +45,21 @@ public class Serveur extends Thread implements Serializable
         Object o = ois.readObject();
         if(o.equals("MOTEUR"))
         {
-            oss.writeObject(getMoteur());
+            oss.writeObject(getMoteur().visualisationString());
         }
         else if(o.equals("JOUEUR"))
         {
           Joueur j=(Joueur) ois.readObject();
           int numero = moteur.getNbCreature();
+          j.setMoteur(getMoteur());
           moteur.ajoutJoueur(j);
           lier(j.getFlux(), numero);
           oss.write(numero);
+        }
+        else if(o.equals("GETJOUEUR"))
+        {
+          int numero = ois.readInt();
+          oss.writeObject(getMoteur().getCreature(numero));
         }
         else if(o.equals("COMMANDE"))
         {
@@ -61,7 +67,10 @@ public class Serveur extends Thread implements Serializable
           char commande = (char) ois.readChar();
           flux[numero].write(commande);
         }
-        if (o.equals("END")) break;
+        else if(o.equals("FIN"))
+        {
+          oss.writeObject(moteur.fin());
+        }
         oss.close();
         ois.close();
         soc.close();

@@ -148,24 +148,23 @@ public class Debut{
                {
                  case 1 : nom = selectionne("Saisissez votre nom :");
                           char Symbole = selectionne("Saisissez votre symbole :").charAt(0);
-                          Ennemi e = new Ennemi(c.getMoteur(), nom, Symbole);
+                          Ennemi e = new Ennemi(new Moteur(), nom, Symbole);
                           c.transmetJoueur((Joueur) e);
                           break;
                  case 2 : nom = selectionne("Saisissez votre nom :");
-                          Cuisinier cuisinier = new Cuisinier(c.getMoteur(), nom);
+                          Cuisinier cuisinier = new Cuisinier(new Moteur(), nom);
                           c.transmetJoueur((Joueur) cuisinier);
                           break;
                }
-               Moteur affichagecourant = new Moteur(c.getMoteur());
-               while(!affichagecourant.fin())
+               String affichagecourant = new String(c.getMoteur());
+               while(!c.fin())
                {
                  if(!affichagecourant.equals(c.getMoteur()))
                  {
-                   affichagecourant = new Moteur(c.getMoteur());
-                   affichagecourant.visualisation();
+                   affichagecourant = new String(c.getMoteur());
+                   System.out.println(affichagecourant);
                  }
                }
-               sc=c.getMoteur().getScores();
                break;
 
     }

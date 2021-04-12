@@ -1,10 +1,15 @@
 import java.io.*;
 
-public class Scores implements Serializable
+public class Scores
 {
    int scoreCourant ;
    int[] MeilleursScore;
    String[] NomMeilleurjoueur;
+
+   public int getScoreCourant()
+   {
+     return scoreCourant;
+   }
 
     public Scores()
     {

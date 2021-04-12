@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class Moteur implements Serializable
+public class Moteur
 {
   private Plateau plateau;
   private ArrayList<Creature> creature;
@@ -9,7 +9,7 @@ public class Moteur implements Serializable
   public int spawnEnnemi;
   public int spawnJoueur;
   public Scores score;
-  //private Ecouteur ecoute;
+  private Ecouteur ecoute;
 
   public void addScore(int i)
   {
@@ -212,6 +212,35 @@ public class Moteur implements Serializable
     return Burgers.get(i);
   }
 
+  public String visualisationString()
+  {
+    String result="";
+    result+="Score courant :"+getScores().getScoreCourant()+"\n";
+    for (int i=0; i<plateau.getTaille(); i++)
+    {
+      if(i!=0)
+        {
+          if(i%plateau.getNbColonne()==0)
+            result +="\n";
+        }
+      Creature j = getCreaturePlace(i);
+      Elements e = getElementsPlace(i);
+      if(j!=null)
+        {
+          result += j.getSymbole();
+        }
+      else if (e != null)
+      {
+        result += e.getSymbole();
+      }
+      else
+      {
+        result += plateau.getChar(i);
+      }
+    }
+    result += "\n";
+    return result;
+  }
   public void visualisation()
   {
     getScores().afficheScoreCourant();
@@ -246,8 +275,8 @@ public class Moteur implements Serializable
       getCreature(i).start();
     for (int i = 0; i < Burgers.size(); i++)
       Burgers.get(i).debut();
-    //ecoute = new Ecouteur(this);
-    //ecoute.start();
+    ecoute = new Ecouteur(this);
+    ecoute.start();
   }
 
   public boolean equals(Moteur m)

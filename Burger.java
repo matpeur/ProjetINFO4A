@@ -1,6 +1,6 @@
 import java.util.*;
 import java.io.*;
-public class Burger implements Serializable
+public class Burger
 {
 
 	private ArrayList<Elements> composants;

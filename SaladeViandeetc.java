@@ -1,5 +1,5 @@
 import java.io.*;
-public class  SaladeViandeetc extends Elements implements Serializable
+public class  SaladeViandeetc extends Elements
 {
   public SaladeViandeetc(int identifiant1,Burger B1)
   {

@@ -1,11 +1,11 @@
 import java.io.*;
 import java.net.*;
 
-public class Client extends Thread implements Serializable
+public class Client extends Thread
 {
   static  final  int  port = 8080;
 
-  private Moteur moteur;
+  private String moteur;
   private boolean arret;
   private String adresse;
   private int numero;
@@ -13,7 +13,7 @@ public class Client extends Thread implements Serializable
 
   public Client()
   {
-    moteur = new Moteur();;
+    moteur = "";
     arret = true;
     try
     {
@@ -28,7 +28,7 @@ public class Client extends Thread implements Serializable
     numero = -1;
   }
 
-  public synchronized void setMoteur(Moteur m)
+  public synchronized void setMoteur(String m)
   {
       this.moteur = m;
   }
@@ -38,9 +38,46 @@ public class Client extends Thread implements Serializable
     this.arret = false;
   }
 
-  public synchronized Moteur getMoteur()
+  public synchronized String getMoteur()
   {
     return moteur;
+  }
+
+  public boolean fin()
+  {
+    boolean result = false;
+    try
+    {
+      Socket  socket = new  Socket(adresse, port);
+      ObjectOutputStream  oss = new  ObjectOutputStream(socket.getOutputStream ());
+      ObjectInputStream  ois =   new  ObjectInputStream(socket.getInputStream ());
+      oss.writeObject("FIN");
+      result = (boolean)ois.readObject();
+      oss.close();
+      socket.close();
+      ois.close();
+    }
+    catch(Exception e){}
+    return result;
+  }
+
+  public Joueur getJoueur(int i)
+  {
+    Joueur j=null;
+    try
+    {
+      Socket  socket = new  Socket(adresse, port);
+      ObjectOutputStream  oss = new  ObjectOutputStream(socket.getOutputStream ());
+      ObjectInputStream  ois =   new  ObjectInputStream(socket.getInputStream ());
+      oss.writeObject("GETJOUEUR");
+      oss.writeInt(i);
+      j = (Joueur) ois.readObject();
+      oss.close();
+      socket.close();
+      ois.close();
+    }
+    catch(Exception e){}
+    return j;
   }
 
   public void transmetJoueur(Joueur j)
@@ -85,18 +122,15 @@ public class Client extends Thread implements Serializable
     try
     {
 
-      while (moteur.fin())
+      while (fin())
       {
         Socket  socket = new  Socket(adresse, port);
         ObjectOutputStream  oss = new  ObjectOutputStream(socket.getOutputStream ());
         ObjectInputStream  ois =   new  ObjectInputStream(socket.getInputStream ());
         oss.writeObject("MOTEUR");
         Object o = ois.readObject();
-        if(o.getClass() == moteur.getClass())
-        {
-          Moteur m =(Moteur) o;
-          setMoteur(m);
-        }
+        String m =(String) o;
+        setMoteur(m);
         oss.close();
         socket.close();
         ois.close();

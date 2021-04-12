@@ -1,5 +1,5 @@
 import java.io.*;
-public class Ennemi extends Joueur implements Serializable
+public class Ennemi extends Joueur
 {
   private char[] commandes;
   private boolean assomme;
