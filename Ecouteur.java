@@ -3,13 +3,13 @@ import java.io.*;
 public class Ecouteur extends Thread implements Serializable
 {
   Moteur moteur;
-  PipedWriter [] flux;
+  TuyauSortie [] flux;
   Client client;
 
   public Ecouteur(Moteur m)
   {
     this.moteur=m;
-    flux = new PipedWriter[moteur.getNbCreature()];
+    flux = new TuyauSortie[moteur.getNbCreature()];
     for(int t =0; t<moteur.getNbCreature(); t++)
     {
         if(moteur.getCreature(t).getCommandes() != null)
@@ -17,7 +17,7 @@ public class Ecouteur extends Thread implements Serializable
           try
           {
           Joueur j=(Joueur) moteur.getCreature(t);
-          flux[t] = new PipedWriter();
+          flux[t] = new TuyauSortie();
           flux[t].connect(j.getFlux());
           }catch(Exception e){}
         }
@@ -28,11 +28,11 @@ public class Ecouteur extends Thread implements Serializable
   public Ecouteur(Client c, int i)
   {
     this.moteur=c.getMoteur();
-    flux = new PipedWriter[1];
+    flux = new TuyauSortie[1];
     try
     {
       Joueur j=(Joueur) moteur.getCreature(i);
-      flux[0] = new PipedWriter();
+      flux[0] = new TuyauSortie();
       flux[0].connect(j.getFlux());
     }catch(Exception e){}
       this.client = c;
