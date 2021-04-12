@@ -22,6 +22,7 @@ public class Scores
           int score = Integer.parseInt(bufferedreader.readLine());
           MeilleursScore[i]=score;
           NomMeilleurjoueur[i] = nom;
+          i++;
         }
       }
       catch(Exception e){}
@@ -29,7 +30,7 @@ public class Scores
 
 
 
-  public void addScore(int i)
+  public synchronized void addScore(int i)
   {
 	   scoreCourant += i;
   }
@@ -46,14 +47,13 @@ public class Scores
       classement();
       try
       {
-        BufferedWriter EcritureAvecBuffer = new  BufferedWriter (new FileWriter(file, false));
+        FileWriter Ecriture = new FileWriter(file, false);
         for(int i=0;i<10;i++)
         {
-          EcritureAvecBuffer.write(NomMeilleurjoueur[i]);
-          EcritureAvecBuffer.newLine();
-          EcritureAvecBuffer.write(MeilleursScore[i]);
-          EcritureAvecBuffer.newLine();
+          Ecriture.write(NomMeilleurjoueur[i]+"\n");
+          Ecriture.write(MeilleursScore[i]+"\n");
         }
+        Ecriture.close();
       }
       catch(FileNotFoundException exc)
       {

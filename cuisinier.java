@@ -118,7 +118,7 @@ public class Cuisinier extends Joueur implements Serializable
           }
         }
       }
-      catch(IOException e){e.printStackTrace();}
-    }    
+      catch(IOException e){}
+    }
   }
 }

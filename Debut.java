@@ -66,24 +66,21 @@ public class Debut{
       }catch(Exception e){e.printStackTrace();}
     }
     int i=1;
-    while (i<2)
+    Moteur m=new Moteur(i);
+    m.ajoutCuisinier(s);
+    m.ajoutEnnemis();
+    m.start();
+    Moteur affichagecourant = new Moteur();
+    while(!m.fin())
     {
-      Moteur m=new Moteur(i);
-      m.ajoutCuisinier(s);
-      m.ajoutEnnemis();
-      m.start();
-      Moteur affichagecourant = new Moteur();
-      while(!m.fin())
+      if(!(affichagecourant.equals(m)))
       {
-        if(!(affichagecourant.equals(m)))
-        {
-          affichagecourant = new Moteur(m);
-          affichagecourant.visualisation();
-        }
+        affichagecourant = new Moteur(m);
+        affichagecourant.visualisation();
       }
-      Scores sc=m.getScores();
-      sc.Sauvegarder();
     }
+    Scores sc=m.getScores();
+    sc.Sauvegarder();
   }
 
   public static void ligne()
@@ -225,6 +222,7 @@ public class Debut{
     while(i==1 || i == 2);
     if(!moteur.haveEnnemi())
       moteur.ajoutEnnemis();
+      moteur.start();
     Moteur affichagecourant = new Moteur();
     while(!moteur.fin())
     {
@@ -272,7 +270,12 @@ public class Debut{
           affichagecourant = new Moteur(m);
           affichagecourant.visualisation();
         }
+        //affichagecourant.visualisation();
       }
+      System.out.println(m.fin());
+      m.visualisation();
+      Scores sc = m.getScores();
+      sc.Sauvegarder();
     }
     else
     {

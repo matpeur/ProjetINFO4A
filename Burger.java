@@ -101,8 +101,10 @@ public class Burger implements Serializable
 		while(complet && i < composants.size())
 		{
 			if(!(composants.get(i).getPose()))
+			{
 				complet = false;
-			i=i+4;
+			}
+			i++;
 		}
 		return complet;
 	}

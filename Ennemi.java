@@ -10,7 +10,7 @@ public class Ennemi extends Joueur implements Serializable
    super(m, nom, Symbole);
    commandes = new char[]{'5', '1', '2', '3'};
    int i=0;
-   while(super.getMoteur().getCreaturePlace(super.getMoteur().getPlateau().getApparitionJoueur()-i) != null)
+   while(super.getMoteur().getCreaturePlace(super.getMoteur().getSpawnEnnemi()-i) != null)
       i++;
    setPlace(m.getSpawnEnnemi()+i);
    assomme=false;
@@ -121,6 +121,7 @@ public class Ennemi extends Joueur implements Serializable
       try
       {
         sleep((int)(Math.random()*100)+100);
+        setPlace(-1);
       }catch(Exception e){e.printStackTrace();}
     }
     setPlace(super.getMoteur().getSpawnEnnemi());

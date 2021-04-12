@@ -65,7 +65,11 @@ class Elements extends Thread implements Serializable
       {
         sleep(100);
       }
-      catch(Exception e){}
+      catch(Exception e){e.printStackTrace();}
+    }
+    if(pose)
+    {
+      m.addScore(125);
     }
   }
 
@@ -98,7 +102,7 @@ class Elements extends Thread implements Serializable
       {
         sleep(200);
       }
-      catch(Exception e){}
+      catch(Exception e){e.printStackTrace();}
     }
     if(getPlateau().getIndice(l, c) == 4)
     {
