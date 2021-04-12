@@ -46,31 +46,40 @@ public class Ecouteur extends Thread
       int i=0;
 
       boolean envoye;
-      while(!moteur.fin())
-      {
-        char commande = (char)tampon.read();
-        int boucle = i;
-        envoye = false;
-        do
+      if(moteur != null)
+        while(!moteur.fin())
         {
-          Creature c=moteur.getCreature(boucle);
-          int j = 0;
-          while( !envoye && j < c.getCommandes().length)
+          char commande = (char)tampon.read();
+          int boucle = i;
+          envoye = false;
+          do
           {
-            if(c.getCommandes()[j] == commande)
-              envoye = true;
-            j++;
-          }
-          if(envoye)
-          {
-            if(client == null)
+            Creature c=moteur.getCreature(boucle);
+            int j = 0;
+            while( !envoye && j < c.getCommandes().length)
+            {
+              if(c.getCommandes()[j] == commande)
+                envoye = true;
+              j++;
+            }
+            if(envoye)
+            {
+              if(client == null)
               flux[boucle].write(commande);
-            else
+              else
               client.transmetCommande(commande);
-          }
-          boucle = (boucle+1)%flux.length;
-        }while(boucle != i && !envoye);
-        i = boucle;
+            }
+            boucle = (boucle+1)%flux.length;
+          }while(boucle != i && !envoye);
+          i = boucle;
+        }
+      else
+      {
+        while(!client.fin())
+        {
+          char commande = (char)tampon.read();
+          client.transmetCommande(commande);
+        }
       }
     }
     catch(Exception e){}
