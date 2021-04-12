@@ -82,7 +82,7 @@ public class Ecouteur extends Thread
         }
       }
     }
-    catch(Exception e){}
+    catch(Exception e){e.printStackTrace();}
   }
 
 }
