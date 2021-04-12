@@ -74,7 +74,7 @@ public class Ecouteur extends Thread implements Serializable
         i = boucle;
       }
     }
-    catch(Exception e){e.printStackTrace();}
+    catch(Exception e){}
   }
 
 }

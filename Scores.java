@@ -1,6 +1,6 @@
 import java.io.*;
 
-public class Scores
+public class Scores implements Serializable
 {
    int scoreCourant ;
    int[] MeilleursScore;

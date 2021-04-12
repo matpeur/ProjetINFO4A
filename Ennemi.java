@@ -95,7 +95,7 @@ public class Ennemi extends Joueur implements Serializable
               }
             }
         }
-        catch(IOException e){e.printStackTrace();}
+        catch(IOException e){}
         if( c != null && place != getPlace())
         {
           if(c.getSymbole() != 'C')

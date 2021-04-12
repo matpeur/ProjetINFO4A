@@ -62,10 +62,7 @@ public class Moteur implements Serializable
       }
       i++;
     }
-    if(somme<=0)
-      System.out.println("Vie");
-    //System.out.println(((somme<=0) || burgercomplet));
-    return   ((somme<=0) ||( burgercomplet));
+    return ((somme<=0) ||( burgercomplet));
   }
 
   public ArrayList<Creature> getToutesCreatures()
