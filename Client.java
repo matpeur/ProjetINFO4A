@@ -88,7 +88,8 @@ public class Client extends Thread
       ObjectOutputStream  oss = new  ObjectOutputStream(socket.getOutputStream ());
       ObjectInputStream  ois =   new  ObjectInputStream(socket.getInputStream ());
       oss.writeObject("JOUEUR");
-      oss.writeObject(j);
+      oss.writeObject(j.getNom());
+      oss.writeChar(j.getSymbole());
       numero = ois.readInt();
       ecouteur = new Ecouteur(this, numero);
       ecouteur.start();

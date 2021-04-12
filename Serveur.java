@@ -49,9 +49,14 @@ public class Serveur extends Thread
         }
         else if(o.equals("JOUEUR"))
         {
-          Joueur j=(Joueur) ois.readObject();
+          String nom= (String) ois.readObject();
+          char Symbole = ois.readChar();
+          Joueur j;
+          if(Symbole == 'C')
+            j = (Joueur) new Cuisinier(getMoteur(), nom);
+          else
+            j = (Joueur) new Ennemi(getMoteur(), nom, Symbole);
           int numero = moteur.getNbCreature();
-          j.setMoteur(getMoteur());
           moteur.ajoutJoueur(j);
           lier(j.getFlux(), numero);
           oss.write(numero);
