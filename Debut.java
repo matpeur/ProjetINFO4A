@@ -270,7 +270,6 @@ public class Debut{
           affichagecourant = new Moteur(m);
           affichagecourant.visualisation();
         }
-        //affichagecourant.visualisation();
       }
       System.out.println(m.fin());
       m.visualisation();

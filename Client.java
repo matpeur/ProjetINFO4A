@@ -6,7 +6,6 @@ public class Client extends Thread implements Serializable
   static  final  int  port = 8080;
 
   private Moteur moteur;
-  private boolean arret;
   private String adresse;
   private int numero;
   private Ecouteur ecouteur;
@@ -14,7 +13,6 @@ public class Client extends Thread implements Serializable
   public Client()
   {
     moteur = new Moteur();;
-    arret = true;
     try
     {
       System.out.println("Quel adresse ?");
@@ -31,11 +29,6 @@ public class Client extends Thread implements Serializable
   public synchronized void setMoteur(Moteur m)
   {
       this.moteur = m;
-  }
-
-  public void arret()
-  {
-    this.arret = false;
   }
 
   public synchronized Moteur getMoteur()

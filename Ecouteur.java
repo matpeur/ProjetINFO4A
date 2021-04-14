@@ -26,11 +26,11 @@ public class Ecouteur extends Thread implements Serializable
   public Ecouteur(Client c, int i)
   {
     this.moteur=c.getMoteur();
-    flux = new TuyauSortie[1];
+    flux = new PipedWriter[1];
     try
     {
       Joueur j=(Joueur) moteur.getCreature(i);
-      flux[0] = new TuyauSortie();
+      flux[0] = new PipedWriter();
       flux[0].connect(j.getFlux());
     }
     catch(Exception e){e.printStackTrace();}
@@ -41,7 +41,6 @@ public class Ecouteur extends Thread implements Serializable
   {
     try
     {
-
       BufferedReader tampon = new BufferedReader(new InputStreamReader(System.in));
       int i=0;
       boolean envoye;
@@ -61,12 +60,10 @@ public class Ecouteur extends Thread implements Serializable
             j++;
           }
           if(envoye)
-          {
             if(client == null)
               flux[boucle].write(commande);
             else
               client.transmetCommande(commande);
-          }
           boucle = (boucle+1)%flux.length;
         }while(boucle != i && !envoye);
         i = boucle;
@@ -74,5 +71,4 @@ public class Ecouteur extends Thread implements Serializable
     }
     catch(Exception e){e.printStackTrace();}
   }
-
 }
