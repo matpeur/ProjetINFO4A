@@ -18,9 +18,7 @@ public class Burger implements Serializable
 		moteur = m;
 		composants = new ArrayList<Elements>();
 		for (int i = 0; i<b.getNbComposants(); i++)
-		{
 			composants.add(new Elements(b.getElement(i), this));
-		}
 	}
 
 	public Elements getElement(int ligne, int colonne)
@@ -62,9 +60,7 @@ public class Burger implements Serializable
 			{
 				if(i == 0)
 					for(int j = 0; j < 4; j++)
-					{
 						composants.add(new PainDessus(this.moteur.getPlateau().getNbColonne()*indice[i]+colonne+j, this));
-					}
 				else if(i == (compteur-1))
 					for(int j = 0; j < 4; j++)
 						composants.add(new PainDessous(this.moteur.getPlateau().getNbColonne()*indice[i]+colonne+j, this));
@@ -85,7 +81,8 @@ public class Burger implements Serializable
 		int i=0;
 		while(compatible && i<moteur.getPlateau().getNbLigne())
 		{
-			if((moteur.getPlateau().getIndice(i, colonne) != moteur.getPlateau().getIndice(i, colonne+1))||(moteur.getPlateau().getIndice(i, colonne) != moteur.getPlateau().getIndice(i, colonne+2))
+			if((moteur.getPlateau().getIndice(i, colonne) != moteur.getPlateau().getIndice(i, colonne+1))
+					||(moteur.getPlateau().getIndice(i, colonne) != moteur.getPlateau().getIndice(i, colonne+2))
 				  ||(moteur.getPlateau().getIndice(i, colonne) != moteur.getPlateau().getIndice(i, colonne+3)))
 					compatible = false;
 			i++;
@@ -101,9 +98,7 @@ public class Burger implements Serializable
 		while(complet && i < composants.size())
 		{
 			if(!(composants.get(i).getPose()))
-			{
 				complet = false;
-			}
 			i++;
 		}
 		return complet;
@@ -118,16 +113,10 @@ public class Burger implements Serializable
 	public boolean equals(Burger b)
 	{
 		if(composants.size() != b.getNbComposants())
-		{
-			System.out.println("Nombre Elements");
 			return false;
-		}
 		for(int i = 0; i<composants.size(); i++)
 			if(!(b.getElement(i).equals(composants.get(i))))
-			{
-				System.out.println("Elements");
 				return false;
-			}
 		return true;
 	}
 }

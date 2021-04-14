@@ -85,12 +85,7 @@ public class Client extends Thread implements Serializable
     boolean arret = true;
     try
     {
-
-<<<<<<< HEAD
-      while (!fin())
-=======
       while (moteur.fin())
->>>>>>> parent of 2aeb69d (ee)
       {
         Socket  socket = new  Socket(adresse, port);
         ObjectOutputStream  oss = new  ObjectOutputStream(socket.getOutputStream ());

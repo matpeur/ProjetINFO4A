@@ -9,7 +9,7 @@ public class Moteur implements Serializable
   public int spawnEnnemi;
   public int spawnJoueur;
   public Scores score;
-  //private Ecouteur ecoute;
+  private Ecouteur ecoute;
 
   public void addScore(int i)
   {
@@ -46,9 +46,7 @@ public class Moteur implements Serializable
     while(i<Burgers.size() && burgercomplet)
     {
       if(!getBurger(i).complet())
-      {
         burgercomplet = false;
-      }
       i++;
     }
     i=0;
@@ -119,15 +117,11 @@ public class Moteur implements Serializable
       else if(m.getCreature(i).getClass() == new EnnemiIA().getClass())
         creature.add((Creature)new EnnemiIA((EnnemiIA)m.getCreature(i), this));
       else
-      {
         creature.add((Creature)new Ennemi((Ennemi)m.getCreature(i), this));
-      }
     }
     Burgers = new ArrayList<Burger>();
     for(int i = 0; i<m.getNbBurgers(); i++)
-    {
       Burgers.add(new Burger(m.getBurger(i), this));
-    }
     spawnEnnemi = m.getSpawnEnnemi();
     spawnJoueur = m.getPlateau().getApparitionJoueur();
     score = m.getScores();
@@ -218,24 +212,16 @@ public class Moteur implements Serializable
     for (int i=0; i<plateau.getTaille(); i++)
     {
       if(i!=0)
-        {
           if(i%plateau.getNbColonne()==0)
             System.out.print("\n");
-        }
       Creature j = getCreaturePlace(i);
       Elements e = getElementsPlace(i);
       if(j!=null)
-        {
           System.out.print(j.getSymbole());
-        }
       else if (e != null)
-      {
         System.out.print(e.getSymbole());
-      }
       else
-      {
         System.out.print(plateau.getChar(i));
-      }
     }
   }
 
@@ -246,8 +232,8 @@ public class Moteur implements Serializable
       getCreature(i).start();
     for (int i = 0; i < Burgers.size(); i++)
       Burgers.get(i).debut();
-    //ecoute = new Ecouteur(this);
-    //ecoute.start();
+    ecoute = new Ecouteur(this);
+    ecoute.start();
   }
 
   public boolean equals(Moteur m)
@@ -261,9 +247,7 @@ public class Moteur implements Serializable
       try
       {
         if(!creature.get(i).equals(m.getCreature(i)))
-        {
           return false;
-        }
       }
       catch (Exception e) {return false;}
     }
@@ -272,9 +256,7 @@ public class Moteur implements Serializable
       try
       {
         if(!Burgers.get(i).equals(m.getBurger(i)))
-        {
           return false;
-        }
       }
       catch (Exception e) {return false;}
     }
@@ -289,9 +271,7 @@ public class Moteur implements Serializable
     score = new Scores();
     Burgers.add(new Burger(this, 16));
     for(int i = 0; i<4; i++)
-    {
       getBurger(0).getElement(i).setIdentifiant(getBurger(0).getElement(i).getIdentifiant()+plateau.getNbColonne());
-    }
     spawnEnnemi = 19*plateau.getNbColonne()+97;
     spawnJoueur = plateau.getApparitionJoueur();
     ajoutEnnemi("Didier" , 'P');

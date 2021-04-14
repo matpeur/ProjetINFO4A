@@ -44,6 +44,7 @@ public class Cuisinier extends Joueur implements Serializable
 		      super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C-1)).Assomme();
 	    if((super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C+1))) != null)
 		      super.getMoteur().getCreaturePlace(I.getIdentifiant(L,C+1)).Assomme();
+      poivre = true;
   }
 
   public void mort()
@@ -53,12 +54,12 @@ public class Cuisinier extends Joueur implements Serializable
        i++;
     setPlace(super.getMoteur().getPlateau().getApparitionJoueur()+i);
     vie--;
+    poivre = false;
   }
 
   @Override
   public void run()
   {
-
     while(!super.getMoteur().fin())
     {
       int place = getPlace();
@@ -95,15 +96,9 @@ public class Cuisinier extends Joueur implements Serializable
             System.out.println("Poivrer!");
           }
           if( c != null && place != getPlace())
-          {
-
             if(c.getSymbole() == 'C')
-            {
               setPlace(place);
-            }
             else
-            {
-
               if(c.getAssomme())
               {
                 c.mort();
@@ -114,8 +109,6 @@ public class Cuisinier extends Joueur implements Serializable
                 mort();
                 System.out.println("Je suis mort");
               }
-            }
-          }
         }
       }
       catch(IOException e){}

@@ -1,14 +1,13 @@
 import java.io.*;
 public class Ennemi extends Joueur implements Serializable
 {
-  private char[] commandes;
   private boolean assomme;
   private boolean tue;
 
  public Ennemi(Moteur m, String nom, char Symbole)
  {
    super(m, nom, Symbole);
-   commandes = new char[]{'5', '1', '2', '3'};
+   setCommandes(new char[]{'5', '1', '2', '3'});
    int i=0;
    while(super.getMoteur().getCreaturePlace(super.getMoteur().getSpawnEnnemi()-i) != null)
       i++;
@@ -37,16 +36,6 @@ public class Ennemi extends Joueur implements Serializable
   public int getPlace(){return super.getPlace();}
   public void setPlace(int i){super.setPlace(i);}
   public Moteur getMoteur(){return super.getMoteur();}
-
-  public void setCommandes(char [] tab)
-  {
-    commandes = tab;
-  }
-
-  public char[] getCommandes()
-  {
-    return this.commandes;
-  }
 
   @Override
   public void run()

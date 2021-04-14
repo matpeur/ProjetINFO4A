@@ -3,25 +3,23 @@ import java.io.*;
 public class Ecouteur extends Thread implements Serializable
 {
   Moteur moteur;
-  TuyauSortie [] flux;
+  PipedWriter [] flux;
   Client client;
 
   public Ecouteur(Moteur m)
   {
     this.moteur=m;
-    flux = new TuyauSortie[moteur.getNbCreature()];
+    flux = new PipedWriter[moteur.getNbCreature()];
     for(int t =0; t<moteur.getNbCreature(); t++)
-    {
         if(moteur.getCreature(t).getCommandes() != null)
         {
           try
           {
-          Joueur j=(Joueur) moteur.getCreature(t);
-          flux[t] = new TuyauSortie();
-          flux[t].connect(j.getFlux());
-          }catch(Exception e){}
+            Joueur j=(Joueur) moteur.getCreature(t);
+            flux[t] = new PipedWriter();
+            flux[t].connect(j.getFlux());
+          }catch(Exception e){e.printStackTrace();}
         }
-    }
     client = null;
   }
 
@@ -34,8 +32,9 @@ public class Ecouteur extends Thread implements Serializable
       Joueur j=(Joueur) moteur.getCreature(i);
       flux[0] = new TuyauSortie();
       flux[0].connect(j.getFlux());
-    }catch(Exception e){}
-      this.client = c;
+    }
+    catch(Exception e){e.printStackTrace();}
+    this.client = c;
   }
 
   public void run()
@@ -45,7 +44,6 @@ public class Ecouteur extends Thread implements Serializable
 
       BufferedReader tampon = new BufferedReader(new InputStreamReader(System.in));
       int i=0;
-
       boolean envoye;
       while(!moteur.fin())
       {

@@ -79,21 +79,13 @@ public class EnnemiIA extends Creature
       int direction=0;
       Plateau P = super.getMoteur().getPlateau();
       if(P.getLigne(getPlace())>P.getLigne(idcible))
-      {
           direction = rechercheEchelle(P.getLigne(getPlace())-1);
-      }
       else if(P.getLigne(getPlace())<P.getLigne(idcible))
-      {
           direction = rechercheEchelle(P.getLigne(getPlace())+1);
-      }
       else if(P.getColonne(getPlace())>P.getColonne(idcible))
-      {
           direction = 4;
-      }
       else
-      {
           direction = 2;
-      }
       return direction;
     }
 
@@ -116,36 +108,22 @@ public class EnnemiIA extends Creature
       int gauche = 1;
       int droite = 1;
       if(P.getIndice(ligneRecherche, colonne) != 0)
-      {
         if(ligneRecherche<ligne)
           return 1;
         else
           return 3;
-      }
       while(P.getIndice(ligne, colonne-gauche) != 0 || P.getIndice(ligne, colonne+droite) != 0)
       {
         if(P.getIndice(ligne, colonne-gauche) != 0)
-        {
           if(P.getIndice(ligneRecherche, colonne-gauche) != 0)
-          {
             return 4;
-          }
           else
-          {
             gauche++;
-          }
-        }
         if(P.getIndice(ligne, colonne+droite) != 0)
-        {
           if(P.getIndice(ligneRecherche, colonne+droite) != 0)
-          {
             return 2;
-          }
           else
-          {
             droite++;
-          }
-        }
       }
       return 0;
     }
@@ -172,26 +150,27 @@ public class EnnemiIA extends Creature
           int deplacement = deplacement(cible.getPlace());
           Creature c = null;
           int place = getPlace();
+          int arrivee = place;
           switch(deplacement)
           {
-            case 1 : place = getPlace()-m.getPlateau().getNbColonne();
-                     c=m.getCreaturePlace(place);
+            case 1 : arrivee = getPlace()-m.getPlateau().getNbColonne();
+                     c=m.getCreaturePlace(arrivee);
                      deplaceHaut();
                      break;
-            case 2 : place = getPlace()+1;
-                     c=m.getCreaturePlace(place);
+            case 2 : arrivee = getPlace()+1;
+                     c=m.getCreaturePlace(arrivee);
                      deplaceDroite();
                      break;
-            case 3 : place = getPlace()+m.getPlateau().getNbColonne();
-                     c=m.getCreaturePlace(place);
+            case 3 : arrivee = getPlace()+m.getPlateau().getNbColonne();
+                     c=m.getCreaturePlace(arrivee);
                      deplaceBas();
                      break;
-            case 4 : place = getPlace()-1;
-                     c=m.getCreaturePlace(place);
+            case 4 : arrivee = getPlace()-1;
+                     c=m.getCreaturePlace(arrivee);
                      deplaceGauche();
                      break;
           }
-          if( c != null && place != getPlace())
+          if( c != null && arrivee == getPlace())
           {
             if(c.getSymbole() != 'C')
             {

@@ -8,9 +8,8 @@ public class Plateau implements Serializable
   Defini un plateau de jeu
   Identifiants réservés : "0" case vide
                           "1" Sol
-                          "2" Elements de burger
                           "3" Echelle
-                          "4-12" Definis pour les joueurs
+                          "4" Assiette
 
   */
   private int niveau[][];

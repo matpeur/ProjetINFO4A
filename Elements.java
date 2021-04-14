@@ -51,26 +51,18 @@ class Elements extends Thread implements Serializable
       Creature c =m.getCreaturePlace(getIdentifiant());
       if(c != null)
         if(c.getSymbole() == 'C')
-        {
           setIdentifiant(getIdentifiant()+getPlateau().getNbColonne());
-        }
       if(getPlateau().getIndice(getPlateau().getLigne(identifiant), getPlateau().getColonne(identifiant)) != 1)
-      {
         if(possibliliteDeChute())
-        {
           chute();
-        }
-      }
       try
       {
         sleep(100);
       }
-      catch(Exception e){}
+      catch(Exception e){e.printStackTrace();}
     }
     if(pose)
-    {
       m.addScore(125);
-    }
   }
 
   public void chute()
@@ -84,30 +76,22 @@ class Elements extends Thread implements Serializable
        c = getPlateau().getColonne(getIdentifiant());
        Elements dessous = burger.getElement(l+1, c);
        if(dessous != null)
-       {
          if(dessous.getPose())
           this.pose = true;
          else
-         {
            dessous.setIdentifiant(dessous.getIdentifiant()+(m.getPlateau().getNbColonne())*2);
-         }
-      }
       Creature creature = m.getCreaturePlace(getIdentifiant()+getPlateau().getNbColonne());
       if(creature != null)
-      {
         if(creature.getSymbole() != 'C')
           creature.mort();
-      }
       try
       {
         sleep(200);
       }
-      catch(Exception e){}
+      catch(Exception e){e.printStackTrace();}
     }
     if(getPlateau().getIndice(l, c) == 4)
-    {
       pose=true;
-	  }
   }
 
   public boolean possibliliteDeChute()
@@ -119,9 +103,7 @@ class Elements extends Thread implements Serializable
     while(chute && i<4)
     {
       if(burger.getElement(ligne,colonne+i) != null)
-        {
           chute = false;
-        }
       i++;
     }
     return chute;
@@ -130,9 +112,7 @@ class Elements extends Thread implements Serializable
   public boolean equals(Elements e)
   {
     if(this.getSymbole() != e.getSymbole())
-    {
       return false;
-    }
     return this.getIdentifiant() == e.getIdentifiant();
   }
 }
